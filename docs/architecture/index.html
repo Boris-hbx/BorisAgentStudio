@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BorisAgentStudio - 系统架构图</title>
+  <link rel="stylesheet" href="architecture.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <h1 class="logo">Boris Agent Studio</h1>
+      <span class="subtitle">系统架构图</span>
+    </div>
+    <div class="header-right">
+      <div class="controls">
+        <button id="btn-reset" class="btn" title="重置视图">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+          </svg>
+          <span>重置</span>
+        </button>
+        <button id="btn-expand" class="btn" title="展开全部">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"/>
+          </svg>
+          <span>展开</span>
+        </button>
+        <button id="btn-collapse" class="btn" title="折叠全部">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707l-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+          </svg>
+          <span>折叠</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="canvas-container">
+      <svg id="architecture-svg"></svg>
+    </div>
+
+    <aside class="legend">
+      <h3>图例</h3>
+      <div class="legend-section">
+        <h4>层级</h4>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #a855f7;"></span>
+          <span>规范层 (Specification)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #3b82f6;"></span>
+          <span>前端层 (Frontend)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #f97316;"></span>
+          <span>后端层 (Backend)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: #22c55e;"></span>
+          <span>数据层 (Data)</span>
+        </div>
+      </div>
+      <div class="legend-section">
+        <h4>连接类型</h4>
+        <div class="legend-item">
+          <span class="legend-line solid"></span>
+          <span>uses (使用)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-line dashed"></span>
+          <span>api_call (API调用)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-line arrow"></span>
+          <span>data_flow (数据流)</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div id="tooltip" class="tooltip"></div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="architecture.js"></script>
+</body>
+</html>

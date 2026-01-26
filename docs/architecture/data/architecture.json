@@ -1,0 +1,337 @@
+{
+  "nodes": [
+    {
+      "id": "layer-spec",
+      "name": "规范层 (Specification)",
+      "layer": "spec",
+      "type": "layer",
+      "description": "项目规范、标准和约定，指导 Agent 和开发者的行为"
+    },
+    {
+      "id": "spec-claude-md",
+      "name": "CLAUDE.md",
+      "layer": "spec",
+      "type": "file",
+      "description": "项目核心指令文件，定义 Agent 权限和工程哲学",
+      "path": "CLAUDE.md",
+      "parent": "layer-spec"
+    },
+    {
+      "id": "spec-specs",
+      "name": "specs/",
+      "layer": "spec",
+      "type": "module",
+      "description": "功能规格文档 (20个 SPEC)",
+      "path": "docs/specs/",
+      "parent": "layer-spec"
+    },
+    {
+      "id": "spec-standards",
+      "name": "standards/",
+      "layer": "spec",
+      "type": "module",
+      "description": "标准与规范 (7个 STD)",
+      "path": "standards/",
+      "parent": "layer-spec"
+    },
+    {
+      "id": "spec-rules",
+      "name": "rules/",
+      "layer": "spec",
+      "type": "module",
+      "description": "项目规则定义 (5个 RULE)",
+      "path": "rules/",
+      "parent": "layer-spec"
+    },
+    {
+      "id": "spec-skills",
+      "name": "skills/",
+      "layer": "spec",
+      "type": "module",
+      "description": "Agent 技能定义 (7个 SKILL)",
+      "path": "skills/",
+      "parent": "layer-spec"
+    },
+    {
+      "id": "layer-frontend",
+      "name": "前端层 (Frontend)",
+      "layer": "frontend",
+      "type": "layer",
+      "description": "React + D3.js 前端应用，提供可视化界面"
+    },
+    {
+      "id": "fe-timeline",
+      "name": "Timeline",
+      "layer": "frontend",
+      "type": "module",
+      "description": "工具调用时序图：Timeline, ToolCallFlow, TimelineNode, LoopArrow, ContextMarkers",
+      "path": "frontend/src/components/Timeline/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-detail",
+      "name": "DetailPanel",
+      "layer": "frontend",
+      "type": "module",
+      "description": "步骤响应式详情面板",
+      "path": "frontend/src/components/DetailPanel/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-tool-detail",
+      "name": "ToolDetailPanel",
+      "layer": "frontend",
+      "type": "module",
+      "description": "工具调用详情面板",
+      "path": "frontend/src/components/ToolDetailPanel/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-layout",
+      "name": "Layout",
+      "layer": "frontend",
+      "type": "module",
+      "description": "布局组件：Header, StatusBar, HeaderParticles",
+      "path": "frontend/src/components/Layout/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-context",
+      "name": "ContextFlow",
+      "layer": "frontend",
+      "type": "module",
+      "description": "上下文流转图",
+      "path": "frontend/src/components/ContextFlow/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-phase",
+      "name": "PhaseGroup",
+      "layer": "frontend",
+      "type": "module",
+      "description": "分层工作流：PhaseGroupList, PhaseNode",
+      "path": "frontend/src/components/PhaseGroup/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-search",
+      "name": "SessionSearch",
+      "layer": "frontend",
+      "type": "module",
+      "description": "Session 搜索过滤",
+      "path": "frontend/src/components/SessionSearch/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-diff",
+      "name": "CodeDiff",
+      "layer": "frontend",
+      "type": "module",
+      "description": "代码差异可视化",
+      "path": "frontend/src/components/CodeDiff/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-particles",
+      "name": "Particles",
+      "layer": "frontend",
+      "type": "module",
+      "description": "粒子系统引擎：engine, renderer, particle, config",
+      "path": "frontend/src/lib/particles/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "fe-types",
+      "name": "Types",
+      "layer": "frontend",
+      "type": "module",
+      "description": "TypeScript 类型定义",
+      "path": "frontend/src/types/",
+      "parent": "layer-frontend"
+    },
+    {
+      "id": "layer-backend",
+      "name": "后端层 (Backend)",
+      "layer": "backend",
+      "type": "layer",
+      "description": "Rust Axum 后端服务，提供 REST API 和 WebSocket"
+    },
+    {
+      "id": "be-api",
+      "name": "REST API",
+      "layer": "backend",
+      "type": "module",
+      "description": "API 路由：/sessions, /sessions/:id",
+      "path": "backend/src/api/",
+      "parent": "layer-backend"
+    },
+    {
+      "id": "be-websocket",
+      "name": "WebSocket",
+      "layer": "backend",
+      "type": "module",
+      "description": "WebSocket 处理，实时推送更新",
+      "path": "backend/src/websocket/",
+      "parent": "layer-backend"
+    },
+    {
+      "id": "be-models",
+      "name": "Models",
+      "layer": "backend",
+      "type": "module",
+      "description": "数据模型定义",
+      "path": "backend/src/models/",
+      "parent": "layer-backend"
+    },
+    {
+      "id": "be-services",
+      "name": "Services",
+      "layer": "backend",
+      "type": "module",
+      "description": "业务逻辑层",
+      "path": "backend/src/services/",
+      "parent": "layer-backend"
+    },
+    {
+      "id": "layer-data",
+      "name": "数据层 (Data)",
+      "layer": "data",
+      "type": "layer",
+      "description": "数据存储：Session 日志、能力快照、截图"
+    },
+    {
+      "id": "data-sessions",
+      "name": "sessions/",
+      "layer": "data",
+      "type": "module",
+      "description": "Agent Session 日志文件 (JSON)",
+      "path": "data/sessions/",
+      "parent": "layer-data"
+    },
+    {
+      "id": "data-snapshots",
+      "name": "capability-snapshots/",
+      "layer": "data",
+      "type": "module",
+      "description": "能力快照",
+      "path": "data/capability-snapshots/",
+      "parent": "layer-data"
+    },
+    {
+      "id": "data-changelog",
+      "name": "capability-changelog.md",
+      "layer": "data",
+      "type": "file",
+      "description": "能力变更日志",
+      "path": "data/capability-changelog.md",
+      "parent": "layer-data"
+    },
+    {
+      "id": "data-prtsc",
+      "name": "PrtSc/",
+      "layer": "data",
+      "type": "module",
+      "description": "用户截图",
+      "path": "data/PrtSc/",
+      "parent": "layer-data"
+    }
+  ],
+  "links": [
+    {
+      "source": "spec-claude-md",
+      "target": "layer-frontend",
+      "type": "uses",
+      "label": "指导开发"
+    },
+    {
+      "source": "spec-claude-md",
+      "target": "layer-backend",
+      "type": "uses",
+      "label": "指导开发"
+    },
+    {
+      "source": "spec-specs",
+      "target": "layer-frontend",
+      "type": "uses",
+      "label": "定义功能"
+    },
+    {
+      "source": "spec-standards",
+      "target": "data-sessions",
+      "type": "uses",
+      "label": "STD-001 定义格式"
+    },
+    {
+      "source": "fe-timeline",
+      "target": "be-api",
+      "type": "api_call",
+      "label": "GET /sessions"
+    },
+    {
+      "source": "fe-timeline",
+      "target": "be-websocket",
+      "type": "data_flow",
+      "label": "实时更新"
+    },
+    {
+      "source": "fe-detail",
+      "target": "fe-timeline",
+      "type": "uses",
+      "label": "联动"
+    },
+    {
+      "source": "fe-tool-detail",
+      "target": "fe-timeline",
+      "type": "uses",
+      "label": "联动"
+    },
+    {
+      "source": "fe-layout",
+      "target": "fe-particles",
+      "type": "uses",
+      "label": "Header 动画"
+    },
+    {
+      "source": "fe-context",
+      "target": "fe-timeline",
+      "type": "uses",
+      "label": "联动高亮"
+    },
+    {
+      "source": "fe-search",
+      "target": "be-api",
+      "type": "api_call",
+      "label": "搜索 Session"
+    },
+    {
+      "source": "be-api",
+      "target": "data-sessions",
+      "type": "data_flow",
+      "label": "读取 Session"
+    },
+    {
+      "source": "be-api",
+      "target": "be-models",
+      "type": "uses",
+      "label": "数据结构"
+    },
+    {
+      "source": "be-api",
+      "target": "be-services",
+      "type": "uses",
+      "label": "业务逻辑"
+    },
+    {
+      "source": "be-websocket",
+      "target": "data-sessions",
+      "type": "data_flow",
+      "label": "监听变更"
+    },
+    {
+      "source": "spec-rules",
+      "target": "data-snapshots",
+      "type": "uses",
+      "label": "RULE-001 触发审视"
+    }
+  ]
+}

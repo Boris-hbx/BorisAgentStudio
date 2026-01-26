@@ -1,0 +1,65 @@
+{
+  "skill_id": "SKILL-006",
+  "name": "代码 Diff 可视化",
+  "version": "1.0",
+  "description": "可视化展示代码变更，支持 side-by-side 和 inline 模式",
+  "category": "visualization",
+  "capabilities": [
+    {
+      "name": "side_by_side",
+      "description": "并排对比视图",
+      "features": [
+        "左侧原始代码",
+        "右侧修改后代码",
+        "对应行高亮",
+        "同步滚动"
+      ]
+    },
+    {
+      "name": "inline",
+      "description": "行内对比视图",
+      "features": [
+        "删除行红色背景",
+        "新增行绿色背景",
+        "上下文行显示",
+        "折叠未变更区域"
+      ]
+    },
+    {
+      "name": "syntax_highlight",
+      "description": "语法高亮",
+      "supported_languages": [
+        "typescript",
+        "javascript",
+        "rust",
+        "json",
+        "css",
+        "markdown"
+      ]
+    },
+    {
+      "name": "statistics",
+      "description": "变更统计",
+      "metrics": [
+        "新增行数",
+        "删除行数",
+        "修改行数",
+        "文件数"
+      ]
+    }
+  ],
+  "diff_algorithm": {
+    "name": "Myers diff",
+    "description": "高效的最小编辑距离算法",
+    "context_lines": 3
+  },
+  "ui_features": {
+    "line_numbers": true,
+    "word_diff": true,
+    "expand_collapse": true,
+    "navigation": true
+  },
+  "related_specs": ["SPEC-018"],
+  "created_at": "2026-01-26",
+  "author": "Boris Huai"
+}

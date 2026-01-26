@@ -1,0 +1,132 @@
+{
+  "skill_id": "SKILL-005",
+  "name": "实时监控",
+  "version": "1.0",
+  "description": "实时监控正在执行的 Agent，展示工具调用流和执行状态",
+  "category": "monitoring",
+  "capabilities": [
+    {
+      "name": "live_tool_calls",
+      "description": "实时工具调用展示",
+      "features": [
+        "工具调用开始/完成/失败事件",
+        "执行进度指示",
+        "工具输入/输出预览"
+      ]
+    },
+    {
+      "name": "live_output",
+      "description": "实时输出日志",
+      "features": [
+        "流式输出展示",
+        "自动滚动",
+        "日志级别过滤"
+      ]
+    },
+    {
+      "name": "live_stats",
+      "description": "实时统计",
+      "metrics": [
+        "已用时间",
+        "工具调用数",
+        "完成数",
+        "失败数",
+        "当前阶段"
+      ]
+    },
+    {
+      "name": "connection_management",
+      "description": "WebSocket 连接管理",
+      "features": [
+        "自动重连",
+        "连接状态指示",
+        "心跳检测"
+      ]
+    }
+  ],
+  "websocket": {
+    "endpoint": "ws://localhost:8080/ws",
+    "events": {
+      "inbound": [
+        {
+          "type": "session:started",
+          "payload": "{ session_id, task_title, user_prompt }"
+        },
+        {
+          "type": "tool:started",
+          "payload": "{ call_id, tool_name, input }"
+        },
+        {
+          "type": "tool:progress",
+          "payload": "{ call_id, progress, message }"
+        },
+        {
+          "type": "tool:output",
+          "payload": "{ call_id, chunk }"
+        },
+        {
+          "type": "tool:completed",
+          "payload": "{ call_id, output, duration_ms }"
+        },
+        {
+          "type": "tool:failed",
+          "payload": "{ call_id, error }"
+        },
+        {
+          "type": "phase:changed",
+          "payload": "{ phase_type, annotation }"
+        },
+        {
+          "type": "session:completed",
+          "payload": "{ status, summary }"
+        }
+      ],
+      "outbound": [
+        {
+          "type": "subscribe",
+          "payload": "{ session_id }"
+        },
+        {
+          "type": "unsubscribe",
+          "payload": "{ session_id }"
+        },
+        {
+          "type": "ping",
+          "payload": "{}"
+        }
+      ]
+    }
+  },
+  "ui": {
+    "views": [
+      {
+        "name": "stream",
+        "description": "流式视图 - 按时间顺序展示"
+      },
+      {
+        "name": "phase",
+        "description": "阶段视图 - 按阶段分组展示"
+      },
+      {
+        "name": "stats",
+        "description": "统计视图 - 实时统计信息"
+      }
+    ],
+    "components": [
+      "ConnectionStatus",
+      "LiveToolCall",
+      "LiveProgress",
+      "LiveOutput",
+      "LiveStats"
+    ]
+  },
+  "performance": {
+    "throttle_ms": 100,
+    "max_log_entries": 1000,
+    "reconnect_max_attempts": 5,
+    "reconnect_delay_ms": 1000
+  },
+  "related_specs": ["SPEC-015"],
+  "created_at": "2026-01-26",
+  "author": "Boris Huai"
+}

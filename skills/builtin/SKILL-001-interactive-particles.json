@@ -1,0 +1,121 @@
+{
+  "skill_id": "SKILL-001",
+  "name": "interactive-particles",
+  "display_name": "可交互粒子系统",
+  "version": "1.0.0",
+  "description": "Canvas 上的可交互粒子效果，粒子会自主游动，鼠标靠近时被推开，被困时爆裂重组",
+  "category": "ui-effect",
+  "tags": ["canvas", "animation", "interaction", "physics"],
+  "source": {
+    "origin": "C:\\Project\\boris-workspace\\Next\\frontend\\index.html",
+    "lines": "4623-5794",
+    "extracted_at": "2026-01-25"
+  },
+  "capabilities": [
+    {
+      "id": "particle-physics",
+      "name": "粒子物理引擎",
+      "description": "速度、摩擦、边界碰撞的物理模拟"
+    },
+    {
+      "id": "mouse-repel",
+      "name": "鼠标排斥",
+      "description": "鼠标靠近时粒子被推开，距离越近力越大（二次方关系）"
+    },
+    {
+      "id": "autonomous-movement",
+      "name": "自主游动",
+      "description": "粒子自动移动，定期随机转向"
+    },
+    {
+      "id": "trail-rendering",
+      "name": "拖尾渲染",
+      "description": "粒子移动时留下渐隐、渐细的轨迹"
+    },
+    {
+      "id": "explode-reunite",
+      "name": "爆裂重组",
+      "description": "被困时颤抖、爆裂成碎片，碎片汇合重生"
+    }
+  ],
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "repelRadius": {
+        "type": "number",
+        "default": 180,
+        "min": 50,
+        "max": 300,
+        "description": "鼠标感应半径 (px)"
+      },
+      "repelForce": {
+        "type": "number",
+        "default": 12,
+        "min": 1,
+        "max": 15,
+        "description": "排斥力度"
+      },
+      "maxSpeed": {
+        "type": "number",
+        "default": 10,
+        "min": 5,
+        "max": 20,
+        "description": "最大速度"
+      },
+      "friction": {
+        "type": "number",
+        "default": 0.97,
+        "min": 0.9,
+        "max": 0.999,
+        "description": "摩擦系数"
+      },
+      "tailLength": {
+        "type": "number",
+        "default": 5,
+        "min": 0,
+        "max": 15,
+        "description": "尾巴长度"
+      },
+      "particleCount": {
+        "type": "number",
+        "default": 8,
+        "min": 3,
+        "max": 20,
+        "description": "粒子数量"
+      },
+      "colors": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": ["#58a6ff", "#f97316", "#a855f7", "#22c55e"],
+        "description": "粒子颜色列表"
+      }
+    }
+  },
+  "algorithms": {
+    "repel_force": {
+      "formula": "force = (1 - dist/radius)² × repelForce × 1.5",
+      "description": "二次方关系，距离越近力越大"
+    },
+    "friction": {
+      "formula": "v *= friction (each frame)",
+      "description": "每帧应用摩擦减速"
+    },
+    "boundary_bounce": {
+      "formula": "v = |v| × 0.8 (on collision)",
+      "description": "碰撞时反弹并损失20%能量"
+    },
+    "fear_threshold": {
+      "formula": "stuckTime > 15 → shake; > 45 → explode",
+      "description": "被困15帧开始颤抖，45帧爆裂"
+    }
+  },
+  "implementation_notes": [
+    "使用 requestAnimationFrame 驱动动画循环",
+    "Canvas 2D Context 渲染",
+    "粒子轨迹用数组存储，超长度时 shift() 移除",
+    "碎片用独立数组管理，生命到期后重组",
+    "区分逃跑模式（减少摩擦）和巡游模式（增加摩擦）"
+  ],
+  "dependencies": [],
+  "spec_reference": "SPEC-006-interactive-particles.md"
+}

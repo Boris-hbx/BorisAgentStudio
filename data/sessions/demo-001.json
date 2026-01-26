@@ -1,0 +1,192 @@
+{
+  "session_id": "demo-001",
+  "created_at": "2026-01-24T10:00:00Z",
+  "updated_at": "2026-01-24T10:05:00Z",
+  "steps": [
+    {
+      "step_id": "step-001",
+      "step_name": "requirement_input",
+      "status": "success",
+      "input": "写一个 Python 函数，计算斐波那契数列的第 n 项",
+      "output": {
+        "parsed_requirement": "实现斐波那契数列计算函数",
+        "constraints": ["输入: 正整数 n", "输出: 第 n 项的值"]
+      },
+      "context_link": null,
+      "skill_source": null,
+      "domain_knowledge_source": null,
+      "domain_matching_score": 0,
+      "timestamp": "2026-01-24T10:00:01Z",
+      "duration_ms": 150
+    },
+    {
+      "step_id": "step-002",
+      "step_name": "task_decomposition",
+      "status": "success",
+      "input": {
+        "requirement": "实现斐波那契数列计算函数"
+      },
+      "output": {
+        "subtasks": [
+          "定义函数签名",
+          "处理边界条件 (n <= 0, n == 1, n == 2)",
+          "实现递推逻辑",
+          "返回结果"
+        ]
+      },
+      "context_link": "step-001",
+      "skill_source": {
+        "id": "skill-decompose",
+        "name": "任务分解",
+        "description": "将复杂任务分解为可执行子任务",
+        "source": "builtin"
+      },
+      "domain_knowledge_source": [
+        {
+          "id": "dk-001",
+          "name": "斐波那契数列定义",
+          "content": "F(n) = F(n-1) + F(n-2), F(1) = F(2) = 1",
+          "relevance_score": 0.95
+        }
+      ],
+      "domain_matching_score": 0.95,
+      "timestamp": "2026-01-24T10:00:02Z",
+      "duration_ms": 200
+    },
+    {
+      "step_id": "step-003",
+      "step_name": "code_generation",
+      "status": "success",
+      "input": {
+        "subtasks": ["定义函数签名", "处理边界条件", "实现递推逻辑", "返回结果"]
+      },
+      "output": {
+        "code": "def fibonacci(n: int) -> int:\n    if n <= 0:\n        raise ValueError('n must be positive')\n    if n <= 2:\n        return 1\n    a, b = 1, 1\n    for _ in range(n - 2):\n        a, b = b, a + b\n    return b",
+        "language": "python"
+      },
+      "context_link": "step-002",
+      "skill_source": {
+        "id": "skill-python-gen",
+        "name": "Python 代码生成",
+        "description": "生成符合 PEP8 规范的 Python 代码",
+        "source": "builtin"
+      },
+      "domain_knowledge_source": [
+        {
+          "id": "dk-001",
+          "name": "斐波那契数列定义",
+          "content": "F(n) = F(n-1) + F(n-2), F(1) = F(2) = 1",
+          "relevance_score": 0.95
+        },
+        {
+          "id": "dk-002",
+          "name": "Python 迭代优化",
+          "content": "对于递推问题，迭代比递归更高效",
+          "relevance_score": 0.8
+        }
+      ],
+      "domain_matching_score": 0.88,
+      "timestamp": "2026-01-24T10:00:05Z",
+      "duration_ms": 500
+    },
+    {
+      "step_id": "step-004",
+      "step_name": "environment_execution",
+      "status": "success",
+      "input": {
+        "code": "def fibonacci(n: int) -> int:\n    if n <= 0:\n        raise ValueError('n must be positive')\n    if n <= 2:\n        return 1\n    a, b = 1, 1\n    for _ in range(n - 2):\n        a, b = b, a + b\n    return b",
+        "test_cases": ["fibonacci(1)", "fibonacci(5)", "fibonacci(10)"]
+      },
+      "output": {
+        "results": [
+          {"input": "fibonacci(1)", "output": 1, "passed": true},
+          {"input": "fibonacci(5)", "output": 5, "passed": true},
+          {"input": "fibonacci(10)", "output": 55, "passed": true}
+        ],
+        "all_passed": true
+      },
+      "context_link": "step-003",
+      "skill_source": {
+        "id": "skill-sandbox",
+        "name": "代码沙箱执行",
+        "description": "在安全沙箱中执行代码并收集结果",
+        "source": "builtin"
+      },
+      "domain_knowledge_source": null,
+      "domain_matching_score": 0,
+      "timestamp": "2026-01-24T10:00:06Z",
+      "duration_ms": 300
+    },
+    {
+      "step_id": "step-005",
+      "step_name": "debug_fix",
+      "status": "skipped",
+      "input": null,
+      "output": {
+        "reason": "所有测试用例通过，无需调试"
+      },
+      "context_link": "step-004",
+      "skill_source": null,
+      "domain_knowledge_source": null,
+      "domain_matching_score": 0,
+      "timestamp": "2026-01-24T10:00:06Z",
+      "duration_ms": 10
+    },
+    {
+      "step_id": "step-006",
+      "step_name": "result_verification",
+      "status": "success",
+      "input": {
+        "requirement": "写一个 Python 函数，计算斐波那契数列的第 n 项",
+        "code": "def fibonacci(n: int) -> int: ..."
+      },
+      "output": {
+        "verified": true,
+        "checks": [
+          {"name": "函数签名正确", "passed": true},
+          {"name": "边界条件处理", "passed": true},
+          {"name": "测试用例通过", "passed": true}
+        ]
+      },
+      "context_link": "step-004",
+      "skill_source": {
+        "id": "skill-verify",
+        "name": "结果验证",
+        "description": "验证生成结果是否满足原始需求",
+        "source": "builtin"
+      },
+      "domain_knowledge_source": null,
+      "domain_matching_score": 0,
+      "timestamp": "2026-01-24T10:00:07Z",
+      "duration_ms": 150
+    },
+    {
+      "step_id": "step-007",
+      "step_name": "memory_consolidation",
+      "status": "success",
+      "input": {
+        "session_summary": "成功实现斐波那契函数"
+      },
+      "output": {
+        "new_knowledge": [
+          {
+            "type": "pattern",
+            "content": "递推问题优先使用迭代而非递归"
+          }
+        ],
+        "updated_skills": []
+      },
+      "context_link": "step-006",
+      "skill_source": {
+        "id": "skill-memory",
+        "name": "记忆沉淀",
+        "description": "将执行经验转化为长期记忆",
+        "source": "builtin"
+      },
+      "domain_knowledge_source": null,
+      "domain_matching_score": 0,
+      "timestamp": "2026-01-24T10:00:08Z",
+      "duration_ms": 100
+    }
+  ]
+}

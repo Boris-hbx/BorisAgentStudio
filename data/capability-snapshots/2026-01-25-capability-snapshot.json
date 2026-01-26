@@ -1,0 +1,157 @@
+{
+  "snapshot_date": "2026-01-25",
+  "snapshot_type": "initial",
+  "claude_code_version": "unknown",
+  "model_id": "claude-opus-4-5-20251101",
+
+  "tools": {
+    "perception": {
+      "Read": {
+        "description": "读取文件内容",
+        "params": ["file_path", "offset?", "limit?"],
+        "supports": ["text", "images", "pdf", "jupyter"]
+      },
+      "Glob": {
+        "description": "按模式搜索文件",
+        "params": ["pattern", "path?"]
+      },
+      "Grep": {
+        "description": "按内容搜索文件",
+        "params": ["pattern", "path?", "glob?", "type?", "output_mode?", "-i?", "-n?", "-A?", "-B?", "-C?"]
+      },
+      "LSP": {
+        "description": "语言服务器协议操作",
+        "params": ["operation", "filePath", "line", "character"],
+        "operations": ["goToDefinition", "findReferences", "hover", "documentSymbol", "workspaceSymbol", "goToImplementation", "prepareCallHierarchy", "incomingCalls", "outgoingCalls"]
+      },
+      "WebFetch": {
+        "description": "获取网页内容",
+        "params": ["url", "prompt"]
+      },
+      "WebSearch": {
+        "description": "网络搜索",
+        "params": ["query", "allowed_domains?", "blocked_domains?"]
+      }
+    },
+
+    "action": {
+      "Write": {
+        "description": "创建/覆盖文件",
+        "params": ["file_path", "content"]
+      },
+      "Edit": {
+        "description": "编辑文件（字符串替换）",
+        "params": ["file_path", "old_string", "new_string", "replace_all?"]
+      },
+      "Bash": {
+        "description": "执行 shell 命令",
+        "params": ["command", "description?", "timeout?", "run_in_background?"]
+      },
+      "Task": {
+        "description": "启动子 Agent",
+        "params": ["description", "prompt", "subagent_type"],
+        "subagent_types": ["Bash", "general-purpose", "Explore", "Plan", "claude-code-guide"]
+      },
+      "NotebookEdit": {
+        "description": "编辑 Jupyter notebook",
+        "params": ["notebook_path", "new_source", "cell_id?", "cell_type?", "edit_mode?"]
+      }
+    },
+
+    "interaction": {
+      "AskUserQuestion": {
+        "description": "向用户提问",
+        "params": ["questions"]
+      }
+    },
+
+    "planning": {
+      "EnterPlanMode": {
+        "description": "进入计划模式",
+        "params": []
+      },
+      "ExitPlanMode": {
+        "description": "退出计划模式",
+        "params": ["allowedPrompts?"]
+      }
+    },
+
+    "task_management": {
+      "TaskCreate": {
+        "description": "创建任务",
+        "params": ["subject", "description", "activeForm?"]
+      },
+      "TaskUpdate": {
+        "description": "更新任务状态",
+        "params": ["taskId", "status?", "subject?", "description?"]
+      },
+      "TaskList": {
+        "description": "列出所有任务",
+        "params": []
+      },
+      "TaskGet": {
+        "description": "获取任务详情",
+        "params": ["taskId"]
+      }
+    },
+
+    "background": {
+      "TaskOutput": {
+        "description": "获取后台任务输出",
+        "params": ["task_id", "block?", "timeout?"]
+      },
+      "TaskStop": {
+        "description": "停止后台任务",
+        "params": ["task_id"]
+      }
+    },
+
+    "skills": {
+      "Skill": {
+        "description": "执行预定义技能",
+        "params": ["skill", "args?"]
+      }
+    },
+
+    "ide_integration": {
+      "mcp__ide__getDiagnostics": {
+        "description": "获取 VS Code 诊断信息",
+        "params": ["uri?"]
+      },
+      "mcp__ide__executeCode": {
+        "description": "在 Jupyter kernel 执行代码",
+        "params": ["code"]
+      }
+    }
+  },
+
+  "execution_model": {
+    "phases": ["understand", "explore", "plan", "execute", "verify"],
+    "supports_iteration": true,
+    "supports_parallel_tools": true,
+    "supports_background_tasks": true,
+    "supports_subagents": true,
+    "thinking_mode": "interleaved"
+  },
+
+  "context": {
+    "max_thinking_tokens": 31999,
+    "file_read_default_limit": 2000,
+    "file_line_truncation": 2000,
+    "bash_output_truncation": 30000,
+    "supports_images": true,
+    "supports_pdf": true,
+    "supports_jupyter": true,
+    "working_directory_persistent": true,
+    "shell_state_persistent": false
+  },
+
+  "constraints": {
+    "no_direct_claude_md_modification": true,
+    "requires_file_read_before_edit": true,
+    "git_safety_protocol": true,
+    "sandbox_mode": true
+  },
+
+  "changes_from_previous": "N/A - 初始快照"
+}

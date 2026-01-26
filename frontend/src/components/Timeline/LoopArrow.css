@@ -1,0 +1,147 @@
+/* Loop Arrow - Plan → Execute 循环箭头 */
+
+.loop-arrow-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -45px;
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.loop-arrow-container:focus {
+  outline: none;
+}
+
+.loop-arrow-container:focus-visible .loop-arrow-svg {
+  filter: drop-shadow(0 0 4px var(--accent));
+}
+
+.loop-arrow-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Path styling based on status */
+.loop-path {
+  stroke: var(--border-default);
+  transition: stroke 0.2s ease;
+}
+
+.loop-arrow-head {
+  fill: var(--border-default);
+  transition: fill 0.2s ease;
+}
+
+/* Inactive state (gray) */
+.loop-arrow-container.inactive .loop-path {
+  stroke: #6b7280;
+}
+
+.loop-arrow-container.inactive .loop-arrow-head {
+  fill: #6b7280;
+}
+
+/* Active state (blue) */
+.loop-arrow-container.active .loop-path {
+  stroke: #3b82f6;
+}
+
+.loop-arrow-container.active .loop-arrow-head {
+  fill: #3b82f6;
+}
+
+/* Looping state (animated) */
+.loop-arrow-container.looping .loop-path {
+  stroke: #3b82f6;
+  animation: loop-pulse 1.5s ease-in-out infinite;
+}
+
+.loop-arrow-container.looping .loop-arrow-head {
+  fill: #3b82f6;
+  animation: loop-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loop-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Badge styling */
+.loop-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+}
+
+.loop-badge.inactive {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+}
+
+.loop-badge.active,
+.loop-badge.looping {
+  background: #3b82f6;
+  color: white;
+  border: 1px solid #3b82f6;
+}
+
+/* Hover effect */
+.loop-arrow-container:hover .loop-path {
+  stroke-width: 3;
+}
+
+.loop-arrow-container:hover .loop-badge {
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* Tooltip */
+.loop-tooltip {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 4px 8px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+
+  pointer-events: none;
+  z-index: 10;
+}
+
+.loop-arrow-container:hover .loop-tooltip {
+  opacity: 1;
+  visibility: visible;
+}

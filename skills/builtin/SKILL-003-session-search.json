@@ -1,0 +1,86 @@
+{
+  "skill_id": "SKILL-003",
+  "name": "Session 搜索与过滤",
+  "version": "1.0",
+  "description": "提供 Agent Session 的搜索、过滤和排序能力",
+  "category": "data-management",
+  "capabilities": [
+    {
+      "name": "keyword_search",
+      "description": "关键词搜索",
+      "features": [
+        "任务标题搜索",
+        "用户 prompt 搜索",
+        "工具名搜索",
+        "文件路径搜索"
+      ]
+    },
+    {
+      "name": "advanced_search",
+      "description": "高级搜索语法",
+      "syntax": {
+        "tool:X": "搜索使用了工具 X 的 Session",
+        "file:X": "搜索涉及文件 X 的 Session",
+        "status:X": "搜索状态为 X 的 Session",
+        "\"phrase\"": "精确匹配短语"
+      }
+    },
+    {
+      "name": "filtering",
+      "description": "多维度过滤",
+      "dimensions": [
+        {
+          "name": "status",
+          "options": ["all", "success", "failed", "partial"]
+        },
+        {
+          "name": "time_range",
+          "options": ["all", "today", "week", "month", "custom"]
+        },
+        {
+          "name": "tool_count",
+          "options": ["small", "medium", "large"]
+        },
+        {
+          "name": "duration",
+          "options": ["fast", "normal", "slow"]
+        }
+      ]
+    },
+    {
+      "name": "sorting",
+      "description": "结果排序",
+      "fields": ["created_at", "name", "tool_count", "duration"],
+      "directions": ["asc", "desc"]
+    }
+  ],
+  "api": {
+    "endpoint": "/api/v1/sessions/search",
+    "method": "GET",
+    "parameters": {
+      "q": "搜索关键词",
+      "status": "状态过滤",
+      "from": "开始时间",
+      "to": "结束时间",
+      "sort": "排序字段",
+      "order": "排序方向",
+      "page": "页码",
+      "limit": "每页数量"
+    }
+  },
+  "keyboard_shortcuts": {
+    "/": "聚焦搜索框",
+    "Escape": "清空搜索",
+    "ArrowUp/Down": "在结果中导航",
+    "Enter": "打开选中 Session",
+    "Ctrl+F": "打开高级筛选"
+  },
+  "performance": {
+    "debounce_ms": 300,
+    "virtual_scroll_threshold": 100,
+    "max_results": 1000
+  },
+  "related_specs": ["SPEC-014"],
+  "created_at": "2026-01-26",
+  "author": "Boris Huai"
+}

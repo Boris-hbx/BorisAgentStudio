@@ -1,0 +1,160 @@
+/**
+ * CodeDiffSection styles
+ * 代码变更展示样式
+ */
+
+.code-diff-section {
+  border-top: 1px solid var(--border-default);
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* Header */
+.code-diff-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.code-diff-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.code-diff-file {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.code-diff-lang {
+  font-size: 0.6rem;
+  color: var(--text-tertiary);
+  background: var(--bg-tertiary);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+/* Content container */
+.code-diff-content {
+  background: var(--bg-primary);
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Section labels */
+.code-diff-section-label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+/* Before block - red tone */
+.code-diff-before-section {
+  border-left: 3px solid var(--status-failed);
+}
+
+.code-diff-before {
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  background: rgba(239, 68, 68, 0.05);
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* After block - green tone */
+.code-diff-after-section {
+  border-left: 3px solid var(--status-success);
+}
+
+.code-diff-after {
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  background: rgba(34, 197, 94, 0.05);
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* Write operation without before */
+.code-diff-write .code-diff-after {
+  max-height: 250px;
+}
+
+/* Compare layout */
+.code-diff-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Edit layout */
+.code-diff-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Empty state */
+.code-diff-empty {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+/* Truncation notice */
+.code-diff-truncated {
+  display: block;
+  color: var(--text-tertiary);
+  font-size: 0.65rem;
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Scrollbar for code blocks */
+.code-diff-before::-webkit-scrollbar,
+.code-diff-after::-webkit-scrollbar,
+.code-diff-content::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.code-diff-before::-webkit-scrollbar-track,
+.code-diff-after::-webkit-scrollbar-track,
+.code-diff-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-diff-before::-webkit-scrollbar-thumb,
+.code-diff-after::-webkit-scrollbar-thumb,
+.code-diff-content::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 2px;
+}

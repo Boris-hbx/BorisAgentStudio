@@ -1,0 +1,667 @@
+/* 右侧详情面板 - 响应式布局 */
+.detail-panel {
+  width: 420px;
+  max-width: 40vw;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-default);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.3s ease, opacity 0.2s ease;
+}
+
+.detail-panel.open {
+  width: 420px;
+}
+
+.detail-panel.hidden {
+  width: 0;
+  border-left: none;
+  opacity: 0;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.panel-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--text-primary);
+}
+
+.panel-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.tab {
+  padding: 0.75rem 1.25rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: var(--text-primary);
+}
+
+.tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.panel-content {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem 1.5rem;
+}
+
+.content-section {
+  min-height: 100px;
+}
+
+.json-view {
+  background: var(--bg-primary);
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.empty-state {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Section title */
+.section-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.375rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.content-section .section-title:not(:first-child) {
+  margin-top: 1rem;
+}
+
+/* User prompt section (理解阶段) */
+.user-prompt-section {
+  margin-bottom: 1rem;
+}
+
+.user-prompt-content {
+  background: rgba(88, 166, 255, 0.1);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-left: 3px solid var(--accent);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* Exploration section (探索阶段) */
+.exploration-section {
+  margin-bottom: 1rem;
+}
+
+.exploration-reasoning {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.75rem 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.files-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.files-table th {
+  text-align: left;
+  padding: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-tertiary);
+}
+
+.files-table td {
+  padding: 0.5rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-default);
+  vertical-align: top;
+}
+
+.files-table .file-path {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  color: var(--accent);
+  max-width: 150px;
+  word-break: break-all;
+}
+
+.files-table .file-reason {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.files-table .file-status {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.files-table tr.file-used .file-status {
+  color: var(--status-success);
+}
+
+.files-table tr.file-not-used {
+  opacity: 0.7;
+}
+
+.files-table tr.file-not-used .file-status {
+  color: var(--text-secondary);
+}
+
+/* Knowledge list */
+.knowledge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.knowledge-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.knowledge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.knowledge-card .knowledge-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.knowledge-card .knowledge-score {
+  font-size: 0.75rem;
+  color: var(--knowledge-skill);
+}
+
+.knowledge-content {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Meta section */
+.panel-meta {
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-default);
+  font-size: 0.75rem;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+}
+
+.meta-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.meta-label {
+  color: var(--text-secondary);
+}
+
+.meta-value {
+  color: var(--text-primary);
+}
+
+/* Error section */
+.panel-error {
+  padding: 0.75rem 1.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border-top: 1px solid var(--status-failed);
+}
+
+.panel-error h3 {
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--status-failed);
+}
+
+.panel-error p {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+}
+
+.error-hint {
+  margin-top: 0.5rem !important;
+  color: var(--text-secondary) !important;
+  font-style: italic;
+}
+
+/* Context list */
+.context-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.context-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.context-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+}
+
+.context-type {
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.context-source {
+  flex: 1;
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+  font-family: monospace;
+}
+
+.context-usage-mode {
+  font-size: 0.6875rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.context-relevance {
+  font-size: 0.6875rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--bg-tertiary);
+}
+
+.context-relevance.rel-high {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--status-success);
+}
+
+.context-relevance.rel-medium {
+  background: rgba(249, 115, 22, 0.2);
+  color: var(--knowledge-skill);
+}
+
+.context-relevance.rel-low {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.context-summary {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Tool list in detail panel */
+.tool-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tool-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.tool-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.375rem;
+}
+
+.tool-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.tool-cat-perception {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--accent);
+}
+
+.tool-cat-action {
+  background: rgba(249, 115, 22, 0.15);
+  color: var(--knowledge-skill);
+}
+
+.tool-cat-interaction {
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--knowledge-graph);
+}
+
+.tool-status {
+  font-size: 0.6875rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.tool-status.status-success {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--status-success);
+}
+
+.tool-status.status-failed {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--status-failed);
+}
+
+.tool-duration {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+.tool-desc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.tool-contribution-section {
+  margin: 0.375rem 0 0 0;
+}
+
+.tool-contribution {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tool-contribution.expandable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.tool-contribution.expandable:hover {
+  color: var(--text-primary);
+}
+
+.tool-contribution .expand-icon {
+  font-size: 0.625rem;
+  font-style: normal;
+  width: 0.75rem;
+}
+
+.contribution-content {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin: 0.375rem 0 0 0;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+/* 原始命令 */
+.tool-raw-command {
+  display: block;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin: 0.375rem 0;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+/* 参数详情 */
+.tool-params {
+  margin: 0.375rem 0;
+}
+
+.tool-params .params-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.tool-params .params-content {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin: 0;
+  overflow-x: auto;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+/* 输出结果 */
+.tool-result-section {
+  margin: 0.375rem 0;
+}
+
+.tool-result {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.tool-result.expandable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.tool-result.expandable:hover .result-display {
+  text-decoration: underline;
+}
+
+.tool-result .expand-icon {
+  font-size: 0.625rem;
+  color: var(--text-secondary);
+  width: 0.75rem;
+}
+
+.tool-result .result-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.tool-result .result-display {
+  font-size: 0.75rem;
+  color: var(--status-success);
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+}
+
+/* 子代理详情（展开后） */
+.subagent-details {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(88, 166, 255, 0.08);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 4px;
+}
+
+.subagent-details .subagent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(88, 166, 255, 0.2);
+}
+
+.subagent-details .subagent-type {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--accent);
+}
+
+.subagent-details .subagent-stats {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.tools-breakdown-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.tools-breakdown-table th {
+  text-align: left;
+  padding: 0.375rem 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.tools-breakdown-table td {
+  padding: 0.375rem 0.5rem;
+  color: var(--text-primary);
+}
+
+.tools-breakdown-table .tool-name-cell {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  color: var(--accent);
+}
+
+.tools-breakdown-table .tool-count-cell {
+  text-align: center;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+}
+
+.tools-breakdown-table .tool-percent-cell {
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+.tool-result .result-content {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin: 0.25rem 0 0 0;
+  overflow-x: auto;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+/* Decisions section */
+.panel-decisions {
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-default);
+}
+
+.panel-decisions h3 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.decision-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+  font-size: 0.8125rem;
+}
+
+.decision-type {
+  color: var(--accent);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.decision-desc {
+  color: var(--text-primary);
+}
+
+.decision-reasoning {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0.25rem 0 0 0;
+  padding-left: 1rem;
+  font-style: italic;
+}

@@ -1,0 +1,104 @@
+{
+  "skill_id": "SKILL-007",
+  "name": "性能分析仪表板",
+  "version": "1.0",
+  "description": "分析 Agent 执行性能，识别瓶颈和优化机会",
+  "category": "analysis",
+  "capabilities": [
+    {
+      "name": "time_distribution",
+      "description": "时间分布分析",
+      "visualizations": [
+        "工具调用耗时条形图",
+        "阶段耗时饼图",
+        "时间线甘特图"
+      ]
+    },
+    {
+      "name": "bottleneck_detection",
+      "description": "瓶颈识别",
+      "features": [
+        "最慢工具调用",
+        "超时警告",
+        "等待时间分析"
+      ]
+    },
+    {
+      "name": "parallelism_analysis",
+      "description": "并行度分析",
+      "features": [
+        "并行执行识别",
+        "潜在并行机会",
+        "依赖关系图"
+      ]
+    },
+    {
+      "name": "resource_usage",
+      "description": "资源消耗统计",
+      "metrics": [
+        "文件读取次数",
+        "文件写入次数",
+        "API 调用次数",
+        "总传输数据量"
+      ]
+    },
+    {
+      "name": "comparison",
+      "description": "历史对比",
+      "features": [
+        "与历史执行对比",
+        "趋势分析",
+        "性能回归检测"
+      ]
+    }
+  ],
+  "metrics": {
+    "primary": [
+      {
+        "name": "total_duration",
+        "label": "总执行时间",
+        "unit": "ms"
+      },
+      {
+        "name": "tool_calls_count",
+        "label": "工具调用数",
+        "unit": "次"
+      },
+      {
+        "name": "avg_tool_duration",
+        "label": "平均工具调用耗时",
+        "unit": "ms"
+      },
+      {
+        "name": "success_rate",
+        "label": "成功率",
+        "unit": "%"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "slowest_tool",
+        "label": "最慢工具",
+        "type": "string"
+      },
+      {
+        "name": "most_used_tool",
+        "label": "最常用工具",
+        "type": "string"
+      },
+      {
+        "name": "files_touched",
+        "label": "涉及文件数",
+        "unit": "个"
+      }
+    ]
+  },
+  "thresholds": {
+    "slow_tool_call_ms": 5000,
+    "very_slow_tool_call_ms": 10000,
+    "high_retry_count": 3
+  },
+  "related_specs": [],
+  "created_at": "2026-01-26",
+  "author": "Boris Huai"
+}

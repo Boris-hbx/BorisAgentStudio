@@ -1,0 +1,72 @@
+{
+  "skill_id": "SKILL-002",
+  "name": "Session 对比分析",
+  "version": "1.0",
+  "description": "对比两个 Agent Session 的执行差异，帮助理解行为演进",
+  "category": "analysis",
+  "capabilities": [
+    {
+      "name": "tool_call_diff",
+      "description": "工具调用序列对比",
+      "algorithm": "LCS (最长公共子序列)",
+      "features": [
+        "相同操作识别",
+        "新增操作高亮",
+        "删除操作高亮",
+        "修改操作对比"
+      ]
+    },
+    {
+      "name": "stats_comparison",
+      "description": "统计指标对比",
+      "metrics": [
+        "执行时间",
+        "工具调用数",
+        "成功率",
+        "文件修改数",
+        "阶段分布"
+      ]
+    },
+    {
+      "name": "phase_comparison",
+      "description": "阶段分布对比",
+      "features": [
+        "各阶段耗时占比",
+        "阶段顺序差异",
+        "工具调用分布"
+      ]
+    },
+    {
+      "name": "file_diff",
+      "description": "文件变更对比",
+      "features": [
+        "修改文件列表",
+        "新增/删除文件",
+        "变更行数统计"
+      ]
+    }
+  ],
+  "views": [
+    {
+      "name": "side-by-side",
+      "description": "并排对比视图"
+    },
+    {
+      "name": "unified",
+      "description": "合并对比视图"
+    },
+    {
+      "name": "stats",
+      "description": "统计对比视图"
+    }
+  ],
+  "use_cases": [
+    "对比同一任务的不同执行",
+    "分析失败与成功执行的差异",
+    "追踪 Agent 行为演进",
+    "优化执行效率"
+  ],
+  "related_specs": ["SPEC-016"],
+  "created_at": "2026-01-26",
+  "author": "Boris Huai"
+}

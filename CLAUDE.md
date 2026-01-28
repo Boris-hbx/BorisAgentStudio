@@ -466,14 +466,19 @@ BorisAgentStudio/
 │   └── naming/               # 命名规则 (RULE-005)
 ├── skills/                   # Agent 技能定义 (7个)
 │   └── builtin/              # 内置技能 (SKILL-001~007)
-├── standards/                # 标准与规范 (7个)
+├── standards/                # 标准与规范 (8个)
 │   ├── data/                 # STD-001 Session日志
 │   ├── coding/               # STD-002 编程规范
 │   ├── api/                  # STD-003 API规范
 │   ├── testing/              # STD-004 测试规范
 │   ├── error/                # STD-005 错误处理
 │   ├── accessibility/        # STD-006 无障碍设计
-│   └── performance/          # STD-007 性能标准
+│   ├── performance/          # STD-007 性能标准
+│   └── collaboration/        # STD-008 多Agent协作日志
+├── teams/                    # 多Agent团队配置
+│   ├── README.md             # Team定义规范
+│   ├── TEAM-001-balanced.yaml    # 平衡团队(默认)
+│   └── TEAM-002-risk-aware.yaml  # 风险意识团队(含Challenger)
 ├── docs/                     # 项目文档
 │   ├── specs/                # 功能规格 (20个 SPEC-001~019)
 │   └── proposals/            # 提案文档

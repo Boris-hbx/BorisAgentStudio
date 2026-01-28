@@ -1,0 +1,230 @@
+{
+  "skill_id": "SKILL-009",
+  "name": "sidebar-pet",
+  "title": "侧边栏跟随小宠物",
+  "version": "1.0.0",
+  "description": "一个可爱的小宠物，贴在侧边栏边缘，跟随鼠标移动。具有眼睛、状态变化、躲避区域等特性。适用于为 Web 应用增添趣味性和交互感。",
+  "source_reference": {
+    "project": "Next",
+    "path": "frontend/templates/desktop/base.html + frontend/assets/css/style.css",
+    "extracted_at": "2026-01-27"
+  },
+  "applicable_scenarios": [
+    "桌面端 Web 应用",
+    "侧边栏控制交互",
+    "趣味性 UI 增强"
+  ],
+  "core_concept": {
+    "description": "小宠物是一个垂直条状的可交互元素，固定在屏幕侧边。它有眼睛，能感知鼠标位置并跟随移动，表现出不同的情绪状态。",
+    "visual_form": {
+      "shape": "垂直胶囊形 (高 > 宽)",
+      "default_size": { "width": 24, "height": 80 },
+      "eyes": {
+        "count": 3,
+        "arrangement": "垂直排列",
+        "shape": "圆角矩形",
+        "can_express_emotion": true
+      },
+      "position": "fixed, 贴在侧边栏边缘"
+    }
+  },
+  "states": [
+    {
+      "name": "idle",
+      "display_name": "待机",
+      "description": "默认状态，停留在屏幕中央高度",
+      "eye_behavior": "微弱发光，无动画",
+      "trigger": "鼠标远离活动区域"
+    },
+    {
+      "name": "active",
+      "display_name": "激活",
+      "description": "鼠标进入活动区域，小宠物开始注意",
+      "eye_behavior": "变亮，高度增加",
+      "trigger": "鼠标进入 activeZone"
+    },
+    {
+      "name": "following",
+      "display_name": "跟随",
+      "description": "平滑跟随鼠标 Y 坐标移动",
+      "eye_behavior": "保持激活状态",
+      "trigger": "active 状态下鼠标移动"
+    },
+    {
+      "name": "excited",
+      "display_name": "兴奋",
+      "description": "鼠标快速移动时，小宠物急速追赶",
+      "eye_behavior": "眼睛抖动动画，发光增强",
+      "trigger": "跟随距离 > closeDistance"
+    },
+    {
+      "name": "returning",
+      "display_name": "回归",
+      "description": "鼠标离开后，缓慢回到初始位置",
+      "eye_behavior": "恢复待机状态",
+      "trigger": "鼠标离开 activeZone 后延迟触发"
+    },
+    {
+      "name": "slim",
+      "display_name": "瘦身",
+      "description": "经过需要躲避的区域时变窄",
+      "eye_behavior": "眼睛也变小",
+      "trigger": "Y 坐标进入 avoidZones"
+    },
+    {
+      "name": "at-edge",
+      "display_name": "贴边",
+      "description": "侧边栏折叠时，小宠物贴在屏幕边缘",
+      "visual_change": "渐变色，圆角向右",
+      "trigger": "侧边栏折叠"
+    },
+    {
+      "name": "at-sidebar",
+      "display_name": "贴侧边栏",
+      "description": "侧边栏展开时，小宠物贴在侧边栏右边缘",
+      "visual_change": "半透明，阴影",
+      "trigger": "侧边栏展开"
+    }
+  ],
+  "configuration": {
+    "dimensions": {
+      "width": {
+        "type": "number",
+        "default": 24,
+        "description": "小宠物宽度 (px)"
+      },
+      "height": {
+        "type": "number",
+        "default": 80,
+        "description": "小宠物高度 (px)"
+      },
+      "slimWidth": {
+        "type": "number",
+        "default": 16,
+        "description": "瘦身状态宽度 (px)"
+      }
+    },
+    "positioning": {
+      "sidebarWidth": {
+        "type": "number",
+        "default": 220,
+        "description": "侧边栏宽度，用于计算小宠物位置"
+      },
+      "topOffset": {
+        "type": "number",
+        "default": 58,
+        "description": "顶部偏移 (考虑顶部导航栏)"
+      },
+      "bottomOffset": {
+        "type": "number",
+        "default": 20,
+        "description": "底部偏移"
+      }
+    },
+    "behavior": {
+      "activeZoneWidth": {
+        "type": "number",
+        "default": 100,
+        "description": "鼠标激活区域宽度 (从小宠物位置向右)"
+      },
+      "closeDistance": {
+        "type": "number",
+        "default": 20,
+        "description": "判定为'靠近'的距离阈值"
+      },
+      "rushEasing": {
+        "type": "number",
+        "default": 0.3,
+        "description": "急速跟随时的缓动系数"
+      },
+      "gentleEasing": {
+        "type": "number",
+        "default": 0.1,
+        "description": "缓慢跟随时的缓动系数"
+      },
+      "returnDelay": {
+        "type": "number",
+        "default": 600,
+        "description": "鼠标离开后开始回归的延迟 (ms)"
+      },
+      "returnEasing": {
+        "type": "number",
+        "default": 0.04,
+        "description": "回归时的缓动系数"
+      }
+    },
+    "avoidZones": {
+      "type": "array",
+      "description": "需要躲避的区域列表，小宠物经过时会变瘦",
+      "item_schema": {
+        "top": "number (px)",
+        "bottom": "number (px)"
+      },
+      "example": [
+        { "top": 200, "bottom": 300 }
+      ]
+    },
+    "appearance": {
+      "colors": {
+        "atEdge": {
+          "gradient": "linear-gradient(180deg, #667eea 0%, #764ba2 100%)",
+          "description": "贴边状态的渐变色"
+        },
+        "atSidebar": {
+          "gradient": "linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)",
+          "description": "贴侧边栏状态的渐变色"
+        },
+        "eyeDefault": "rgba(255, 255, 255, 0.6)",
+        "eyeActive": "#ffffff",
+        "eyeGlow": "0 0 8px rgba(255, 255, 255, 0.5)"
+      },
+      "borderRadius": {
+        "normal": "0 16px 16px 0",
+        "description": "圆角只在右侧，左侧贴边"
+      },
+      "transitions": {
+        "position": "left 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        "size": "width 0.2s ease"
+      }
+    }
+  },
+  "events": [
+    {
+      "name": "onClick",
+      "description": "点击小宠物",
+      "typical_action": "切换侧边栏折叠状态"
+    },
+    {
+      "name": "onStateChange",
+      "description": "状态变化时触发",
+      "payload": { "previousState": "string", "newState": "string" }
+    }
+  ],
+  "implementation_hints": {
+    "react": {
+      "approach": "使用 useRef + requestAnimationFrame 实现动画",
+      "state_management": "useState 管理 isFollowing, isReturning, currentY 等状态",
+      "css": "可使用 CSS Module 或 styled-components"
+    },
+    "vanilla_js": {
+      "approach": "IIFE + requestAnimationFrame 模式",
+      "dom": "使用 document.createElement 创建小宠物元素和眼睛",
+      "css": "内联样式或单独 CSS 文件"
+    }
+  },
+  "css_reference": {
+    "description": "关键 CSS 样式参考（来自 Next 项目）",
+    "selectors": {
+      ".pet": "主容器",
+      ".pet.at-edge": "贴边状态",
+      ".pet.at-sidebar": "贴侧边栏状态",
+      ".pet.slim": "瘦身状态",
+      ".pet.active": "激活状态",
+      ".pet.excited": "兴奋状态",
+      ".pet-eye": "眼睛元素",
+      "@keyframes petEyeShake": "眼睛抖动动画"
+    }
+  },
+  "dependencies": [],
+  "tags": ["界面", "交互", "动画", "侧边栏", "小宠物", "桌面端"]
+}

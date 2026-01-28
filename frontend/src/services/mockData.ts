@@ -1,181 +1,150 @@
 /**
  * Session data service
  *
- * 加载真实的 Claude Code 执行日志
- * Session 文件存储在 data/sessions/ 目录
+ * 动态加载 data/sessions/ 目录下的所有 JSON 文件
+ * 使用 Vite 的 import.meta.glob 实现，无需手动维护文件列表
  */
 
 import type { AgentSession } from '../types/agent'
 
-// 导入真实日志数据
-import knowledgeMarkersSession from '../../../data/sessions/2026-01-25-001-knowledge-markers.json'
-import contextFlowSession from '../../../data/sessions/2026-01-25-002-context-flow-chart.json'
-import layoutOptimizationSession from '../../../data/sessions/2026-01-25-003-layout-optimization.json'
-import particlesSkillSession from '../../../data/sessions/2026-01-25-004-interactive-particles-skill.json'
-import contextTypeFallbackSession from '../../../data/sessions/2026-01-25-005-context-type-fallback.json'
-import responsiveDetailPanelSession from '../../../data/sessions/2026-01-25-006-responsive-detail-panel.json'
-import codingStandardsSession from '../../../data/sessions/2026-01-25-007-coding-standards.json'
-import loopVisualizationSession from '../../../data/sessions/2026-01-25-008-loop-visualization.json'
-import decisionTransparencySession from '../../../data/sessions/2026-01-25-009-decision-transparency.json'
-import contextTypeDiffSession from '../../../data/sessions/2026-01-25-010-context-type-differentiation.json'
-import std001EvolutionSession from '../../../data/sessions/2026-01-25-011-std001-evolution.json'
-import fixV3VisualizationSession from '../../../data/sessions/2026-01-25-012-fix-v3-session-visualization.json'
-import hierarchicalVisualizationSession from '../../../data/sessions/2026-01-25-013-implement-spec011-hierarchical-visualization.json'
-import headerParticlesSpecSession from '../../../data/sessions/2026-01-25-014-header-particles-spec.json'
-import implementHeaderParticlesSession from '../../../data/sessions/2026-01-25-015-implement-header-particles.json'
-import projectEnhancementRoadmapSession from '../../../data/sessions/2026-01-26-001-project-enhancement-roadmap.json'
-import implementProjectEnhancementsSession from '../../../data/sessions/2026-01-26-002-implement-project-enhancements.json'
+/** 团队成员简要信息 */
+export interface AgentMemberBrief {
+  role: 'product_owner' | 'architect' | 'challenger' | 'design_authority' | 'developer' | 'reviewer' | string
+  count: number
+  label: string
+}
 
-/**
- * 可用的 session 列表
- */
+/** 团队协作信息 */
+export interface TeamCollaboration {
+  team_name?: string
+  pattern: 'master_worker' | 'pipeline' | 'peer_to_peer'
+  members: AgentMemberBrief[]
+}
+
 export interface SessionListItem {
   session_id: string
   name: string
   description: string
   status: 'success' | 'failed' | 'partial'
+  /** 是否为多 Agent 协作 Session */
+  is_multi_agent?: boolean
+  /** 参与的 Agent 数量 */
+  agent_count?: number
+  /** 团队协作详情 */
+  collaboration?: TeamCollaboration
 }
 
-export const availableSessions: SessionListItem[] = [
-  {
-    session_id: '2026-01-25-001-knowledge-markers',
-    name: 'KnowledgeMarkers 组件开发',
-    description: '实现领域知识来源标识组件',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-002-context-flow-chart',
-    name: 'ContextFlowChart 组件开发',
-    description: '实现上下文流转简图组件',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-003-layout-optimization',
-    name: '布局优化',
-    description: '解决内容遮盖问题 - z-index修复 + 右侧抽屉面板',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-004-interactive-particles-skill',
-    name: '可交互粒子系统 Skill',
-    description: '从 Next 项目提取小球交互功能，创建 SPEC-006 和 SKILL-001',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-005-context-type-fallback',
-    name: '修复上下文类型崩溃',
-    description: '添加 fallback 机制解决未知 context type 导致的界面崩溃',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-006-responsive-detail-panel',
-    name: '响应式详情面板',
-    description: '从遮盖式改为挤压式布局，主内容区自适应收缩',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-007-coding-standards',
-    name: '创建编程规范',
-    description: '参考业界最佳实践，创建 TypeScript/React/Rust 编程规范',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-008-loop-visualization',
-    name: '循环可视化功能',
-    description: 'Plan→Execute 循环箭头 + 子代理信息展示（含重试示例）',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-009-decision-transparency',
-    name: '决策过程透明化',
-    description: '用户原始 prompt 展示 + 文件探索决策记录（含选择逻辑）',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-010-context-type-differentiation',
-    name: '上下文类型区分',
-    description: '区分读取/修改/读取并修改三种使用方式，在上下文面板中显示标签',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-011-std001-evolution',
-    name: 'STD-001 演进至 v3.0',
-    description: '工具调用流优先模型，phase_annotations 可选',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-012-fix-v3-session-visualization',
-    name: '修复 v3.0 可视化',
-    description: '适配新数据模型，修复界面显示问题',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-013-implement-spec011-hierarchical-visualization',
-    name: '实现分层工作流可视化',
-    description: '阶段分组视图、可展开节点、工具详情面板',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-014-header-particles-spec',
-    name: '顶栏粒子效果 Spec',
-    description: '设计 SPEC-012 Header Particles 规格文档',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-25-015-implement-header-particles',
-    name: '实现顶栏粒子效果',
-    description: '粒子引擎、HeaderParticles 组件、集成到 Header',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-26-001-project-enhancement-roadmap',
-    name: '项目增强路线图',
-    description: '软件工程最佳实践分析，识别需补充的 Standards/Skills/Rules',
-    status: 'success',
-  },
-  {
-    session_id: '2026-01-26-002-implement-project-enhancements',
-    name: '实施项目增强',
-    description: '实施 SPEC-013 全部建议: 5 Standards, 3 Rules, 6 Skills, 6 Specs',
-    status: 'success',
-  },
-]
+// 使用 Vite 的 glob 导入动态加载所有 session 文件
+const sessionModules = import.meta.glob<{ default: AgentSession }>(
+  '../../../data/sessions/*.json',
+  { eager: true }
+)
 
 /**
- * 所有 sessions 的映射
+ * 从文件路径提取 session_id
  */
-const sessionsMap: Record<string, AgentSession> = {
-  '2026-01-25-001-knowledge-markers': knowledgeMarkersSession as unknown as AgentSession,
-  '2026-01-25-002-context-flow-chart': contextFlowSession as unknown as AgentSession,
-  '2026-01-25-003-layout-optimization': layoutOptimizationSession as unknown as AgentSession,
-  '2026-01-25-004-interactive-particles-skill': particlesSkillSession as unknown as AgentSession,
-  '2026-01-25-005-context-type-fallback': contextTypeFallbackSession as unknown as AgentSession,
-  '2026-01-25-006-responsive-detail-panel': responsiveDetailPanelSession as unknown as AgentSession,
-  '2026-01-25-007-coding-standards': codingStandardsSession as unknown as AgentSession,
-  '2026-01-25-008-loop-visualization': loopVisualizationSession as unknown as AgentSession,
-  '2026-01-25-009-decision-transparency': decisionTransparencySession as unknown as AgentSession,
-  '2026-01-25-010-context-type-differentiation': contextTypeDiffSession as unknown as AgentSession,
-  '2026-01-25-011-std001-evolution': std001EvolutionSession as unknown as AgentSession,
-  '2026-01-25-012-fix-v3-session-visualization': fixV3VisualizationSession as unknown as AgentSession,
-  '2026-01-25-013-implement-spec011-hierarchical-visualization': hierarchicalVisualizationSession as unknown as AgentSession,
-  '2026-01-25-014-header-particles-spec': headerParticlesSpecSession as unknown as AgentSession,
-  '2026-01-25-015-implement-header-particles': implementHeaderParticlesSession as unknown as AgentSession,
-  '2026-01-26-001-project-enhancement-roadmap': projectEnhancementRoadmapSession as unknown as AgentSession,
-  '2026-01-26-002-implement-project-enhancements': implementProjectEnhancementsSession as unknown as AgentSession,
+function extractSessionId(path: string): string {
+  const filename = path.split('/').pop() || ''
+  return filename.replace('.json', '')
 }
+
+/**
+ * 从 session 数据提取协作信息
+ */
+function extractCollaboration(session: AgentSession): {
+  is_multi_agent: boolean
+  agent_count: number
+  collaboration?: TeamCollaboration
+} {
+  const collab = (session as unknown as Record<string, unknown>).collaboration as Record<string, unknown> | undefined
+
+  if (!collab || collab.mode !== 'multi_agent') {
+    return { is_multi_agent: false, agent_count: 1 }
+  }
+
+  const participants = collab.participants as Array<{ agent_type: string }> | undefined
+  const agentCount = participants ? participants.length + 1 : 1 // +1 for orchestrator
+
+  // 提取团队成员信息
+  const memberCounts: Record<string, number> = {}
+  if (participants) {
+    for (const p of participants) {
+      memberCounts[p.agent_type] = (memberCounts[p.agent_type] || 0) + 1
+    }
+  }
+
+  const roleLabels: Record<string, string> = {
+    product_owner: '产品负责人',
+    architect: '架构师',
+    challenger: '风险官',
+    design_authority: '体验官',
+    developer: '开发者',
+    reviewer: '审查员',
+  }
+
+  const members: AgentMemberBrief[] = Object.entries(memberCounts).map(([role, count]) => ({
+    role,
+    count,
+    label: roleLabels[role] || role,
+  }))
+
+  return {
+    is_multi_agent: true,
+    agent_count: agentCount,
+    collaboration: {
+      team_name: collab.team_name as string | undefined,
+      pattern: (collab.pattern as TeamCollaboration['pattern']) || 'master_worker',
+      members,
+    },
+  }
+}
+
+/**
+ * 构建 session 映射和列表
+ */
+const sessionsMap: Record<string, AgentSession> = {}
+const sessionsList: SessionListItem[] = []
+
+for (const [path, module] of Object.entries(sessionModules)) {
+  const session = module.default
+  const sessionId = session.session_id || extractSessionId(path)
+
+  sessionsMap[sessionId] = session
+
+  const collabInfo = extractCollaboration(session)
+
+  sessionsList.push({
+    session_id: sessionId,
+    name: session.task_title || sessionId,
+    description: (session as unknown as Record<string, unknown>).task_description as string || '',
+    status: session.status as 'success' | 'failed' | 'partial',
+    ...collabInfo,
+  })
+}
+
+// 按 created_at 时间倒序排列（最新在前）
+// 如果没有 created_at，则按 session_id 倒序（session_id 包含日期前缀）
+sessionsList.sort((a, b) => {
+  const sessionA = sessionsMap[a.session_id]
+  const sessionB = sessionsMap[b.session_id]
+  const timeA = sessionA?.created_at || a.session_id
+  const timeB = sessionB?.created_at || b.session_id
+  return timeB.localeCompare(timeA)
+})
 
 /**
  * 获取可用 session 列表
  */
 export function getAvailableSessions(): SessionListItem[] {
-  return availableSessions
+  return sessionsList
 }
 
 /**
- * 加载默认的 session（选择有 user_prompt 的新版本）
+ * 加载默认的 session（第一个可用的）
  */
-export function loadMockSession(): AgentSession {
-  return sessionsMap['2026-01-25-015-implement-header-particles']
+export function loadMockSession(): AgentSession | null {
+  const firstSession = sessionsList[0]
+  return firstSession ? sessionsMap[firstSession.session_id] : null
 }
 
 /**
@@ -183,4 +152,11 @@ export function loadMockSession(): AgentSession {
  */
 export function loadSessionById(sessionId: string): AgentSession | null {
   return sessionsMap[sessionId] ?? null
+}
+
+/**
+ * 获取所有 session 的数量
+ */
+export function getSessionCount(): number {
+  return sessionsList.length
 }

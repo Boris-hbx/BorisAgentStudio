@@ -18,15 +18,14 @@ export interface Particle {
   vy: number
   radius: number
   color: string
+  alpha: number
   trail: Point[]
   targetAngle: number
   angleChangeCountdown: number
-  stuckFrames: number
+  stuckTime: number
   isShaking: boolean
-  /** 粒子是否隐藏（爆裂后等待重组） */
-  isHidden: boolean
-  /** 重组目标位置 */
-  reuniteTarget: Point | null
+  /** 震动偏移 */
+  shakeOffset: Point
 }
 
 export interface Fragment {
@@ -36,10 +35,12 @@ export interface Fragment {
   vy: number
   radius: number
   color: string
+  alpha: number
+  trail: Point[]
   life: number
   maxLife: number
-  parentId: number
-  reuniteTarget: Point
+  parentIndex: number
+  ignoreMouseTime: number
 }
 
 /**
@@ -48,46 +49,51 @@ export interface Fragment {
 export function createParticle(
   id: number,
   bounds: { width: number; height: number },
-  config: ParticleConfig
+  config: ParticleConfig,
+  x?: number,
+  y?: number
 ): Particle {
-  const margin = config.margin
-  const x = margin + Math.random() * (bounds.width - margin * 2)
-  const y = margin + Math.random() * (bounds.height - margin * 2)
+  // 大部分粒子生成在顶栏区域
+  const spawnX = x ?? Math.random() * bounds.width
+  const spawnY = y ?? Math.random() * bounds.height
 
-  // Random initial velocity (mostly horizontal for header)
-  const angle = Math.random() * Math.PI * 2
-  const speed = 1 + Math.random() * 2
+  // 初始速度：主要水平方向
+  const baseAngle = Math.random() < 0.5 ? 0 : Math.PI
+  const angle = baseAngle + (Math.random() - 0.5) * Math.PI / 3
+  const speed = 1.5 + Math.random() * 1.0
 
   return {
     id,
-    x,
-    y,
+    x: spawnX,
+    y: spawnY,
     vx: Math.cos(angle) * speed,
-    vy: Math.sin(angle) * speed * 0.3, // Reduce vertical movement
+    vy: Math.sin(angle) * speed,
     radius: config.minRadius + Math.random() * (config.maxRadius - config.minRadius),
     color: config.colors[id % config.colors.length],
+    alpha: 0.7 + Math.random() * 0.2,
     trail: [],
     targetAngle: angle,
-    angleChangeCountdown: 60 + Math.random() * 60,
-    stuckFrames: 0,
+    angleChangeCountdown: 100 + Math.random() * 150,
+    stuckTime: 0,
     isShaking: false,
-    isHidden: false,
-    reuniteTarget: null,
+    shakeOffset: { x: 0, y: 0 },
   }
 }
 
 /**
  * Create a fragment from exploded particle
+ * 参考 Next 项目的 explodeParticle
  */
 export function createFragment(
   particle: Particle,
-  index: number,
-  reuniteTarget: Point
+  fragmentIndex: number,
+  parentIndex: number,
+  colors: string[]
 ): Fragment {
-  // Evenly distribute fragments in a circle (3 fragments = 120° apart)
-  const baseAngle = (index / 3) * Math.PI * 2
-  const angle = baseAngle + (Math.random() - 0.5) * 0.5 // Add some randomness
-  const speed = 4 + Math.random() * 3
+  // 参考 Next 项目: 3个碎片均匀分布，使用不同颜色
+  const angle = (Math.PI * 2 / 3) * fragmentIndex + Math.random() * 0.5
+  const speed = 3 + Math.random() * 2  // 参考 Next: 3-5 速度
+  const fragmentColor = colors[(parentIndex + fragmentIndex * 2) % colors.length]
 
   return {
     x: particle.x,
@@ -95,10 +101,12 @@ export function createFragment(
     vx: Math.cos(angle) * speed,
     vy: Math.sin(angle) * speed,
     radius: particle.radius * 0.5,
-    color: particle.color,
-    life: 70 + Math.random() * 20,
-    maxLife: 90,
-    parentId: particle.id,
-    reuniteTarget,
+    color: fragmentColor,
+    alpha: 0.9,
+    trail: [],
+    life: 60,  // 参考 reuniteDelay = 60
+    maxLife: 60,
+    parentIndex,
+    ignoreMouseTime: 40,  // 参考 Next: 无视鼠标的时间
   }
 }

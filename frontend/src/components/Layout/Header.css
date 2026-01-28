@@ -2,10 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.4rem 1rem;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-default);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header-brand {
@@ -14,7 +16,7 @@
 }
 
 .header-brand h1 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -136,4 +138,110 @@
 
 .error-close:hover {
   color: var(--text-primary);
+}
+
+/* Team Collaboration Display in Header */
+.team-collaboration-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.1) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  margin-left: 0.5rem;
+}
+
+.team-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding-right: 0.75rem;
+  border-right: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.team-badge-icon {
+  font-size: 1rem;
+}
+
+.team-badge-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #a78bfa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-members-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.team-member-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.team-flow-arrow {
+  color: rgba(167, 139, 250, 0.6);
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.team-member-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  transition: all 0.15s ease;
+}
+
+.team-member-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chip-icon {
+  font-size: 0.875rem;
+}
+
+.chip-count {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(139, 92, 246, 0.2);
+  padding: 0 0.2rem;
+  border-radius: 3px;
+}
+
+.chip-label {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Role-specific chip colors */
+.team-member-chip.role-architect {
+  border-color: #a78bfa;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(167, 139, 250, 0.05) 100%);
+}
+
+.team-member-chip.role-developer {
+  border-color: #60a5fa;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0.05) 100%);
+}
+
+.team-member-chip.role-reviewer {
+  border-color: #34d399;
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.15) 0%, rgba(52, 211, 153, 0.05) 100%);
+}
+
+.team-member-chip.role-challenger {
+  border-color: #fb923c;
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(251, 146, 60, 0.05) 100%);
 }

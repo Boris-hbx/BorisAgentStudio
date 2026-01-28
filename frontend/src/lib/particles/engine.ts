@@ -1,11 +1,15 @@
 /**
  * Particle Physics Engine
- * Based on SPEC-006 and SPEC-012
+ * 参考 Next 项目的实现
  */
 
 import type { ParticleConfig } from './config'
 import type { Particle, Fragment, Point } from './particle'
 import { createParticle, createFragment } from './particle'
+
+// 恐惧与爆炸配置 - 参考 Next 项目
+const FEAR_THRESHOLD = 15      // 开始颤抖
+const EXPLODE_THRESHOLD = 45   // 分裂
 
 export interface ParticleEngine {
   particles: Particle[]
@@ -62,202 +66,268 @@ export function updateMousePos(engine: ParticleEngine, pos: Point | null): void 
 }
 
 /**
+ * 检测是否被困在边缘 - 参考 Next 项目
+ * 条件：靠近边缘 AND 鼠标靠近粒子
+ */
+function isStuckAtEdge(
+  p: Particle,
+  mousePos: Point | null,
+  bounds: { width: number; height: number },
+  config: ParticleConfig
+): boolean {
+  const edgeMargin = p.radius + 5
+
+  // 检测是否靠近边缘
+  const nearEdge = p.x < edgeMargin ||
+                   p.x > bounds.width - edgeMargin ||
+                   p.y < edgeMargin ||
+                   p.y > bounds.height - edgeMargin
+
+  // 检测鼠标是否靠近
+  if (!mousePos) return false
+
+  const dx = p.x - mousePos.x
+  const dy = p.y - mousePos.y
+  const dist = Math.sqrt(dx * dx + dy * dy)
+  const nearMouse = dist < config.repelRadius + 20
+
+  return nearEdge && nearMouse
+}
+
+/**
+ * 爆炸分裂 - 参考 Next 项目
+ */
+function explodeParticle(
+  engine: ParticleEngine,
+  particle: Particle,
+  particleIndex: number
+): void {
+  // 创建 3 个碎片
+  for (let i = 0; i < 3; i++) {
+    engine.fragments.push(
+      createFragment(particle, i, particleIndex, engine.config.colors)
+    )
+  }
+  // 移除原粒子
+  engine.particles.splice(particleIndex, 1)
+}
+
+/**
+ * 碎片汇合重组 - 参考 Next 项目
+ */
+function reuniteFragments(engine: ParticleEngine): void {
+  // 按 parentIndex 分组
+  const groups: { [key: number]: { fragment: Fragment; index: number }[] } = {}
+
+  engine.fragments.forEach((f, i) => {
+    if (!groups[f.parentIndex]) groups[f.parentIndex] = []
+    groups[f.parentIndex].push({ fragment: f, index: i })
+  })
+
+  const toRemove: number[] = []
+
+  for (const parentIndex in groups) {
+    const group = groups[parentIndex]
+
+    // 检查所有碎片是否都到期
+    const allExpired = group.every(g => g.fragment.life <= 0)
+
+    if (allExpired && group.length > 0) {
+      // 计算汇合中心点
+      let cx = 0, cy = 0
+      group.forEach(g => {
+        cx += g.fragment.x
+        cy += g.fragment.y
+      })
+      cx /= group.length
+      cy /= group.length
+
+      // 创建新粒子
+      const newParticle = createParticle(
+        engine.particles.length,
+        engine.bounds,
+        engine.config,
+        cx,
+        cy
+      )
+      newParticle.vx = (Math.random() - 0.5) * 3
+      newParticle.vy = (Math.random() - 0.5) * 3
+      engine.particles.push(newParticle)
+
+      // 标记要移除的碎片
+      group.forEach(g => toRemove.push(g.index))
+    }
+  }
+
+  // 从后往前移除
+  toRemove.sort((a, b) => b - a)
+  toRemove.forEach(i => engine.fragments.splice(i, 1))
+}
+
+/**
  * Main physics update loop
  */
 export function updateEngine(engine: ParticleEngine): void {
   const { particles, fragments, config, bounds, mousePos } = engine
-  const margin = config.margin
 
-  // Update particles
-  for (const p of particles) {
-    // Skip hidden particles (waiting for fragments to reunite)
-    if (p.isHidden) {
-      continue
-    }
+  // 复制数组避免 splice 问题
+  const particlesToProcess = particles.slice()
 
-    // Store trail point
-    if (config.tailLength > 0) {
-      p.trail.push({ x: p.x, y: p.y })
-      while (p.trail.length > config.tailLength) {
-        p.trail.shift()
+  for (let i = 0; i < particlesToProcess.length; i++) {
+    const p = particlesToProcess[i]
+    // 找到当前实际索引
+    const actualIndex = particles.indexOf(p)
+    if (actualIndex === -1) continue // 已被移除
+
+    // 计算当前速度
+    const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy)
+
+    // 动态尾巴长度：基础长度 + 速度加成
+    const dynamicTailLength = Math.max(5, Math.min(config.tailLength, Math.floor(5 + speed * 2)))
+
+    p.trail.push({ x: p.x, y: p.y })
+    while (p.trail.length > dynamicTailLength) p.trail.shift()
+
+    // 检测是否被困 - 关键：同时满足靠近边缘和鼠标靠近
+    if (isStuckAtEdge(p, mousePos, bounds, config)) {
+      p.stuckTime++
+
+      if (p.stuckTime > FEAR_THRESHOLD) {
+        p.isShaking = true
+        p.shakeOffset.x = (Math.random() - 0.5) * 3
+        p.shakeOffset.y = (Math.random() - 0.5) * 3
       }
+
+      if (p.stuckTime > EXPLODE_THRESHOLD) {
+        explodeParticle(engine, p, actualIndex)
+        continue // 粒子已移除，跳过后续处理
+      }
+    } else {
+      p.stuckTime = Math.max(0, p.stuckTime - 2)
+      p.isShaking = false
+      p.shakeOffset.x = 0
+      p.shakeOffset.y = 0
     }
 
-    // Autonomous movement - mostly horizontal for header
-    p.angleChangeCountdown--
-    if (p.angleChangeCountdown <= 0) {
-      // Bias towards horizontal movement
-      const horizontalBias = (Math.random() - 0.5) * Math.PI * 0.3 // ±27 degrees
-      p.targetAngle = Math.random() > 0.5 ? horizontalBias : Math.PI + horizontalBias
-      p.angleChangeCountdown = 40 + Math.random() * 80
-    }
-
-    // Gradually turn towards target angle
-    const currentAngle = Math.atan2(p.vy, p.vx)
-    let angleDiff = p.targetAngle - currentAngle
-    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2
-    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2
-
-    const turnSpeed = 0.02
-    const newAngle = currentAngle + angleDiff * turnSpeed
-    const currentSpeed = Math.sqrt(p.vx * p.vx + p.vy * p.vy)
-    const targetSpeed = 1.5
-
-    if (currentSpeed < targetSpeed) {
-      p.vx += Math.cos(newAngle) * 0.1
-      p.vy += Math.sin(newAngle) * 0.05 // Less vertical acceleration
-    }
-
-    // Mouse repulsion
+    // 鼠标排斥
     if (mousePos) {
       const dx = p.x - mousePos.x
       const dy = p.y - mousePos.y
       const dist = Math.sqrt(dx * dx + dy * dy)
 
       if (dist < config.repelRadius && dist > 0) {
-        const ratio = 1 - dist / config.repelRadius
-        const force = ratio * ratio * config.repelForce * 1.5
+        const force = (config.repelRadius - dist) / config.repelRadius * config.repelForce * 0.1
         p.vx += (dx / dist) * force
         p.vy += (dy / dist) * force
-        p.stuckFrames = 0
       }
     }
 
-    // Apply friction
+    // 自主移动：缓慢转向目标角度
+    p.angleChangeCountdown--
+    if (p.angleChangeCountdown <= 0) {
+      p.targetAngle = Math.random() * Math.PI * 2
+      p.angleChangeCountdown = 100 + Math.random() * 150
+    }
+
+    const currentAngle = Math.atan2(p.vy, p.vx)
+    let angleDiff = p.targetAngle - currentAngle
+    while (angleDiff > Math.PI) angleDiff -= Math.PI * 2
+    while (angleDiff < -Math.PI) angleDiff += Math.PI * 2
+
+    const turnSpeed = 0.015
+    const newAngle = currentAngle + angleDiff * turnSpeed
+
+    if (speed < 1.5) {
+      p.vx += Math.cos(newAngle) * 0.05
+      p.vy += Math.sin(newAngle) * 0.05
+    }
+
+    // 应用摩擦力
     p.vx *= config.friction
     p.vy *= config.friction
 
-    // Speed limit
-    const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy)
+    // 速度限制
     if (speed > config.maxSpeed) {
       p.vx = (p.vx / speed) * config.maxSpeed
       p.vy = (p.vy / speed) * config.maxSpeed
     }
 
-    // Update position
-    let nextX = p.x + p.vx
-    let nextY = p.y + p.vy
+    // 更新位置
+    p.x += p.vx
+    p.y += p.vy
 
-    // Boundary collision
-    let hitBoundary = false
-    if (nextX < margin) {
-      nextX = margin
+    // 边界碰撞
+    const margin = config.margin
+    if (p.x < margin) {
+      p.x = margin
       p.vx = Math.abs(p.vx) * 0.8
-      hitBoundary = true
-    } else if (nextX > bounds.width - margin) {
-      nextX = bounds.width - margin
+    } else if (p.x > bounds.width - margin) {
+      p.x = bounds.width - margin
       p.vx = -Math.abs(p.vx) * 0.8
-      hitBoundary = true
     }
 
-    if (nextY < margin) {
-      nextY = margin
+    if (p.y < margin) {
+      p.y = margin
       p.vy = Math.abs(p.vy) * 0.8
-      hitBoundary = true
-    } else if (nextY > bounds.height - margin) {
-      nextY = bounds.height - margin
+    } else if (p.y > bounds.height - margin) {
+      p.y = bounds.height - margin
       p.vy = -Math.abs(p.vy) * 0.8
-      hitBoundary = true
     }
 
-    p.x = nextX
-    p.y = nextY
-
-    // Stuck detection (simplified for header - less likely to get stuck)
-    if (hitBoundary && speed < 0.5) {
-      p.stuckFrames++
-    } else {
-      p.stuckFrames = Math.max(0, p.stuckFrames - 1)
-    }
-
-    // Shaking phase (被困 15 帧开始颤抖)
-    if (p.stuckFrames > 15) {
-      p.isShaking = true
-    } else {
-      p.isShaking = false
-    }
-
-    // Explosion phase (被困 45 帧爆裂)
-    if (p.stuckFrames > 45) {
-      // Calculate reunite target - somewhere safe in the canvas
-      const reuniteTarget = {
-        x: margin + Math.random() * (bounds.width - margin * 2),
-        y: margin + Math.random() * (bounds.height - margin * 2),
-      }
-
-      // Create fragments that will fly out then reunite
-      for (let i = 0; i < 3; i++) {
-        fragments.push(createFragment(p, i, reuniteTarget))
-      }
-
-      // Hide particle until fragments reunite
-      p.isHidden = true
-      p.reuniteTarget = reuniteTarget
-      p.stuckFrames = 0
-      p.isShaking = false
-      p.trail = []
-    }
+    p.targetAngle = Math.atan2(p.vy, p.vx)
   }
 
-  // Update fragments
-  for (let i = fragments.length - 1; i >= 0; i--) {
-    const f = fragments[i]
+  // 更新碎片
+  for (const f of fragments) {
+    // 记录尾巴
+    f.trail.push({ x: f.x, y: f.y })
+    if (f.trail.length > 8) f.trail.shift()
 
-    // Phase 1: Fly outward (first 20 frames)
-    // Phase 2: Return to reunite target
-    const flyOutPhase = f.maxLife - f.life < 20
-
-    if (flyOutPhase) {
-      // Keep flying outward with initial velocity
-      f.vx *= 0.96
-      f.vy *= 0.96
-    } else {
-      // Move towards reunite target
-      const dx = f.reuniteTarget.x - f.x
-      const dy = f.reuniteTarget.y - f.y
+    // 无视鼠标时间递减
+    if (f.ignoreMouseTime > 0) {
+      f.ignoreMouseTime--
+    } else if (mousePos) {
+      // 鼠标排斥
+      const dx = f.x - mousePos.x
+      const dy = f.y - mousePos.y
       const dist = Math.sqrt(dx * dx + dy * dy)
-
-      if (dist > 3) {
-        // Accelerate towards target
-        const accel = 0.4
-        f.vx += (dx / dist) * accel
-        f.vy += (dy / dist) * accel
+      if (dist < config.repelRadius && dist > 0) {
+        const force = (config.repelRadius - dist) / config.repelRadius * 0.5
+        f.vx += (dx / dist) * force
+        f.vy += (dy / dist) * force
       }
-
-      f.vx *= 0.92
-      f.vy *= 0.92
     }
 
+    // 摩擦力
+    f.vx *= 0.98
+    f.vy *= 0.98
+
+    // 更新位置
     f.x += f.vx
     f.y += f.vy
+
+    // 生命递减
     f.life--
 
-    // Check if fragment reached target or expired
-    const dx = f.reuniteTarget.x - f.x
-    const dy = f.reuniteTarget.y - f.y
-    const distToTarget = Math.sqrt(dx * dx + dy * dy)
+    // 边界碰撞
+    const margin = config.margin
+    if (f.x < margin) {
+      f.x = margin
+      f.vx = Math.abs(f.vx)
+    } else if (f.x > bounds.width - margin) {
+      f.x = bounds.width - margin
+      f.vx = -Math.abs(f.vx)
+    }
 
-    if (f.life <= 0 || distToTarget < 5) {
-      fragments.splice(i, 1)
+    if (f.y < margin) {
+      f.y = margin
+      f.vy = Math.abs(f.vy)
+    } else if (f.y > bounds.height - margin) {
+      f.y = bounds.height - margin
+      f.vy = -Math.abs(f.vy)
     }
   }
 
-  // Check if hidden particles can be restored (all their fragments reunited)
-  for (const p of particles) {
-    if (p.isHidden && p.reuniteTarget) {
-      // Check if any fragments still belong to this particle
-      const hasFragments = fragments.some(f => f.parentId === p.id)
-
-      if (!hasFragments) {
-        // All fragments reunited - restore particle at reunite target
-        p.x = p.reuniteTarget.x
-        p.y = p.reuniteTarget.y
-        p.vx = (Math.random() - 0.5) * 2
-        p.vy = (Math.random() - 0.5) * 0.5
-        p.isHidden = false
-        p.reuniteTarget = null
-        p.trail = []
-      }
-    }
-  }
+  // 检查碎片汇合
+  reuniteFragments(engine)
 }

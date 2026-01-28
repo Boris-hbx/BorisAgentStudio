@@ -42,3 +42,8 @@ htmlcov/
 *.bak
 *.tmp
 Thumbs.db
+
+# Large data files (not for version control)
+data/PrtSc/
+data/book/
+data/harmonydata/

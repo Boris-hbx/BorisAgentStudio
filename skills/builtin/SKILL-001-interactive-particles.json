@@ -2,45 +2,62 @@
   "skill_id": "SKILL-001",
   "name": "interactive-particles",
   "display_name": "可交互粒子系统",
-  "version": "1.0.0",
-  "description": "Canvas 上的可交互粒子效果，粒子会自主游动，鼠标靠近时被推开，被困时爆裂重组",
+  "version": "2.0.0",
+  "description": "Canvas 上的可交互粒子效果，粒子会自主游动，鼠标靠近时被推开，被困边缘时颤抖、爆裂、碎片汇合重生",
   "category": "ui-effect",
-  "tags": ["canvas", "animation", "interaction", "physics"],
+  "tags": ["canvas", "animation", "interaction", "physics", "particle"],
   "source": {
-    "origin": "C:\\Project\\boris-workspace\\Next\\frontend\\index.html",
-    "lines": "4623-5794",
-    "extracted_at": "2026-01-25"
+    "origin": "C:\\Project\\boris-workspace\\Next\\frontend\\templates\\base.html",
+    "functions": ["createParticle", "updateParticle", "drawParticle", "explodeParticle", "reuniteFragments", "isStuckAtEdge"],
+    "extracted_at": "2026-01-27"
   },
   "capabilities": [
     {
       "id": "particle-physics",
       "name": "粒子物理引擎",
-      "description": "速度、摩擦、边界碰撞的物理模拟"
+      "description": "速度、摩擦、边界碰撞的物理模拟，边界反弹损失20%能量"
     },
     {
       "id": "mouse-repel",
       "name": "鼠标排斥",
-      "description": "鼠标靠近时粒子被推开，距离越近力越大（二次方关系）"
+      "description": "鼠标靠近时粒子被推开，力度与距离成反比"
     },
     {
       "id": "autonomous-movement",
       "name": "自主游动",
-      "description": "粒子自动移动，定期随机转向"
+      "description": "粒子自动移动，定期随机转向，转向角度缓慢过渡"
     },
     {
       "id": "trail-rendering",
-      "name": "拖尾渲染",
-      "description": "粒子移动时留下渐隐、渐细的轨迹"
+      "name": "彗星尾巴",
+      "description": "渐变线段渲染，从细到粗，透明度用三次方曲线平滑过渡"
+    },
+    {
+      "id": "stuck-detection",
+      "name": "被困检测",
+      "description": "同时满足靠近边缘AND鼠标靠近时判定为被困"
+    },
+    {
+      "id": "fear-shake",
+      "name": "恐惧颤抖",
+      "description": "被困超过15帧开始颤抖，显示红色光晕"
     },
     {
       "id": "explode-reunite",
       "name": "爆裂重组",
-      "description": "被困时颤抖、爆裂成碎片，碎片汇合重生"
+      "description": "被困超过45帧爆裂成3个碎片，碎片汇合后在中心点重生"
     }
   ],
   "config_schema": {
     "type": "object",
     "properties": {
+      "particleCount": {
+        "type": "number",
+        "default": 6,
+        "min": 3,
+        "max": 20,
+        "description": "粒子数量"
+      },
       "repelRadius": {
         "type": "number",
         "default": 180,
@@ -71,51 +88,157 @@
       },
       "tailLength": {
         "type": "number",
-        "default": 5,
-        "min": 0,
-        "max": 15,
-        "description": "尾巴长度"
+        "default": 12,
+        "min": 5,
+        "max": 25,
+        "description": "尾巴最大长度（动态计算：5 + speed×2）"
       },
-      "particleCount": {
+      "minRadius": {
         "type": "number",
-        "default": 8,
-        "min": 3,
+        "default": 4,
+        "min": 2,
+        "max": 8,
+        "description": "粒子最小半径"
+      },
+      "maxRadius": {
+        "type": "number",
+        "default": 7,
+        "min": 4,
+        "max": 12,
+        "description": "粒子最大半径"
+      },
+      "margin": {
+        "type": "number",
+        "default": 4,
+        "min": 0,
         "max": 20,
-        "description": "粒子数量"
+        "description": "边界安全边距"
       },
       "colors": {
         "type": "array",
         "items": { "type": "string" },
-        "default": ["#58a6ff", "#f97316", "#a855f7", "#22c55e"],
-        "description": "粒子颜色列表"
+        "default": [
+          "rgba(96, 165, 250, 0.7)",
+          "rgba(52, 211, 153, 0.7)",
+          "rgba(248, 113, 113, 0.7)",
+          "rgba(251, 191, 36, 0.7)",
+          "rgba(167, 139, 250, 0.7)",
+          "rgba(244, 114, 182, 0.7)"
+        ],
+        "description": "粒子颜色列表 (rgba格式)"
       }
     }
   },
   "algorithms": {
-    "repel_force": {
-      "formula": "force = (1 - dist/radius)² × repelForce × 1.5",
-      "description": "二次方关系，距离越近力越大"
-    },
-    "friction": {
-      "formula": "v *= friction (each frame)",
-      "description": "每帧应用摩擦减速"
-    },
-    "boundary_bounce": {
-      "formula": "v = |v| × 0.8 (on collision)",
-      "description": "碰撞时反弹并损失20%能量"
+    "stuck_detection": {
+      "formula": "isStuck = nearEdge AND nearMouse",
+      "conditions": {
+        "nearEdge": "x < radius+5 OR x > width-radius-5 OR y < radius+5 OR y > height-radius-5",
+        "nearMouse": "distance(particle, mouse) < repelRadius + 20"
+      },
+      "description": "必须同时满足靠近边缘和鼠标靠近才算被困"
     },
     "fear_threshold": {
-      "formula": "stuckTime > 15 → shake; > 45 → explode",
-      "description": "被困15帧开始颤抖，45帧爆裂"
+      "shake_start": 15,
+      "explode_start": 45,
+      "reunite_delay": 60,
+      "description": "被困15帧颤抖，45帧爆裂，碎片60帧后汇合"
+    },
+    "shake_effect": {
+      "formula": "offset = (random() - 0.5) × 3",
+      "shadow": "red glow with shadowBlur=15",
+      "description": "每帧随机偏移±1.5px，红色光晕"
+    },
+    "trail_rendering": {
+      "width": "radius × 2 × progress × 0.9",
+      "alpha": "baseAlpha × progress³ × 0.6",
+      "connection": "lastTrail to particle with lineWidth=radius×1.6",
+      "description": "三次方透明度曲线实现平滑渐变"
+    },
+    "dynamic_tail_length": {
+      "formula": "length = clamp(5 + speed × 2, 5, maxTailLength)",
+      "description": "尾巴长度随速度动态变化"
+    },
+    "repel_force": {
+      "formula": "force = (repelRadius - dist) / repelRadius × repelForce × 0.1",
+      "description": "线性关系，距离越近力越大"
+    },
+    "fragment_spawn": {
+      "count": 3,
+      "angle": "(2π/3) × i + random() × 0.5",
+      "speed": "3 + random() × 2",
+      "colors": "使用不同颜色增加视觉效果",
+      "ignoreMouseTime": 40,
+      "description": "均匀分布3个碎片，初始40帧无视鼠标"
+    },
+    "fragment_reunite": {
+      "trigger": "所有碎片 life <= 0",
+      "position": "碎片中心点",
+      "description": "同一父粒子的所有碎片到期后在中心点生成新粒子"
+    },
+    "boundary_bounce": {
+      "formula": "v = |v| × 0.8",
+      "description": "碰撞时反弹并损失20%能量"
+    },
+    "autonomous_turn": {
+      "interval": "100 + random() × 150 frames",
+      "turnSpeed": 0.015,
+      "description": "缓慢转向目标角度"
+    }
+  },
+  "data_structures": {
+    "Particle": {
+      "id": "number",
+      "x": "number",
+      "y": "number",
+      "vx": "number",
+      "vy": "number",
+      "radius": "number",
+      "color": "string",
+      "alpha": "number (0.7-0.9)",
+      "trail": "Point[]",
+      "targetAngle": "number",
+      "angleChangeCountdown": "number",
+      "stuckTime": "number",
+      "isShaking": "boolean",
+      "shakeOffset": "Point"
+    },
+    "Fragment": {
+      "x": "number",
+      "y": "number",
+      "vx": "number",
+      "vy": "number",
+      "radius": "number",
+      "color": "string",
+      "alpha": "number",
+      "trail": "Point[]",
+      "life": "number",
+      "maxLife": "number (60)",
+      "parentIndex": "number",
+      "ignoreMouseTime": "number"
+    },
+    "Point": {
+      "x": "number",
+      "y": "number"
     }
   },
   "implementation_notes": [
     "使用 requestAnimationFrame 驱动动画循环",
-    "Canvas 2D Context 渲染",
-    "粒子轨迹用数组存储，超长度时 shift() 移除",
-    "碎片用独立数组管理，生命到期后重组",
-    "区分逃跑模式（减少摩擦）和巡游模式（增加摩擦）"
+    "Canvas 2D Context 渲染，支持 shadowBlur 光晕效果",
+    "粒子数组更新时先复制再遍历，避免 splice 导致索引错乱",
+    "碎片按 parentIndex 分组管理，便于汇合检测",
+    "尾巴用数组存储历史位置，超长度时 shift() 移除",
+    "颤抖时每帧重新计算随机偏移，产生抖动效果",
+    "爆裂时移除原粒子，创建3个独立碎片",
+    "碎片有独立的鼠标排斥逻辑，初始40帧无视鼠标便于飞散",
+    "汇合时在碎片中心点创建新粒子，继承随机速度"
   ],
+  "file_structure": {
+    "config.ts": "配置接口和默认值",
+    "particle.ts": "Particle/Fragment 类型定义和工厂函数",
+    "engine.ts": "物理引擎：更新、碰撞检测、爆裂、汇合",
+    "renderer.ts": "Canvas 渲染：尾巴、粒子、碎片"
+  },
   "dependencies": [],
   "spec_reference": "SPEC-006-interactive-particles.md"
 }

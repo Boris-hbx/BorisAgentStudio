@@ -2,15 +2,14 @@
  * Timeline - Main timeline visualization component
  *
  * 基于 SPEC-011：分层工作流可视化
- * 使用 PhaseGroupList 统一处理 v2.x 和 v3.0 数据格式
  */
 
-import type { ToolCall } from '../../types/agent'
+import type { ToolCall, AgentSession } from '../../types/agent'
 import { PhaseGroupList } from '../PhaseGroup'
 import './Timeline.css'
 
 interface TimelineProps {
-  session: import('../../types/agent').AgentSession
+  session: AgentSession
   onSelectToolCall: (toolCall: ToolCall | null) => void
   selectedToolCallId: string | null
 }
@@ -18,10 +17,6 @@ interface TimelineProps {
 export function Timeline({ session, onSelectToolCall, selectedToolCallId }: TimelineProps) {
   return (
     <div className="timeline-container">
-      <div className="timeline-header">
-        <h2 className="timeline-title">{session.task_title}</h2>
-        <span className="timeline-model">{session.agent.model_id}</span>
-      </div>
       <PhaseGroupList
         session={session}
         onSelectToolCall={onSelectToolCall}

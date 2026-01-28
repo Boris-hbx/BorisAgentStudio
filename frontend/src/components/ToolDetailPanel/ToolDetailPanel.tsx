@@ -2,13 +2,17 @@
  * ToolDetailPanel - 工具调用详情面板
  *
  * 显示选中工具调用的详细信息
+ * 支持结构化数据智能渲染
  */
 
 import type { AgentSession, ToolCall, ToolCategory } from '../../types/agent'
 import { TOOL_CATEGORY_CONFIG } from '../../types/agent'
 import { CodeDiffSection } from '../CodeDiff'
 import { isCodeChangeOperation } from '../../utils/codeDiffUtils'
+import { parseRoleFromCallId, ROLE_CONFIG } from '../../utils/roleUtils'
+import { renderStructuredResult } from './ResultRenderers'
 import './ToolDetailPanel.css'
+import './ResultRenderers.css'
 
 interface ToolDetailPanelProps {
   toolCall: ToolCall | null
@@ -17,15 +21,9 @@ interface ToolDetailPanelProps {
 }
 
 export function ToolDetailPanel({ toolCall, session, onClose }: ToolDetailPanelProps) {
+  // 默认隐藏，只有选中工具时才展开
   if (!toolCall) {
-    return (
-      <div className="tool-detail-panel empty">
-        <div className="empty-hint">
-          <span className="empty-icon">🔧</span>
-          <p>点击工具节点查看详情</p>
-        </div>
-      </div>
-    )
+    return null
   }
 
   const categoryConfig = TOOL_CATEGORY_CONFIG[toolCall.tool_category as ToolCategory] || {
@@ -33,11 +31,25 @@ export function ToolDetailPanel({ toolCall, session, onClose }: ToolDetailPanelP
     label: '其他',
   }
 
+  // 解析执行角色
+  const role = parseRoleFromCallId(toolCall.call_id)
+  const roleConfig = ROLE_CONFIG[role]
+
   return (
     <div className="tool-detail-panel open">
       {/* Header */}
       <div className="panel-header">
         <div className="header-title">
+          {/* 角色标识 */}
+          {role !== 'unknown' && (
+            <span
+              className="tool-role"
+              style={{ backgroundColor: roleConfig.color }}
+              title={roleConfig.labelCn}
+            >
+              {roleConfig.icon}
+            </span>
+          )}
           <span className="tool-name">{toolCall.tool_name}</span>
           <span
             className="tool-category"
@@ -92,14 +104,20 @@ export function ToolDetailPanel({ toolCall, session, onClose }: ToolDetailPanelP
           </div>
         )}
 
-        {/* Output */}
+        {/* Output - 智能渲染结构化数据 */}
         {toolCall.output.result && (
           <div className="detail-section">
             <h4 className="section-title">输出</h4>
             {typeof toolCall.output.result === 'object' &&
             'display' in toolCall.output.result &&
             typeof toolCall.output.result.display === 'string' ? (
-              <div className="output-display">{toolCall.output.result.display}</div>
+              <>
+                <div className="output-display">{toolCall.output.result.display}</div>
+                {/* 渲染结构化内容 */}
+                <div className="structured-output">
+                  {renderStructuredResult(toolCall.output.result as Record<string, unknown>)}
+                </div>
+              </>
             ) : (
               <pre className="code-block">
                 {JSON.stringify(toolCall.output.result, null, 2)}

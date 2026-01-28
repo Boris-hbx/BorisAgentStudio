@@ -310,6 +310,34 @@ export function SessionSearch({
               </span>
               <span className="session-name">{session.name}</span>
             </div>
+            {/* 多 Agent 协作团队展示 */}
+            {session.collaboration && (
+              <div className="team-collaboration">
+                <div className="team-header">
+                  <span className="team-icon">👥</span>
+                  <span className="team-name">{session.collaboration.team_name || '协作团队'}</span>
+                </div>
+                <div className="team-flow">
+                  {session.collaboration.members.map((member, idx) => (
+                    <div key={member.role} className="team-member-group">
+                      {idx > 0 && <span className="flow-arrow">→</span>}
+                      <div className={`team-member role-${member.role}`}>
+                        <span className="member-icon">
+                          {member.role === 'architect' && '🏛️'}
+                          {member.role === 'developer' && '👨‍💻'}
+                          {member.role === 'reviewer' && '🔍'}
+                          {member.role === 'challenger' && '🛡️'}
+                        </span>
+                        {member.count > 1 && (
+                          <span className="member-count">×{member.count}</span>
+                        )}
+                        <span className="member-label">{member.label}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="session-description">{session.description}</div>
             <div className="session-id">{session.session_id}</div>
           </button>

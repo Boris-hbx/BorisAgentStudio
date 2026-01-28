@@ -14,7 +14,7 @@ interface SessionState {
   lockedPhaseIds: Set<string>
 
   // Actions
-  setSession: (session: AgentSession) => void
+  setSession: (session: AgentSession | null) => void
   selectPhase: (phaseId: string | null) => void
   togglePhaseExpanded: (phaseId: string) => void
   togglePhaseLocked: (phaseId: string) => void

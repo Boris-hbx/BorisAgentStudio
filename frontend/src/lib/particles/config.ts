@@ -27,19 +27,21 @@ export interface ParticleConfig {
 }
 
 export const DEFAULT_HEADER_CONFIG: ParticleConfig = {
-  particleCount: 4,
-  repelRadius: 120,
-  repelForce: 8,
-  maxSpeed: 6,
+  particleCount: 6,
+  repelRadius: 180,
+  repelForce: 12,
+  maxSpeed: 10,
   friction: 0.97,
-  tailLength: 3,
+  tailLength: 12,
   colors: [
-    'rgba(88, 166, 255, 0.6)',   // accent blue
-    'rgba(249, 115, 22, 0.5)',   // orange
-    'rgba(168, 85, 247, 0.5)',   // purple
-    'rgba(34, 197, 94, 0.5)',    // green
+    'rgba(96, 165, 250, 0.7)',   // #60a5fa blue
+    'rgba(52, 211, 153, 0.7)',   // #34d399 green
+    'rgba(248, 113, 113, 0.7)', // #f87171 red
+    'rgba(251, 191, 36, 0.7)',  // #fbbf24 yellow
+    'rgba(167, 139, 250, 0.7)', // #a78bfa purple
+    'rgba(244, 114, 182, 0.7)', // #f472b6 pink
   ],
   minRadius: 4,
-  maxRadius: 8,
-  margin: 12,
+  maxRadius: 7,
+  margin: 4,
 }

@@ -89,6 +89,7 @@ interface Session {
   user_prompt: string;                    // 用户原始输入
   created_at: string;                     // ISO8601
   completed_at: string;                   // ISO8601
+  updated_at?: string;                    // ISO8601（可选，导入时自动填充）
   status: "success" | "failed" | "in_progress";
 
   agent: {
@@ -103,11 +104,17 @@ interface Session {
   phase_annotations?: PhaseAnnotation[];  // 事后分析，可选
 
   // === 可选：旧格式兼容 ===
-  phases?: Phase[];                       // v2.x 格式，向后兼容
+  phases?: Phase[];                       // v2.x 格式，向后兼容（导入时自动填充为[]）
 
   // === 摘要 ===
   summary: SessionSummary;
 }
+
+/**
+ * 导入时自动填充规则：
+ * - updated_at: 如不存在，使用 completed_at 或 created_at
+ * - phases: 如不存在，自动设为空数组 []
+ */
 
 interface SessionSummary {
   total_duration_ms: number;

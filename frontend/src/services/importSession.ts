@@ -1,13 +1,19 @@
 /**
  * Session import service
  *
- * Handles file upload and validation for 5-phase execution model
+ * 基于 STD-001 v3.0：工具调用流优先模型
+ *
+ * 核心验证规则：
+ * - tool_calls[] 必须存在且为数组
+ * - phases[] 可选（v2.x 兼容）
+ * - phase_annotations[] 可选（v3.0 事后标注）
+ * - updated_at 可选（如不存在，使用 completed_at）
  */
 
 import type { AgentSession, PhaseType, PhaseStatus } from '../types/agent'
 import { PHASE_ORDER } from '../types/agent'
 
-const VALID_PHASE_TYPES: PhaseType[] = PHASE_ORDER
+const VALID_PHASE_TYPES: PhaseType[] = [...PHASE_ORDER, 'mixed', 'unclassified']
 const VALID_STATUSES: PhaseStatus[] = ['pending', 'running', 'success', 'failed', 'skipped']
 
 interface ValidationError {
@@ -38,7 +44,12 @@ export async function importSessionFromFile(file: File): Promise<ImportResult> {
 }
 
 /**
- * Validate session data structure (5-phase model)
+ * Validate session data structure (STD-001 v3.0)
+ *
+ * 核心规则：
+ * - tool_calls[] 是第一公民，必须存在
+ * - phases[] 是 v2.x 兼容字段，可选
+ * - phase_annotations[] 是 v3.0 事后标注，可选
  */
 export function validateSession(data: unknown): ImportResult {
   const errors: ValidationError[] = []
@@ -52,7 +63,8 @@ export function validateSession(data: unknown): ImportResult {
 
   const obj = data as Record<string, unknown>
 
-  // Required fields
+  // === 必需字段 ===
+
   if (!obj.session_id || typeof obj.session_id !== 'string') {
     errors.push({ field: 'session_id', message: 'session_id 必填且必须是字符串' })
   }
@@ -65,15 +77,7 @@ export function validateSession(data: unknown): ImportResult {
     errors.push({ field: 'created_at', message: 'created_at 必填' })
   }
 
-  if (!obj.updated_at || typeof obj.updated_at !== 'string') {
-    errors.push({ field: 'updated_at', message: 'updated_at 必填' })
-  }
-
-  if (!Array.isArray(obj.phases)) {
-    errors.push({ field: 'phases', message: 'phases 必须是数组' })
-    return { success: false, errors }
-  }
-
+  // tool_calls 是 v3.0 的核心，必须存在
   if (!Array.isArray(obj.tool_calls)) {
     errors.push({ field: 'tool_calls', message: 'tool_calls 必须是数组' })
   }
@@ -82,20 +86,45 @@ export function validateSession(data: unknown): ImportResult {
     errors.push({ field: 'summary', message: 'summary 必填且必须是对象' })
   }
 
-  // Validate each phase
-  const phases = obj.phases as unknown[]
-  phases.forEach((phase, index) => {
-    const phaseErrors = validatePhase(phase, index)
-    errors.push(...phaseErrors)
-  })
+  // === 可选字段验证 ===
+
+  // phases 是可选的（v2.x 兼容），如果存在则验证格式
+  if (obj.phases !== undefined && !Array.isArray(obj.phases)) {
+    errors.push({ field: 'phases', message: 'phases 如果存在必须是数组' })
+  }
+
+  // phase_annotations 是可选的（v3.0），如果存在则验证格式
+  if (obj.phase_annotations !== undefined && !Array.isArray(obj.phase_annotations)) {
+    errors.push({ field: 'phase_annotations', message: 'phase_annotations 如果存在必须是数组' })
+  }
+
+  // 如果有 phases，验证每个 phase 的格式
+  if (Array.isArray(obj.phases)) {
+    const phases = obj.phases as unknown[]
+    phases.forEach((phase, index) => {
+      const phaseErrors = validatePhase(phase, index)
+      errors.push(...phaseErrors)
+    })
+  }
 
   if (errors.length > 0) {
     return { success: false, errors }
   }
 
+  // 自动填充 updated_at（如果不存在）
+  const session = data as AgentSession
+  if (!session.updated_at) {
+    session.updated_at = session.completed_at || session.created_at
+  }
+
+  // 自动填充 phases 为空数组（如果不存在）
+  if (!session.phases) {
+    session.phases = []
+  }
+
   return {
     success: true,
-    session: data as AgentSession,
+    session,
   }
 }
 

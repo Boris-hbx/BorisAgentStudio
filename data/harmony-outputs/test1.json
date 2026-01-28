@@ -1,0 +1,34 @@
+{
+  "source": "test1.png",
+  "converted_at": "2026-01-28",
+  "data": {
+    "app_icon": "mock_image.jpg",
+    "deliveries": [
+      {
+        "status": "已签收",
+        "phone_suffix": "3613",
+        "company": "京东快递",
+        "tracking_number": "JD0224591058267",
+        "message": "您的订单已送达至【家门口】。如有疑问...",
+        "logo": "mock_image.jpg"
+      },
+      {
+        "status": "已签收",
+        "phone_suffix": "3613",
+        "company": "德邦快递",
+        "tracking_number": "DPK301824915427",
+        "message": "【深圳市】经收货人同意，此件放置在家...",
+        "logo": "mock_image.jpg"
+      },
+      {
+        "status": "已签收",
+        "phone_suffix": "3613",
+        "company": "中通快递",
+        "tracking_number": "78970391347969",
+        "message": "您已在深圳坂田中海日辉台七栋131店完...",
+        "logo": "mock_image.jpg"
+      }
+    ]
+  },
+  "html": "<div style=\"display:flex;flex-direction:column;width:100%;border-radius:20px;overflow:hidden;background-color:#FFFFFF;\"><div style=\"display:flex;flex-direction:row;justify-content:space-between;align-items:center;width:100%;padding:16px 20px;\"><div style=\"display:flex;flex-direction:row;justify-content:flex-start;align-items:center;\"><img :src=\"data.app_icon\" style=\"width:32px;height:32px;margin-right:10px;\"><span style=\"font-size:18px;font-weight:500;color:#333333;\">快递元服务</span></div><div style=\"display:flex;flex-direction:row;justify-content:flex-end;align-items:center;\"><span style=\"font-size:14px;color:#999999;\">更多</span><symbolGlyph-custom value=\"向右\" style=\"width:16px;height:16px;color:#999999;margin-left:4px;\"></symbolGlyph-custom></div></div><div style=\"display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;width:100%;\"><div v-for=\"(item, index) in data.deliveries\" :key=\"index\" style=\"display:flex;flex-direction:row;justify-content:flex-start;align-items:flex-start;width:100%;padding:16px 20px;border-top:1px solid #F0F0F0;\"><img :src=\"item.logo\" style=\"width:60px;height:60px;border-radius:8px;margin-right:16px;\"><div style=\"display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;width:100%;\"><span style=\"font-size:18px;font-weight:600;color:#333333;margin-bottom:4px;\">{{ item.status }}</span><span style=\"font-size:14px;color:#999999;margin-bottom:4px;\">手机尾号{{ item.phone_suffix }}</span><div style=\"display:flex;flex-direction:row;justify-content:flex-start;align-items:center;margin-bottom:4px;\"><span style=\"font-size:14px;color:#333333;margin-right:8px;\">{{ item.company }}</span><span style=\"font-size:14px;color:#666666;\">{{ item.tracking_number }}</span></div><span style=\"font-size:14px;color:#666666;line-height:1.4;\">{{ item.message }}</span></div></div></div></div>"
+}

@@ -1,0 +1,317 @@
+{
+  "session_id": "2026-01-27-005-sessionbar-optimization",
+  "task_title": "SessionBar 优化 - 排序、布局、隐藏面板",
+  "task_description": "优化 SessionBar：Session 列表按时间倒序、紧凑两行布局、右侧面板默认隐藏",
+  "user_prompt": "/team 看我截图，这里我建议：session下拉框里面的session按照时间顺序倒排。默认加载最新的session日志。另外这里的session日志名字没能显示全，我建议你想办法体现一下，另外显示模型名称，是不是可以和右边的统计信息放到一起排版，把字弄小，变成两行或者什么的，这里不需要那么醒目的大字。右边的侧边栏，默认是隐藏起来，只有点击timeline里面的按钮需要展开的时候，才展开。",
+  "created_at": "2026-01-27T11:40:00Z",
+  "completed_at": "2026-01-27T12:10:00Z",
+  "updated_at": "2026-01-27T12:10:00Z",
+  "status": "success",
+  "agent": {
+    "model_id": "claude-opus-4-5-20251101",
+    "capability_snapshot": "2026-01-27"
+  },
+  "collaboration": {
+    "mode": "multi_agent",
+    "pattern": "master_worker",
+    "team_name": "Boris's Team",
+    "orchestrator": {
+      "agent_id": "product-owner",
+      "agent_type": "product_owner"
+    },
+    "participants": [
+      { "agent_id": "architect", "agent_type": "architect" },
+      { "agent_id": "challenger", "agent_type": "challenger" },
+      { "agent_id": "design-authority", "agent_type": "design_authority" },
+      { "agent_id": "developer", "agent_type": "developer" },
+      { "agent_id": "reviewer", "agent_type": "reviewer" }
+    ]
+  },
+  "tool_calls": [
+    {
+      "call_id": "po-analyze-001",
+      "tool_name": "Read",
+      "tool_category": "perception",
+      "started_at": "2026-01-27T11:40:00Z",
+      "ended_at": "2026-01-27T11:42:00Z",
+      "duration_ms": 120000,
+      "input": {
+        "description": "PO 分析用户截图",
+        "params": {
+          "file": "Screenshot 2026-01-27 095852.png"
+        }
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "截图分析完成",
+          "problems": [
+            "Session 列表未按时间排序",
+            "标题截断，信息丢失",
+            "布局字体太大",
+            "右侧面板默认展开"
+          ],
+          "goals": [
+            "时间倒序排列",
+            "紧凑两行布局",
+            "面板默认隐藏"
+          ]
+        }
+      }
+    },
+    {
+      "call_id": "architect-explore-001",
+      "tool_name": "Read",
+      "tool_category": "perception",
+      "started_at": "2026-01-27T11:42:00Z",
+      "ended_at": "2026-01-27T11:45:00Z",
+      "duration_ms": 180000,
+      "input": {
+        "description": "Architect 阅读相关组件",
+        "params": {
+          "files": ["mockData.ts", "SessionBar.tsx", "App.tsx", "ToolDetailPanel.tsx"]
+        }
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "组件分析完成",
+          "findings": [
+            "sessionsList 使用 localeCompare 正序排列",
+            "SessionBar 使用 truncate 截断标题",
+            "ToolDetailPanel 空状态显示提示"
+          ]
+        }
+      }
+    },
+    {
+      "call_id": "architect-design-001",
+      "tool_name": "设计技术方案",
+      "tool_category": "planning",
+      "started_at": "2026-01-27T11:45:00Z",
+      "ended_at": "2026-01-27T11:50:00Z",
+      "duration_ms": 300000,
+      "input": {
+        "description": "Architect 设计优化方案",
+        "params": {}
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "方案设计完成",
+          "solutions": [
+            {
+              "target": "时间排序",
+              "approach": "使用 created_at 字段倒序"
+            },
+            {
+              "target": "紧凑布局",
+              "approach": "两行布局：标题 + 元信息"
+            },
+            {
+              "target": "面板隐藏",
+              "approach": "无选中时返回 null"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "call_id": "challenger-risk-001",
+      "tool_name": "技术风险评估",
+      "tool_category": "planning",
+      "started_at": "2026-01-27T11:50:00Z",
+      "ended_at": "2026-01-27T11:52:00Z",
+      "duration_ms": 120000,
+      "input": {
+        "description": "Challenger 评估技术风险",
+        "params": {}
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "风险评估完成",
+          "risks": [
+            { "id": "C1", "risk": "session_id 排序依赖命名", "level": "低", "action": "使用 created_at" }
+          ]
+        }
+      }
+    },
+    {
+      "call_id": "da-risk-001",
+      "tool_name": "体验风险评估",
+      "tool_category": "planning",
+      "started_at": "2026-01-27T11:50:00Z",
+      "ended_at": "2026-01-27T11:52:00Z",
+      "duration_ms": 120000,
+      "input": {
+        "description": "DA 评估体验风险",
+        "params": {}
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "体验评估完成",
+          "risks": [
+            { "id": "D1", "risk": "字体太小难读", "level": "低", "action": "最小 11px" }
+          ]
+        }
+      }
+    },
+    {
+      "call_id": "developer-impl-001",
+      "tool_name": "Edit",
+      "tool_category": "action",
+      "started_at": "2026-01-27T11:52:00Z",
+      "ended_at": "2026-01-27T11:55:00Z",
+      "duration_ms": 180000,
+      "input": {
+        "description": "Developer 修改 mockData.ts 排序逻辑",
+        "params": {
+          "file": "mockData.ts"
+        }
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "排序逻辑更新完成",
+          "change": "使用 created_at 倒序排列"
+        }
+      }
+    },
+    {
+      "call_id": "developer-impl-002",
+      "tool_name": "Write",
+      "tool_category": "action",
+      "started_at": "2026-01-27T11:55:00Z",
+      "ended_at": "2026-01-27T12:00:00Z",
+      "duration_ms": 300000,
+      "input": {
+        "description": "Developer 重构 SessionBar 组件和样式",
+        "params": {
+          "files": ["SessionBar.tsx", "SessionBar.css"]
+        }
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "SessionBar 重构完成",
+          "features": [
+            "两行紧凑布局",
+            "下拉菜单名称支持换行",
+            "选择器按钮精简"
+          ]
+        }
+      }
+    },
+    {
+      "call_id": "developer-impl-003",
+      "tool_name": "Edit",
+      "tool_category": "action",
+      "started_at": "2026-01-27T12:00:00Z",
+      "ended_at": "2026-01-27T12:02:00Z",
+      "duration_ms": 120000,
+      "input": {
+        "description": "Developer 修改 ToolDetailPanel 默认隐藏",
+        "params": {
+          "file": "ToolDetailPanel.tsx"
+        }
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "面板默认隐藏",
+          "change": "无选中时返回 null"
+        }
+      }
+    },
+    {
+      "call_id": "developer-build-001",
+      "tool_name": "Bash",
+      "tool_category": "action",
+      "started_at": "2026-01-27T12:02:00Z",
+      "ended_at": "2026-01-27T12:04:00Z",
+      "duration_ms": 120000,
+      "input": {
+        "description": "Developer 构建验证",
+        "params": {
+          "command": "npm run build"
+        }
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "构建成功",
+          "build_time": "663ms"
+        }
+      }
+    },
+    {
+      "call_id": "reviewer-review-001",
+      "tool_name": "代码审查",
+      "tool_category": "action",
+      "started_at": "2026-01-27T12:04:00Z",
+      "ended_at": "2026-01-27T12:07:00Z",
+      "duration_ms": 180000,
+      "input": {
+        "description": "Reviewer 审查代码和验证 DoD",
+        "params": {}
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "审查通过",
+          "verdict": "通过",
+          "checklist": [
+            { "item": "Session 时间倒序", "passed": true },
+            { "item": "紧凑两行布局", "passed": true },
+            { "item": "名称完整显示", "passed": true },
+            { "item": "面板默认隐藏", "passed": true },
+            { "item": "构建成功", "passed": true }
+          ]
+        }
+      }
+    },
+    {
+      "call_id": "po-confirm-001",
+      "tool_name": "Write",
+      "tool_category": "action",
+      "started_at": "2026-01-27T12:07:00Z",
+      "ended_at": "2026-01-27T12:10:00Z",
+      "duration_ms": 180000,
+      "input": {
+        "description": "PO 创建 SPEC 文档和确认完成",
+        "params": {
+          "file": "SPEC-029-sessionbar-optimization.md"
+        }
+      },
+      "output": {
+        "status": "success",
+        "result": {
+          "display": "任务完成确认",
+          "dod_checklist": [
+            { "goal": "Session 列表时间倒序", "met": true },
+            { "goal": "默认加载最新", "met": true },
+            { "goal": "紧凑两行布局", "met": true },
+            { "goal": "名称完整显示", "met": true },
+            { "goal": "面板默认隐藏", "met": true }
+          ]
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total_duration_ms": 1800000,
+    "tool_calls_count": 11,
+    "files_created": [
+      "docs/specs/SPEC-029-sessionbar-optimization.md"
+    ],
+    "files_modified": [
+      "frontend/src/services/mockData.ts",
+      "frontend/src/components/Layout/SessionBar.tsx",
+      "frontend/src/components/Layout/SessionBar.css",
+      "frontend/src/components/ToolDetailPanel/ToolDetailPanel.tsx"
+    ],
+    "outcome": "成功优化 SessionBar：Session 按时间倒序排列、紧凑两行布局、下拉菜单名称完整显示、右侧面板默认隐藏"
+  }
+}

@@ -6,18 +6,74 @@
  */
 
 import { useEffect, useState } from 'react'
-import { Header, StatusBar } from './components/Layout'
+import { Header, SessionBar } from './components/Layout'
+import { Sidebar, type SidebarModule } from './components/Sidebar'
+import { AgentExplorer } from './components/Sidebar/modules/AgentExplorer'
 import { Timeline, TimelineEmpty } from './components/Timeline'
+import { HarmonyStudio } from './components/HarmonyStudio'
 import { ToolDetailPanel } from './components/ToolDetailPanel'
 import { useSessionStore } from './store/sessionStore'
 import { loadMockSession } from './services/mockData'
 import type { ToolCall } from './types/agent'
 import './App.css'
 
+/** 占位页面组件 */
+function ComingSoon({ icon, title }: { icon: string; title: string }) {
+  return (
+    <div className="coming-soon">
+      <div className="coming-soon-content">
+        <span className="coming-soon-icon">{icon}</span>
+        <h2 className="coming-soon-title">{title}</h2>
+        <p className="coming-soon-text">功能正在开发中，敬请期待</p>
+        <div className="coming-soon-decoration">
+          <span>🚧</span>
+          <span>👷</span>
+          <span>🔨</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function App() {
   const setSession = useSessionStore((state) => state.setSession)
   const session = useSessionStore((state) => state.session)
   const [selectedToolCall, setSelectedToolCall] = useState<ToolCall | null>(null)
+  const [activeModule, setActiveModule] = useState('agent-explorer')
+
+  // 定义 Sidebar 模块
+  const sidebarModules: SidebarModule[] = [
+    {
+      id: 'agent-explorer',
+      icon: '🤖',
+      label: 'Agent 展示',
+      render: (collapsed) => <AgentExplorer collapsed={collapsed} />,
+    },
+    {
+      id: 'harmony-studio',
+      icon: '🎨',
+      label: 'HarmonyStudio',
+      render: () => null, // 内容在主区域显示
+    },
+    {
+      id: 'tools',
+      icon: '🔧',
+      label: '工具箱',
+      render: () => null,
+    },
+    {
+      id: 'docs',
+      icon: '📚',
+      label: '文档',
+      render: () => null,
+    },
+    {
+      id: 'settings',
+      icon: '⚙️',
+      label: '设置',
+      render: () => null,
+    },
+  ]
 
   useEffect(() => {
     // Load mock data on mount
@@ -38,27 +94,63 @@ function App() {
     setSelectedToolCall(null)
   }
 
+  const handleModuleChange = (moduleId: string) => {
+    setActiveModule(moduleId)
+  }
+
+  // 渲染主内容区
+  const renderMainContent = () => {
+    // HarmonyStudio 模块
+    if (activeModule === 'harmony-studio') {
+      return <HarmonyStudio />
+    }
+
+    // 占位模块显示 Coming Soon
+    if (activeModule === 'tools') {
+      return <ComingSoon icon="🔧" title="工具箱" />
+    }
+    if (activeModule === 'docs') {
+      return <ComingSoon icon="📚" title="文档中心" />
+    }
+    if (activeModule === 'settings') {
+      return <ComingSoon icon="⚙️" title="设置" />
+    }
+
+    // Agent 展示模块显示 Timeline
+    if (session) {
+      return (
+        <Timeline
+          session={session}
+          onSelectToolCall={handleSelectToolCall}
+          selectedToolCallId={selectedToolCall?.call_id || null}
+        />
+      )
+    }
+    return <TimelineEmpty />
+  }
+
   return (
     <div className="app">
       <Header />
-      {session && <StatusBar />}
       <div className="app-body">
-        <main className="app-main">
-          {session ? (
-            <Timeline
-              session={session}
-              onSelectToolCall={handleSelectToolCall}
-              selectedToolCallId={selectedToolCall?.call_id || null}
-            />
-          ) : (
-            <TimelineEmpty />
-          )}
-        </main>
-        <ToolDetailPanel
-          toolCall={selectedToolCall}
-          session={session}
-          onClose={handleCloseToolDetail}
+        <Sidebar
+          modules={sidebarModules}
+          defaultModule="agent-explorer"
+          onModuleChange={handleModuleChange}
         />
+        <div className="app-content">
+          {(activeModule === 'agent-explorer') && <SessionBar />}
+          <main className="app-main">
+            {renderMainContent()}
+          </main>
+        </div>
+        {activeModule === 'agent-explorer' && (
+          <ToolDetailPanel
+            toolCall={selectedToolCall}
+            session={session}
+            onClose={handleCloseToolDetail}
+          />
+        )}
       </div>
     </div>
   )

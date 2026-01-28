@@ -1,0 +1,84 @@
+{
+  "trusted_sources": [
+    "anthropic.com",
+    "openai.com",
+    "google.com",
+    "deepmind.com",
+    "microsoft.com",
+    "github.com",
+    "arxiv.org",
+    "owasp.org",
+    "mit.edu",
+    "stanford.edu"
+  ],
+  "key_companies": [
+    {
+      "name": "Anthropic",
+      "domain": "anthropic.com",
+      "focus": ["AI Safety", "Claude", "Constitutional AI"]
+    },
+    {
+      "name": "OpenAI",
+      "domain": "openai.com",
+      "focus": ["GPT", "ChatGPT", "Agent", "DALL-E"]
+    },
+    {
+      "name": "Google DeepMind",
+      "domain": "deepmind.com",
+      "focus": ["Gemini", "AlphaFold", "AI Research"]
+    },
+    {
+      "name": "Microsoft",
+      "domain": "microsoft.com",
+      "focus": ["Copilot", "Azure AI", "GitHub Copilot"]
+    },
+    {
+      "name": "Meta AI",
+      "domain": "ai.meta.com",
+      "focus": ["Llama", "Open Source AI"]
+    },
+    {
+      "name": "NVIDIA",
+      "domain": "nvidia.com",
+      "focus": ["GPU", "NeMo", "AI Infrastructure"]
+    }
+  ],
+  "tech_leaders": [
+    {
+      "name": "Dario Amodei",
+      "company": "Anthropic",
+      "title": "CEO",
+      "twitter": "@DarioAmodei"
+    },
+    {
+      "name": "Sam Altman",
+      "company": "OpenAI",
+      "title": "CEO",
+      "twitter": "@sama"
+    },
+    {
+      "name": "Ilya Sutskever",
+      "company": "SSI",
+      "title": "Co-founder",
+      "twitter": "@iloytron"
+    },
+    {
+      "name": "Demis Hassabis",
+      "company": "Google DeepMind",
+      "title": "CEO",
+      "twitter": "@demaboris"
+    },
+    {
+      "name": "Yann LeCun",
+      "company": "Meta AI",
+      "title": "Chief AI Scientist",
+      "twitter": "@ylecun"
+    },
+    {
+      "name": "Andrej Karpathy",
+      "company": "Independent",
+      "title": "AI Educator",
+      "twitter": "@karpathy"
+    }
+  ]
+}

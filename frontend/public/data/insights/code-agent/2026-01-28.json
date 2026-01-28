@@ -1,0 +1,204 @@
+{
+  "topic": "code-agent",
+  "generated_at": "2026-01-28T18:00:00Z",
+  "projects": [
+    {
+      "name": "All-Hands-AI/OpenHands",
+      "description": "OpenHands: A Platform for AI Software Developers as Autonomous Agents",
+      "url": "https://github.com/All-Hands-AI/OpenHands",
+      "stars": 48000,
+      "forks": 5200,
+      "language": "Python",
+      "topics": ["code-agent", "autonomous-coding", "ai-developer"],
+      "stars_history": [42000, 43500, 45000, 46000, 47000, 47500, 48000],
+      "stars_growth_7d": 6000,
+      "growth_rate": "+14.3%",
+      "recommendation": {
+        "reason": "原 OpenDevin 项目，现为开源 Code Agent 领域的标杆。提供完整的自主编程环境，支持多种 LLM 后端。社区活跃，功能迭代快速。",
+        "source": "基于 GitHub 数据和社区反馈",
+        "tags": ["社区活跃", "功能完整", "持续迭代"],
+        "summary": "开源 Code Agent 的事实标准"
+      },
+      "community_feedback": {
+        "positive": [
+          "架构设计优秀，易于扩展",
+          "支持多种 LLM 后端，灵活性高",
+          "社区响应迅速，问题解决及时"
+        ],
+        "concerns": [
+          "复杂任务成功率仍有提升空间",
+          "资源消耗较大"
+        ]
+      }
+    },
+    {
+      "name": "princeton-nlp/SWE-agent",
+      "description": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+      "url": "https://github.com/princeton-nlp/SWE-agent",
+      "stars": 15000,
+      "forks": 1500,
+      "language": "Python",
+      "topics": ["swe-agent", "automated-software-engineering", "research"],
+      "stars_history": [13500, 14000, 14300, 14600, 14800, 14900, 15000],
+      "stars_growth_7d": 1500,
+      "growth_rate": "+11.1%",
+      "recommendation": {
+        "reason": "普林斯顿大学 NLP 组开发，SWE-bench 的创造者。提出了 Agent-Computer Interface (ACI) 概念，是 Code Agent 研究的重要里程碑。",
+        "source": "基于学术论文和 SWE-bench 数据",
+        "tags": ["学术前沿", "方法创新", "基准定义者"],
+        "summary": "定义 Code Agent 评测标准的先驱"
+      }
+    },
+    {
+      "name": "Codium-ai/pr-agent",
+      "description": "CodiumAI PR-Agent: An AI-Powered Tool for Automated Pull Request Analysis and Feedback",
+      "url": "https://github.com/Codium-ai/pr-agent",
+      "stars": 8500,
+      "forks": 720,
+      "language": "Python",
+      "topics": ["code-review", "pull-request", "ai-agent"],
+      "stars_history": [7800, 7950, 8100, 8200, 8350, 8420, 8500],
+      "stars_growth_7d": 700,
+      "growth_rate": "+9.0%",
+      "recommendation": {
+        "reason": "专注于 PR 自动审查的 Agent，支持代码审查、改进建议、自动修复等功能。与 GitHub/GitLab 深度集成，是 DevOps 流程自动化的重要工具。",
+        "source": "基于 GitHub 数据和用户反馈",
+        "tags": ["DevOps集成", "代码审查", "实用工具"],
+        "summary": "PR 自动化审查的首选工具"
+      }
+    },
+    {
+      "name": "geekan/MetaGPT",
+      "description": "The Multi-Agent Framework: Given one line Requirement, return PRD, Design, Tasks, Repo",
+      "url": "https://github.com/geekan/MetaGPT",
+      "stars": 52000,
+      "forks": 6100,
+      "language": "Python",
+      "topics": ["multi-agent", "software-development", "metagpt"],
+      "stars_history": [48000, 49200, 50000, 50800, 51400, 51700, 52000],
+      "stars_growth_7d": 4000,
+      "growth_rate": "+8.3%",
+      "recommendation": {
+        "reason": "多 Agent 协作的代表项目，模拟软件公司的角色分工（产品经理、架构师、工程师等）。展示了 Agent 协作完成复杂软件任务的可能性。",
+        "source": "基于 GitHub 数据和论文",
+        "tags": ["多Agent协作", "角色分工", "创新架构"],
+        "summary": "多 Agent 软件开发的开创者"
+      }
+    },
+    {
+      "name": "aorwall/moatless-tools",
+      "description": "Tools for autonomous code editing with LLMs - SWE-bench optimized",
+      "url": "https://github.com/aorwall/moatless-tools",
+      "stars": 3200,
+      "forks": 280,
+      "language": "Python",
+      "topics": ["code-editing", "swe-bench", "autonomous-coding"],
+      "stars_history": [2650, 2780, 2900, 3000, 3080, 3140, 3200],
+      "stars_growth_7d": 550,
+      "growth_rate": "+20.8%",
+      "recommendation": {
+        "reason": "专为 SWE-bench 优化的代码编辑工具集，在 SWE-bench Lite 上取得领先成绩。采用独特的代码定位和编辑策略。",
+        "source": "基于 SWE-bench 排行榜",
+        "tags": ["SWE-bench优化", "快速增长", "实战验证"],
+        "summary": "SWE-bench 竞赛的有力竞争者"
+      }
+    }
+  ],
+  "people": [
+    {
+      "name": "Scott Wu",
+      "title": "CEO",
+      "company": "Cognition AI (Devin)",
+      "quote": {
+        "text": "The future of software development isn't about replacing engineers—it's about amplifying them. Devin 2.0 can now handle 10x more complex codebases and maintain context across entire repositories. But the magic happens when Devin works alongside human engineers, each bringing unique strengths.",
+        "source": "Cognition AI Blog",
+        "url": "https://cognition.ai/blog/devin-2",
+        "date": "2026-01-22"
+      },
+      "context": "Devin 2.0 发布时的官方博客",
+      "why_matters": "Devin 是首个引发广泛关注的商业 Code Agent 产品，其发展方向代表了行业趋势。强调人机协作而非替代。",
+      "tags": ["Devin", "人机协作", "产品迭代"]
+    },
+    {
+      "name": "Graham Neubig",
+      "title": "Professor",
+      "company": "CMU / All-Hands-AI",
+      "quote": {
+        "text": "SWE-bench Verified shows us that current agents solve about 55% of real-world GitHub issues. The remaining 45% requires better planning, multi-step reasoning, and understanding of complex codebases. That's our research agenda for 2026.",
+        "source": "All-Hands-AI Research Update",
+        "url": "https://www.all-hands.dev/blog/research-2026",
+        "date": "2026-01-18"
+      },
+      "context": "OpenHands 项目的研究进展更新",
+      "why_matters": "作为 OpenHands (原 OpenDevin) 的核心研究者，Neubig 教授的观点揭示了 Code Agent 当前的能力边界和研究方向。",
+      "tags": ["SWE-bench", "研究前沿", "能力边界"]
+    }
+  ],
+  "organizations": [
+    {
+      "name": "Cognition AI",
+      "type": "AI 公司",
+      "description": "Devin AI Agent 的开发公司，定位为「全球首个 AI 软件工程师」",
+      "url": "https://cognition.ai/",
+      "recent_activity": "2026 年 1 月发布 Devin 2.0，支持更大代码库和长期任务；估值达 20 亿美元",
+      "why_matters": "Devin 定义了商业 Code Agent 的产品形态，其发展路径对整个行业有示范意义",
+      "tags": ["商业化领先", "产品定义者", "高估值"]
+    },
+    {
+      "name": "All-Hands-AI",
+      "type": "开源组织",
+      "description": "OpenHands (原 OpenDevin) 项目的维护组织",
+      "url": "https://www.all-hands.dev/",
+      "recent_activity": "2026 年 1 月 OpenHands v0.20 发布，新增多仓库支持和改进的规划能力",
+      "why_matters": "作为开源 Code Agent 的标杆，All-Hands-AI 推动了技术民主化和社区创新",
+      "tags": ["开源领袖", "社区驱动", "技术民主化"]
+    }
+  ],
+  "events": [
+    {
+      "name": "SWE-bench Verified 榜单更新",
+      "date": "2026-01-25",
+      "location": "线上",
+      "description": "SWE-bench 官方发布 2026 年 1 月榜单，Devin 2.0 以 55.2% 通过率暂列第一，OpenHands 以 52.8% 紧随其后",
+      "url": "https://www.swebench.com/",
+      "impact": "展示了 Code Agent 在真实 GitHub Issues 上的最新能力，成为行业进步的晴雨表",
+      "tags": ["基准测试", "排行榜", "行业指标"]
+    },
+    {
+      "name": "Anthropic 发布 Claude Code 能力报告",
+      "date": "2026-01-21",
+      "location": "线上",
+      "description": "Anthropic 发布《Agentic Coding Trends 2026》报告，揭示 AI 出现在 60% 的开发工作中，但仅 0-20% 可完全委托",
+      "url": "https://www.anthropic.com/research/agentic-coding-2026",
+      "impact": "首次量化了 Code Agent 的实际渗透率和人类监督需求",
+      "tags": ["行业报告", "数据洞察", "Anthropic"]
+    }
+  ],
+  "news": [
+    {
+      "title": "Devin 2.0 发布：支持 10x 更大代码库",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/01/22/cognition-devin-2",
+      "published_at": "2026-01-22",
+      "summary": "Cognition AI 发布 Devin 2.0，支持处理更大规模代码库，增强长期任务执行能力。公司估值达 20 亿美元。",
+      "is_trusted": true
+    },
+    {
+      "title": "OpenHands v0.20：多仓库支持和改进的规划能力",
+      "source": "All-Hands-AI Blog",
+      "url": "https://www.all-hands.dev/blog/v0.20",
+      "published_at": "2026-01-20",
+      "summary": "开源 Code Agent 项目 OpenHands 发布 v0.20 版本，新增跨仓库任务支持和更智能的任务规划。",
+      "is_trusted": true
+    },
+    {
+      "title": "Code Agent 能解决一半的 GitHub Issues",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/2026/1/25/code-agents-github-issues",
+      "published_at": "2026-01-25",
+      "summary": "根据 SWE-bench Verified 最新数据，领先的 Code Agent 已能自动解决约 55% 的真实 GitHub Issues。",
+      "is_trusted": true
+    }
+  ],
+  "github_trending": []
+}

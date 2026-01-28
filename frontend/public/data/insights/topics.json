@@ -1,0 +1,87 @@
+{
+  "topics": [
+    {
+      "id": "agent-security",
+      "name": "Agent 安全",
+      "icon": "🛡️",
+      "enabled": true,
+      "keywords": [
+        "agent security",
+        "llm security",
+        "ai safety",
+        "agentic security",
+        "prompt injection",
+        "jailbreak"
+      ],
+      "github_query": "topic:agent-security OR topic:llm-security OR topic:ai-safety stars:>50",
+      "description": "LLM/Agent 安全防护、红队测试、漏洞研究"
+    },
+    {
+      "id": "code-llm",
+      "name": "代码大模型",
+      "icon": "🧠",
+      "enabled": true,
+      "keywords": [
+        "code llm",
+        "code generation",
+        "code model",
+        "codegen",
+        "starcoder",
+        "codellama",
+        "deepseek coder"
+      ],
+      "github_query": "topic:code-generation OR topic:code-llm OR topic:codegen stars:>100",
+      "description": "代码生成模型、基座能力、评测基准"
+    },
+    {
+      "id": "code-agent",
+      "name": "Code Agent",
+      "icon": "🤖",
+      "enabled": true,
+      "keywords": [
+        "code agent",
+        "coding agent",
+        "autonomous coding",
+        "agentic coding",
+        "swe-agent",
+        "devin",
+        "openhands"
+      ],
+      "github_query": "topic:code-agent OR topic:coding-agent OR topic:swe-agent stars:>50",
+      "description": "自主编程 Agent、多 Agent 协作、SWE-bench"
+    },
+    {
+      "id": "mcp-ecosystem",
+      "name": "MCP 生态",
+      "icon": "🔌",
+      "enabled": true,
+      "keywords": [
+        "model context protocol",
+        "mcp",
+        "tool use",
+        "function calling",
+        "agent tools",
+        "a2a protocol"
+      ],
+      "github_query": "topic:mcp OR topic:model-context-protocol OR topic:function-calling stars:>30",
+      "description": "Model Context Protocol、工具调用、Agent 集成"
+    },
+    {
+      "id": "ai-dev-tools",
+      "name": "AI 开发工具",
+      "icon": "🛠️",
+      "enabled": true,
+      "keywords": [
+        "ai coding assistant",
+        "copilot",
+        "cursor",
+        "claude code",
+        "codeium",
+        "continue",
+        "ai ide"
+      ],
+      "github_query": "topic:ai-coding OR topic:code-assistant OR topic:copilot-alternative stars:>100",
+      "description": "AI 编程助手、IDE 插件、开发体验"
+    }
+  ]
+}

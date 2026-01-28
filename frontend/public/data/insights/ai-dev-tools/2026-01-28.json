@@ -1,0 +1,369 @@
+{
+  "topic": "ai-dev-tools",
+  "generated_at": "2026-01-28T15:30:00Z",
+  "projects": [
+    {
+      "name": "continuedev/continue",
+      "description": "Open-source CLI that can be used in Headless mode to run async cloud agents or TUI mode as an in sync coding agent",
+      "url": "https://github.com/continuedev/continue",
+      "stars": 20000,
+      "forks": 1800,
+      "language": "TypeScript",
+      "topics": ["ai-coding", "open-source", "vscode", "jetbrains", "llm"],
+      "stars_growth_7d": 850,
+      "growth_rate": "+4.4%",
+      "recommendation": {
+        "reason": "Leading open-source AI coding assistant with model-agnostic architecture. Supports both cloud (OpenAI, Anthropic) and local models (Llama, Mistral). Features headless mode for CI/CD integration and background agents for automated workflows.",
+        "source": "GitHub data and community feedback",
+        "tags": ["open-source", "model-agnostic", "enterprise-ready"],
+        "summary": "Best open-source alternative to proprietary AI coding tools"
+      },
+      "community_feedback": {
+        "positive": [
+          "Flexibility to use any LLM provider",
+          "Strong VS Code and JetBrains integration",
+          "Active community and frequent updates"
+        ],
+        "concerns": [
+          "Configuration can be complex for beginners",
+          "Some features require technical expertise to set up"
+        ],
+        "notable_users": ["Individual developers", "Privacy-conscious teams", "Startups"]
+      }
+    },
+    {
+      "name": "sourcegraph/awesome-code-ai",
+      "description": "A curated list of AI coding tools including assistants, completions, refactoring, and more",
+      "url": "https://github.com/sourcegraph/awesome-code-ai",
+      "stars": 4500,
+      "forks": 380,
+      "language": "Markdown",
+      "topics": ["awesome-list", "ai-coding", "tools", "resources"],
+      "stars_growth_7d": 320,
+      "growth_rate": "+7.7%",
+      "recommendation": {
+        "reason": "Comprehensive curated list maintained by Sourcegraph. Essential reference for discovering and comparing AI coding tools across categories including code completion, chat assistants, code review, and refactoring agents.",
+        "source": "Sourcegraph community",
+        "tags": ["resource-hub", "discovery", "comparison"],
+        "summary": "Go-to resource for AI coding tool discovery"
+      }
+    },
+    {
+      "name": "gabrielpopa/code-assistant-benchmarks",
+      "description": "Benchmarks to test and compare AI coding assistants like Copilot, Continue.dev, Cursor and others",
+      "url": "https://github.com/gabrielpopa/code-assistant-benchmarks",
+      "stars": 2800,
+      "forks": 240,
+      "language": "Python",
+      "topics": ["benchmarks", "ai-coding", "evaluation", "comparison"],
+      "stars_growth_7d": 280,
+      "growth_rate": "+11.1%",
+      "recommendation": {
+        "reason": "Standardized benchmarks for objectively comparing AI coding assistants. Covers code completion accuracy, context understanding, and multi-file refactoring capabilities. Updated January 2026 with Claude 3.7 Sonnet, Gemini 2.0 Flash, and DeepSeek V3 results.",
+        "source": "GitHub community",
+        "tags": ["benchmarks", "objective-comparison", "research"],
+        "summary": "Objective AI coding tool comparison framework"
+      }
+    },
+    {
+      "name": "intitni/CopilotForXcode",
+      "description": "The first GitHub Copilot, Codeium and ChatGPT Xcode Source Editor Extension",
+      "url": "https://github.com/intitni/CopilotForXcode",
+      "stars": 8500,
+      "forks": 420,
+      "language": "Swift",
+      "topics": ["xcode", "copilot", "codeium", "macos", "ios-development"],
+      "stars_growth_7d": 180,
+      "growth_rate": "+2.2%",
+      "recommendation": {
+        "reason": "Essential extension for Apple developers, bringing AI coding assistance to Xcode. Supports multiple providers (Copilot, Codeium, ChatGPT) and integrates seamlessly with Apple's development workflow.",
+        "source": "Apple developer community",
+        "tags": ["apple-ecosystem", "multi-provider", "native-integration"],
+        "summary": "AI coding assistance for Apple/iOS developers"
+      }
+    },
+    {
+      "name": "seshanpillay25/contexthub",
+      "description": "Unified configuration system for AI coding assistants. Maintain single source of truth across Claude, Cursor, GitHub Copilot, and more",
+      "url": "https://github.com/seshanpillay25/contexthub",
+      "stars": 1200,
+      "forks": 95,
+      "language": "TypeScript",
+      "topics": ["configuration", "multi-tool", "context-management", "developer-productivity"],
+      "stars_growth_7d": 220,
+      "growth_rate": "+22.4%",
+      "recommendation": {
+        "reason": "Solves the fragmentation problem of managing separate config files for different AI assistants. Single .ai-context.md file syncs to Claude, Cursor, Copilot, Codeium, Continue, and Aider automatically.",
+        "source": "GitHub community",
+        "tags": ["productivity", "multi-tool", "fast-growing"],
+        "summary": "Unified context management across AI coding tools"
+      }
+    },
+    {
+      "name": "anthropics/claude-code",
+      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster through natural language commands",
+      "url": "https://github.com/anthropics/claude-code",
+      "stars": 45000,
+      "forks": 3200,
+      "language": "TypeScript",
+      "topics": ["ai-coding", "terminal", "agentic", "anthropic", "claude"],
+      "stars_growth_7d": 5500,
+      "growth_rate": "+13.9%",
+      "recommendation": {
+        "reason": "Anthropic's viral hit. Terminal-native AI coding agent that can read entire codebases, plan complex changes, write and debug code autonomously, and run commands. Outperforms Cursor and Copilot in user satisfaction. 100% of Claude Code's own code is now AI-written.",
+        "source": "Fortune, Axios, community feedback",
+        "tags": ["viral-success", "terminal-native", "agentic"],
+        "summary": "The ChatGPT moment for AI coding tools"
+      },
+      "community_feedback": {
+        "positive": [
+          "A senior Google engineer said it recreated a year's worth of work in an hour",
+          "Even Microsoft engineers prefer it over Copilot",
+          "Non-coders using it to build functioning apps"
+        ],
+        "concerns": [
+          "Requires Claude Max subscription for full features",
+          "Learning curve for terminal-based workflow"
+        ],
+        "notable_users": ["Google engineers", "Microsoft engineers", "Non-technical users"]
+      }
+    }
+  ],
+  "people": [
+    {
+      "name": "Dario Amodei",
+      "title": "CEO",
+      "company": "Anthropic",
+      "quote": {
+        "text": "I have engineers within Anthropic who say 'I don't write any code anymore. I just let the model write the code, I edit it.' AI could become capable of doing most, maybe all of the coding work done by software engineers within the next 6 to 12 months.",
+        "source": "World Economic Forum (Davos)",
+        "url": "https://www.finalroundai.com/blog/anthropic-ceo-ai-coding-six-months",
+        "date": "2026-01-24"
+      },
+      "context": "Davos forum statement on AI coding capabilities, coinciding with Claude Code's viral success",
+      "why_matters": "Anthropic CEO predicting full AI coding capability by end of 2026 signals accelerating timeline for developer workflow transformation. Claude Code's success validates the prediction.",
+      "tags": ["AI coding timeline", "Davos 2026", "developer transformation"]
+    },
+    {
+      "name": "Boris Cherny",
+      "title": "Head of Claude Code",
+      "company": "Anthropic",
+      "quote": {
+        "text": "Over the past month, 100% of my contributions to Claude Code were written by AI itself. We wrote Cowork in like a week and a half, almost entirely with Code.",
+        "source": "Fortune / Yahoo Finance",
+        "url": "https://fortune.com/2026/01/24/anthropic-boris-cherny-claude-code-non-coders-software-engineers/",
+        "date": "2026-01-24"
+      },
+      "context": "Creator of Claude Code revealing that the tool now writes its own code",
+      "why_matters": "First major case of an AI coding tool fully bootstrapping itself. Demonstrates viability of autonomous code development at production scale.",
+      "tags": ["self-bootstrapping AI", "Claude Code", "production AI coding"]
+    },
+    {
+      "name": "Michael Truell",
+      "title": "CEO & Co-founder",
+      "company": "Anysphere (Cursor)",
+      "quote": {
+        "text": "The future of coding is AI-native. We're not building a plugin or an extension - we're reimagining the entire development environment with AI at its core.",
+        "source": "Funding announcement",
+        "url": "https://www.wearefounders.uk/michael-truell-the-visionary-behind-cursors-400m-ai-success/",
+        "date": "2025-11-13"
+      },
+      "context": "25-year-old MIT graduate who led Cursor to $1B+ ARR and $29.3B valuation",
+      "why_matters": "Youngest tech billionaire in AI coding space. Cursor's success proves AI-native IDE approach can challenge established players like Microsoft.",
+      "tags": ["Cursor", "AI-native IDE", "billionaire founder"]
+    },
+    {
+      "name": "Satya Nadella",
+      "title": "CEO",
+      "company": "Microsoft",
+      "quote": {
+        "text": "GitHub Copilot has become a larger business than all of GitHub was when we acquired it. 90% of Fortune 100 companies now utilize Copilot, and it contributes 46% of all code written by active users.",
+        "source": "Microsoft Earnings Call",
+        "url": "https://www.aboutchromebooks.com/github-copilot-statistics/",
+        "date": "2025-12"
+      },
+      "context": "Quarterly earnings update on GitHub Copilot performance",
+      "why_matters": "Validates enterprise adoption of AI coding tools. Copilot generating more revenue than GitHub's $7.5B acquisition price demonstrates massive market opportunity.",
+      "tags": ["enterprise adoption", "Microsoft", "GitHub Copilot"]
+    }
+  ],
+  "organizations": [
+    {
+      "name": "Anthropic",
+      "type": "AI Company",
+      "description": "Creator of Claude Code, the viral AI coding tool. Planning $10B fundraising at $350B valuation.",
+      "url": "https://www.anthropic.com",
+      "recent_activity": "Released Cowork (Jan 12, 2026) - AI agent for non-coding tasks built in 1.5 weeks using Claude Code. Claude Code adoption spreading to Microsoft, Google engineers.",
+      "why_matters": "Claude Code represents a paradigm shift - first AI coding tool to go viral since ChatGPT. Cowork expansion shows strategy to move beyond developer audience.",
+      "tags": ["Claude Code", "Cowork", "viral growth"]
+    },
+    {
+      "name": "Anysphere (Cursor)",
+      "type": "AI Startup",
+      "description": "AI-native code editor forked from VS Code. Valued at $29.3B after Series D.",
+      "url": "https://cursor.com",
+      "recent_activity": "Cursor 2.0 with new coding model, agent interface, plan mode, AI code review, and parallel execution (up to 8 agents). $1B+ ARR achieved by late 2025.",
+      "why_matters": "Fastest growing startup to hit $200M ARR ever. Four MIT co-founders became billionaires. Proves AI-native IDE can challenge Microsoft's dominance.",
+      "tags": ["$29.3B valuation", "AI-native IDE", "billionaire founders"]
+    },
+    {
+      "name": "OpenAI",
+      "type": "AI Company",
+      "description": "Acquiring Windsurf (Codeium) for $3B to compete in AI coding space.",
+      "url": "https://openai.com",
+      "recent_activity": "Announced Windsurf acquisition (largest ever at $3B). Investor in Cursor but couldn't acquire them. Closed $40B funding at $300B valuation.",
+      "why_matters": "OpenAI entering AI coding tools market signals industry consolidation. Windsurf acquisition provides first-party developer experience to reduce Microsoft dependency.",
+      "tags": ["Windsurf acquisition", "market entry", "consolidation"]
+    },
+    {
+      "name": "Microsoft / GitHub",
+      "type": "Tech Giant",
+      "description": "GitHub Copilot with 20M+ users, 46% of code written by active users.",
+      "url": "https://github.com/features/copilot",
+      "recent_activity": "Copilot Agent Mode launched. Visual Studio 2026 with 'Ambient AI' deeply integrated into compiler/profiler. Project Padawan for autonomous issue resolution.",
+      "why_matters": "Incumbent leader with 90% Fortune 100 adoption. Defending position against Cursor and Claude Code with deeper IDE integration strategy.",
+      "tags": ["market leader", "enterprise", "Visual Studio 2026"]
+    },
+    {
+      "name": "Windsurf (formerly Codeium)",
+      "type": "AI Startup (Acquired)",
+      "description": "AI-enhanced IDE with Cascade autonomous agent. Acquired by OpenAI for $3B.",
+      "url": "https://codeium.com",
+      "recent_activity": "OpenAI acquisition completed. Pioneered 'agentic IDE' concept. Cascade agent handles multi-step tasks autonomously.",
+      "why_matters": "First major acquisition in AI coding tools space. Validates agentic IDE approach and $3B+ valuations in the category.",
+      "tags": ["OpenAI acquired", "Cascade agent", "agentic IDE"]
+    },
+    {
+      "name": "Amazon Web Services",
+      "type": "Cloud Provider",
+      "description": "Amazon Q Developer (formerly CodeWhisperer) - comprehensive AI development platform.",
+      "url": "https://aws.amazon.com/q/developer/",
+      "recent_activity": "Q Developer expanded with autonomous agents, code transformation, and AWS resource chat. $19/user/month Pro tier.",
+      "why_matters": "AWS's answer to GitHub Copilot. Deep AWS integration makes it essential for AWS-heavy teams. Agentic features for feature implementation, testing, refactoring.",
+      "tags": ["AWS integration", "Q Developer", "enterprise"]
+    }
+  ],
+  "events": [
+    {
+      "name": "Claude Code Viral Moment",
+      "date": "2026-01",
+      "location": "Global",
+      "description": "Anthropic's Claude Code creates viral moment comparable to original ChatGPT launch. Users without programming background deploying it to book theater tickets, file taxes, monitor plants. Microsoft engineers internally adopting it over Copilot.",
+      "url": "https://fortune.com/2026/01/24/anthropic-boris-cherny-claude-code-non-coders-software-engineers/",
+      "impact": "Marks beginning of 'democratization' of AI coding - tools accessible beyond professional developers. Tech publications comparing to ChatGPT's debut.",
+      "tags": ["viral", "Claude Code", "democratization"]
+    },
+    {
+      "name": "Cursor Series D at $29.3B Valuation",
+      "date": "2025-11-13",
+      "location": "San Francisco",
+      "description": "Anysphere closed $2.3B Series D co-led by Accel and Coatue, with Google and Nvidia as strategic partners. Revenue exceeded $1B ARR. Four co-founders became billionaires.",
+      "url": "https://en.wikipedia.org/wiki/Anysphere",
+      "impact": "Largest AI coding tools funding round. Establishes Cursor as primary challenger to GitHub Copilot. Creates four new tech billionaires under age 26.",
+      "tags": ["funding", "Cursor", "billion-dollar valuations"]
+    },
+    {
+      "name": "OpenAI Acquires Windsurf for $3B",
+      "date": "2025-05-06",
+      "location": "San Francisco",
+      "description": "OpenAI's largest acquisition ever. Brings Windsurf's Cascade autonomous agent and IDE technology into OpenAI ecosystem. Originally pursued Cursor but couldn't reach agreed price.",
+      "url": "https://devops.com/openai-acquires-windsurf-for-3-billion/",
+      "impact": "OpenAI enters AI coding tools market directly. Signals consolidation phase in AI dev tools. Puts pressure on Cursor, Microsoft, and Anthropic.",
+      "tags": ["acquisition", "OpenAI", "Windsurf"]
+    },
+    {
+      "name": "Anthropic Cowork Launch",
+      "date": "2026-01-12",
+      "location": "Online",
+      "description": "Anthropic releases Cowork for Claude Max subscribers ($100/month) on macOS. Brings Claude Code capabilities to non-coding workflows including file management, document generation, and data processing.",
+      "url": "https://www.adwaitx.com/anthropic-cowork-ai-agent-launch/",
+      "impact": "Expands Claude Code success beyond developers. Built in 1.5 weeks almost entirely with Claude Code, demonstrating AI self-development.",
+      "tags": ["product launch", "Cowork", "non-developers"]
+    },
+    {
+      "name": "Visual Studio 2026 Insiders Preview",
+      "date": "2026-01",
+      "location": "Microsoft",
+      "description": "Microsoft launches Visual Studio 2026 with 'Ambient AI' deeply integrated into compiler and profiler. GitHub Copilot and Azure AI fully integrated. Side-by-side installation with VS2022.",
+      "url": "https://visualstudio.microsoft.com/insiders/",
+      "impact": "Microsoft's response to Cursor's AI-native approach. Bakes AI into core toolchain rather than extension model. Targets enterprise C++/.NET developers.",
+      "tags": ["Microsoft", "Visual Studio", "Ambient AI"]
+    },
+    {
+      "name": "MCP Protocol Donated to Agentic AI Foundation",
+      "date": "2025-12",
+      "location": "Global",
+      "description": "Anthropic donates Model Context Protocol to Agentic AI Foundation. Reached 97M monthly SDK downloads and 10,000 active servers. OpenAI, Google, Microsoft now support MCP natively.",
+      "url": "https://www.humai.blog/ai-news-trends-january-2026-complete-monthly-digest/",
+      "impact": "MCP becomes industry standard for AI agent-tool integration. Enables interoperability across AI coding tools. Foundation ensures vendor-neutral governance.",
+      "tags": ["protocol", "MCP", "standardization"]
+    }
+  ],
+  "news": [
+    {
+      "title": "Claude Code Goes Viral - Anthropic's ChatGPT Moment",
+      "source": "Fortune",
+      "url": "https://fortune.com/2026/01/24/anthropic-boris-cherny-claude-code-non-coders-software-engineers/",
+      "published_at": "2026-01-24",
+      "summary": "Claude Code captures attention far beyond developers. Non-technical users deploying it for theater tickets, taxes, plant monitoring. Microsoft engineers adopting it over Copilot. Senior Google engineer recreated year's work in an hour.",
+      "is_trusted": true
+    },
+    {
+      "title": "Dario Amodei: AI Could Do All Coding in 6-12 Months",
+      "source": "World Economic Forum / FinalRound AI",
+      "url": "https://www.finalroundai.com/blog/anthropic-ceo-ai-coding-six-months",
+      "published_at": "2026-01-24",
+      "summary": "Anthropic CEO predicts AI will handle 'most, maybe all' coding work by end of 2026. Cites Anthropic engineers who 'don't write any code anymore' and just edit model output.",
+      "is_trusted": true
+    },
+    {
+      "title": "90% of Claude's Code Now AI-Written",
+      "source": "Financial Content / TokenRing",
+      "url": "https://markets.financialcontent.com/stocks/article/tokenring-2026-1-13-90-of-claudes-code-is-now-ai-written-anthropic-ceo-confirms-historic-shift-in-software-development",
+      "published_at": "2026-01-13",
+      "summary": "Anthropic confirms historic milestone: Claude Opus 4.5 achieved 80.9% on SWE-bench. Claude Code creator Boris Cherny reports 100% of his recent contributions were AI-written.",
+      "is_trusted": true
+    },
+    {
+      "title": "AI Coding Tools Now Write 29% of US Software Code",
+      "source": "Science / Stack Overflow Survey",
+      "url": "https://dev.to/alexmercedcoder/ai-coding-dominates-2026-week-of-january-20-27-7lc",
+      "published_at": "2026-01-27",
+      "summary": "Study in Science reveals 29% of new US software functions use AI assistance (up from 5% in 2022). Stack Overflow confirms 65% of developers use AI coding tools weekly.",
+      "is_trusted": true
+    },
+    {
+      "title": "The Rise of Agentic IDEs: Cursor and Windsurf Redefine Coding",
+      "source": "Financial Content",
+      "url": "https://markets.financialcontent.com/stocks/article/tokenring-2026-1-27-the-rise-of-the-agentic-ide-how-ai-first-editors-like-cursor-and-windsurf-are-redefining-the-codebase",
+      "published_at": "2026-01-27",
+      "summary": "Evolution from 'Copilot era' to 'Agentic era' complete. AI-first editors demonstrate codebase-wide awareness is necessity, not luxury. Cursor supports 8 parallel agents on single prompt.",
+      "is_trusted": true
+    },
+    {
+      "title": "Nvidia Acquires Groq for $20B",
+      "source": "AI News / Humai",
+      "url": "https://www.humai.blog/ai-news-trends-january-2026-complete-monthly-digest/",
+      "published_at": "2026-01-27",
+      "summary": "Nvidia's largest acquisition brings Groq's LPU technology - runs LLMs 10x faster than GPUs with 1/10th energy. Will impact AI coding tool inference costs.",
+      "is_trusted": true
+    },
+    {
+      "title": "Claude 4.5 Opus Leads AI Model Rankings",
+      "source": "LogRocket",
+      "url": "https://blog.logrocket.com/ai-dev-tool-power-rankings/",
+      "published_at": "2026-01",
+      "summary": "January 2026 AI dev tool power rankings: Claude 4.5 Opus leads with 74.4% SWE-bench (narrowly ahead of Gemini 3 Pro at 74.2%). GPT-5.2 enters with 400K context window.",
+      "is_trusted": true
+    },
+    {
+      "title": "AI Coding Productivity Reality Check: 20-30% Gains, Not 10x",
+      "source": "Java Code Geeks",
+      "url": "https://www.javacodegeeks.com/2025/12/ai-assisted-coding-in-2026-how-github-copilot-cursor-and-amazon-q-are-reshaping-developer-workflows.html",
+      "published_at": "2025-12",
+      "summary": "Industry analysis finds AI coding assistants deliver 20-30% productivity gains in specific workflows, not the 10x promised in 2023. Benefits vary by developer experience and team size.",
+      "is_trusted": true
+    }
+  ],
+  "github_trending": []
+}

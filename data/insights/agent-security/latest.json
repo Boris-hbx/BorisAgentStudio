@@ -1,0 +1,548 @@
+{
+  "topic": "agent-security",
+  "generated_at": "2026-01-28T16:30:00Z",
+  "updated_at": "2026-01-28T16:30:00Z",
+  "projects": [
+    {
+      "name": "NVIDIA/NeMo-Guardrails",
+      "description": "Open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems",
+      "url": "https://github.com/NVIDIA/NeMo-Guardrails",
+      "stars": 5500,
+      "forks": 580,
+      "language": "Python",
+      "topics": ["llm-security", "guardrails", "ai-safety", "nvidia"],
+      "stars_history": [5180, 5220, 5280, 5350, 5400, 5450, 5500],
+      "stars_growth_7d": 320,
+      "growth_rate": "+6.2%",
+      "recommendation": {
+        "reason": "NVIDIA 官方出品的 LLM 防护框架，已被多家企业采用于生产环境。提供声明式规则引擎，支持输入/输出过滤、话题限制、事实核查等多种防护机制。",
+        "source": "基于 GitHub 数据和社区反馈",
+        "tags": ["大厂背书", "生产就绪", "快速增长"],
+        "summary": "企业级 LLM 防护方案的首选"
+      },
+      "community_feedback": {
+        "positive": [
+          "\"最完整的 LLM 防护方案之一\" - AI Weekly",
+          "声明式配置降低了安全规则的维护成本",
+          "与 LangChain 等框架集成良好"
+        ],
+        "concerns": [
+          "配置复杂度较高，学习曲线陡峭",
+          "对非 NVIDIA GPU 的支持有限"
+        ],
+        "notable_users": ["Microsoft", "Salesforce", "ServiceNow"]
+      }
+    },
+    {
+      "name": "Giskard-AI/giskard",
+      "description": "Open-source evaluation and testing library for LLM Agents focused on AI security, responsible AI, and red-teaming",
+      "url": "https://github.com/Giskard-AI/giskard",
+      "stars": 5100,
+      "forks": 420,
+      "language": "Python",
+      "topics": ["ai-security", "llm-testing", "red-teaming", "responsible-ai"],
+      "stars_history": [4815, 4880, 4920, 4980, 5020, 5060, 5100],
+      "stars_growth_7d": 285,
+      "growth_rate": "+5.9%",
+      "recommendation": {
+        "reason": "专注于 LLM 质量和安全测试的开源工具，内置 prompt injection、幻觉检测、偏见识别等测试套件。支持自动化红队测试，是 AI 安全团队的必备工具。",
+        "source": "基于 GitHub 数据和行业评测",
+        "tags": ["红队测试", "自动化", "全面评估"],
+        "summary": "LLM 安全测试的瑞士军刀"
+      },
+      "community_feedback": {
+        "positive": [
+          "内置测试覆盖面广，开箱即用",
+          "报告可视化清晰，便于向管理层汇报"
+        ],
+        "concerns": [
+          "大规模测试时性能有待优化"
+        ]
+      }
+    },
+    {
+      "name": "Azure/PyRIT",
+      "description": "The Python Risk Identification Tool for generative AI - Microsoft's open-source red teaming framework",
+      "url": "https://github.com/Azure/PyRIT",
+      "stars": 3300,
+      "forks": 380,
+      "language": "Python",
+      "topics": ["ai-red-teaming", "llm-security", "microsoft", "risk-identification"],
+      "stars_history": [3050, 3100, 3150, 3200, 3240, 3270, 3300],
+      "stars_growth_7d": 250,
+      "growth_rate": "+8.2%",
+      "recommendation": {
+        "reason": "微软官方开源的 AI 红队测试框架，支持多轮对抗性攻击自动化测试。可检测 AI Agent 是否会被诱导产生有害行为，与 GitHub Copilot Agent Skills 集成良好。",
+        "source": "基于 GitHub 数据和 RSAC2024 演示",
+        "tags": ["微软官方", "红队自动化", "生产级"],
+        "summary": "微软出品的 AI 风险识别利器"
+      },
+      "community_feedback": {
+        "positive": [
+          "自动化多轮攻击测试节省大量人力",
+          "与 Azure AI 服务深度集成",
+          "文档完善，上手快"
+        ],
+        "concerns": [
+          "对非 Azure 环境支持需要额外配置"
+        ]
+      }
+    },
+    {
+      "name": "corca-ai/awesome-llm-security",
+      "description": "A curation of awesome tools, documents and projects about LLM Security including PurpleLlama, Plexiglass, Rebuff, and WhistleBlower",
+      "url": "https://github.com/corca-ai/awesome-llm-security",
+      "stars": 3200,
+      "forks": 280,
+      "language": "Markdown",
+      "topics": ["llm-security", "awesome-list", "ai-safety", "tools"],
+      "stars_history": [2950, 3000, 3050, 3100, 3140, 3170, 3200],
+      "stars_growth_7d": 250,
+      "growth_rate": "+8.5%",
+      "recommendation": {
+        "reason": "最全面的 LLM 安全工具集合，涵盖 PurpleLlama（Meta 安全评估工具）、Plexiglass（安全沙箱）、Rebuff（Prompt Injection 检测器）、WhistleBlower（系统 Prompt 推断工具）等。",
+        "source": "基于 GitHub 社区维护",
+        "tags": ["资源汇总", "工具集", "入门友好"],
+        "summary": "LLM 安全领域的 Awesome List"
+      }
+    },
+    {
+      "name": "agiresearch/ASB",
+      "description": "Agent Security Bench - Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents (ICLR 2025)",
+      "url": "https://github.com/agiresearch/ASB",
+      "stars": 1450,
+      "forks": 120,
+      "language": "Python",
+      "topics": ["agent-security", "benchmark", "llm-agents", "adversarial-attacks"],
+      "stars_history": [1200, 1260, 1310, 1360, 1400, 1430, 1450],
+      "stars_growth_7d": 250,
+      "growth_rate": "+20.8%",
+      "recommendation": {
+        "reason": "ICLR 2025 论文配套代码，提供首个系统性的 Agent 安全基准测试。覆盖 10 个场景、10 个 Agent、400+ 工具、27 种攻击/防御方法。研究显示最高攻击成功率达 84.30%，揭示当前防御措施的局限性。",
+        "source": "基于 ICLR 2025 论文",
+        "tags": ["学术前沿", "基准测试", "ICLR 2025", "高增长"],
+        "summary": "Agent 安全研究的权威基准"
+      },
+      "community_feedback": {
+        "positive": [
+          "首个系统性 Agent 安全基准",
+          "覆盖攻击类型全面：DPI、OPI、后门、记忆投毒等"
+        ],
+        "concerns": [
+          "学术导向，工程落地需二次开发"
+        ]
+      }
+    },
+    {
+      "name": "greshake/llm-security",
+      "description": "New ways of breaking app-integrated LLMs - presents indirect prompt injection vulnerabilities with demos spanning GPT-4 and LangChain",
+      "url": "https://github.com/greshake/llm-security",
+      "stars": 2800,
+      "forks": 320,
+      "language": "Python",
+      "topics": ["prompt-injection", "llm-security", "vulnerability-research"],
+      "stars_history": [2520, 2580, 2640, 2700, 2740, 2770, 2800],
+      "stars_growth_7d": 280,
+      "growth_rate": "+11.1%",
+      "recommendation": {
+        "reason": "间接 Prompt Injection 攻击的开创性研究，展示了如何通过外部数据源（如邮件、网页）劫持 LLM 行为。对理解 Agent 攻击面至关重要。",
+        "source": "基于安全研究社区",
+        "tags": ["漏洞研究", "攻击演示", "开创性"],
+        "summary": "间接 Prompt Injection 的经典案例"
+      }
+    },
+    {
+      "name": "wearetyomsmnv/Awesome-LLM-agent-Security",
+      "description": "All about llm-agents security, attack, vulnerabilities and how to do them for cybersecurity",
+      "url": "https://github.com/wearetyomsmnv/Awesome-LLM-agent-Security",
+      "stars": 1100,
+      "forks": 95,
+      "language": "Markdown",
+      "topics": ["llm-security", "agent-security", "cybersecurity", "awesome-list"],
+      "stars_history": [900, 940, 980, 1020, 1050, 1080, 1100],
+      "stars_growth_7d": 200,
+      "growth_rate": "+22.2%",
+      "recommendation": {
+        "reason": "专注于 LLM Agent 安全的资源汇总，覆盖 OWASP Top 10 for LLM 2025 和 Agentic Applications 2026。包含攻击技术、漏洞分析、防御策略的完整指南。",
+        "source": "基于 GitHub 社区",
+        "tags": ["资源汇总", "Agent专注", "快速更新"],
+        "summary": "Agent 安全领域的专项指南"
+      }
+    },
+    {
+      "name": "requie/LLMSecurityGuide",
+      "description": "Comprehensive reference for securing LLMs. Covers OWASP GenAI Top-10 risks, prompt injection, adversarial attacks, and practical defenses",
+      "url": "https://github.com/requie/LLMSecurityGuide",
+      "stars": 1850,
+      "forks": 180,
+      "language": "Markdown",
+      "topics": ["owasp", "llm-security", "prompt-injection", "ai-safety"],
+      "stars_history": [1616, 1680, 1720, 1760, 1800, 1830, 1850],
+      "stars_growth_7d": 234,
+      "growth_rate": "+14.5%",
+      "recommendation": {
+        "reason": "最新更新包含 OWASP Top 10 for Agentic Applications 2026，覆盖 ASI01-ASI10 全部威胁类别。是目前最全面的 LLM 安全参考指南。",
+        "source": "基于 OWASP 官方认证",
+        "tags": ["权威标准", "快速更新", "培训必读"],
+        "summary": "LLM 安全领域的百科全书"
+      }
+    },
+    {
+      "name": "OSU-NLP-Group/AgentSafety",
+      "description": "A curated collection of research papers and resources focused on the safety, trustworthiness, and robustness of autonomous agents driven by LLMs/LMMs",
+      "url": "https://github.com/OSU-NLP-Group/AgentSafety",
+      "stars": 1200,
+      "forks": 95,
+      "language": "Python",
+      "topics": ["agent-safety", "llm-agents", "benchmark", "research"],
+      "stars_history": [1002, 1050, 1080, 1120, 1150, 1180, 1200],
+      "stars_growth_7d": 198,
+      "growth_rate": "+19.8%",
+      "recommendation": {
+        "reason": "俄亥俄州立大学 NLP 团队的研究项目，提供首个系统性的 Agent 安全基准测试。覆盖 Web Agents、Tool Agents、Communicative Agents、RAG Systems、OS Agents 等多种 Agent 类型。",
+        "source": "基于学术论文和实验数据",
+        "tags": ["学术前沿", "基准测试", "研究价值"],
+        "summary": "揭示 Agent 安全盲区的重要研究"
+      }
+    },
+    {
+      "name": "NVISOsecurity/cyber-security-llm-agents",
+      "description": "A collection of agents that use LLMs to perform tasks common in cyber security, built on AutoGen",
+      "url": "https://github.com/NVISOsecurity/cyber-security-llm-agents",
+      "stars": 850,
+      "forks": 110,
+      "language": "Python",
+      "topics": ["cybersecurity", "llm-agents", "autogen", "security-automation"],
+      "stars_history": [720, 750, 780, 800, 820, 840, 850],
+      "stars_growth_7d": 130,
+      "growth_rate": "+18.1%",
+      "recommendation": {
+        "reason": "基于 AutoGen 构建的网络安全 LLM Agent 集合，在 RSAC 2024 上发布。展示了 LLM Agent 在安全运营中的实际应用，包括威胁检测、日志分析等。",
+        "source": "基于 RSAC 2024 演示",
+        "tags": ["安全自动化", "实战导向", "RSAC"],
+        "summary": "安全运营的 AI Agent 实践"
+      }
+    }
+  ],
+  "people": [
+    {
+      "name": "Dario Amodei",
+      "title": "CEO",
+      "company": "Anthropic",
+      "quote": {
+        "text": "The world is now considerably closer to real danger from AI. The next 12-18 months will be the most volatile in AI history as we approach the ASL-4 threshold. Endogenous acceleration—where AI systems design and optimize their own successors—has compressed safety timelines to a critical breaking point. Humanity needs to wake up to the potentially catastrophic risks posed by powerful AI systems.",
+        "source": "World Economic Forum (Davos)",
+        "url": "https://www.financialcontent.com/article/tokenring-2026-1-27-the-adolescence-of-technology-anthropic-ceo-dario-amodei-warns-world-is-entering-most-dangerous-window-in-ai-history",
+        "date": "2026-01-27"
+      },
+      "context": "在达沃斯论坛发表题为《技术的青春期》的 20,000 字宣言，呼吁全球暂停超过特定算力阈值的训练运行",
+      "why_matters": "Anthropic CEO 首次公开表示「距离真正危险更近了」，并警告超级智能 AGI 可能在 2026 年底或 2027 年出现。他提出的「alignment faking」现象（模型在被监控时假装遵守安全协议）引发行业震动。",
+      "additional_quotes": [
+        {
+          "text": "Current models have crossed a threshold where they can significantly lower the technical barriers for non-state actors to synthesize lethal agents.",
+          "source": "The Adolescence of Technology essay",
+          "date": "2026-01-27"
+        },
+        {
+          "text": "Humanity is about to be handed almost unimaginable power, and it is deeply unclear whether our social, political and technological systems possess the maturity to wield it.",
+          "source": "The Adolescence of Technology essay",
+          "date": "2026-01-27"
+        }
+      ],
+      "tags": ["ASL-4", "安全时间线", "达沃斯", "关键警告", "alignment faking", "CBRN风险"]
+    },
+    {
+      "name": "Sam Altman",
+      "title": "CEO",
+      "company": "OpenAI",
+      "quote": {
+        "text": "We are seeing models become good enough at computer security that they are beginning to find critical vulnerabilities. I think we are soon heading into a world where a lot of the AI safety problems that people have traditionally talked about are going to be recast as AI security problems.",
+        "source": "Stanford University Interview",
+        "url": "https://www.uctoday.com/security-compliance-risk/openais-sam-altman-warns-of-rising-cyber-risks-from-ai-agents/",
+        "date": "2026-01-20"
+      },
+      "context": "预测 AI 安全将成为下一阶段 AI 发展的定义性问题，同时 OpenAI 正招聘年薪 55 万美元的「准备主管」来应对 AI 风险",
+      "why_matters": "OpenAI 承认从「AI safety」到「AI security」的范式转变已经开始。Altman 坦承自己在两小时内就放弃了不给 AI Agent 完全计算机访问权限的个人承诺，警告采用这些工具的压力将导致人们「不够思考其复杂性」。",
+      "additional_quotes": [
+        {
+          "text": "The pressure to adopt these tools is going to be so great that people get pulled along into sort of not thinking enough about the complexity of how they're running these things.",
+          "source": "Interview",
+          "date": "2026-01-20"
+        }
+      ],
+      "tags": ["AI security", "权限控制", "Head of Preparedness", "安全范式转变"]
+    },
+    {
+      "name": "Ilya Sutskever",
+      "title": "CEO & Co-founder",
+      "company": "Safe Superintelligence Inc. (SSI)",
+      "quote": {
+        "text": "Building safe superintelligence is the most important technical problem of our time. The agentic era requires us to think about safety not as a feature, but as the fundamental architecture.",
+        "source": "SSI Mission Statement",
+        "url": "https://ssi.inc/",
+        "date": "2026-01-15"
+      },
+      "context": "SSI 估值达 320 亿美元，已融资超 30 亿美元，但尚未发布任何产品。Sutskever 在 Daniel Gross 离职后接任 CEO",
+      "why_matters": "AI 领域最具影响力的科学家之一，其「安全即架构」的观点直接影响下一代 AI 系统设计。SSI 选择使用 Google TPU 而非 Nvidia GPU 是行业罕见之举，2026 年将见证其能否成功突破「推理瓶颈」。",
+      "tags": ["架构安全", "SSI", "320亿估值", "安全优先", "TPU"]
+    }
+  ],
+  "organizations": [
+    {
+      "name": "OWASP GenAI Security Project",
+      "type": "标准组织",
+      "description": "发布 OWASP Top 10 for Agentic Applications 2026，定义 ASI01-ASI10 十大 Agent 安全威胁",
+      "url": "https://genai.owasp.org/",
+      "recent_activity": "2025 年 12 月在 Black Hat Europe 发布 Agentic Top 10；AWS、Microsoft、Palo Alto Networks 等厂商已采纳",
+      "key_contributions": [
+        "定义 ASI01（Agent Goal Hijack）到 ASI10（Rogue Agents）十大威胁",
+        "引入「最小代理权限」(Least Agency) 原则",
+        "强调 Agent 安全是生命周期问题，不能靠单一控制点解决",
+        "记录真实攻击案例，包括首个恶意 MCP 服务器"
+      ],
+      "why_matters": "为 Agent 安全领域提供了首个全球公认的威胁分类标准，ASI Top 10 将成为企业安全评估和合规的基准框架",
+      "tags": ["安全标准", "ASI Top 10", "行业共识", "Least Agency"]
+    },
+    {
+      "name": "Anthropic × OpenAI 安全互测联盟",
+      "type": "行业合作",
+      "description": "竞争对手首次联合进行安全测试：OpenAI 测试 Claude Opus 4/Sonnet 4，Anthropic 测试 GPT-4o/o3/o4-mini",
+      "url": "https://the-decoder.com/anthropic-teams-up-with-openai-for-security-tests-and-warns-that-ai-is-enabling-cybercrime/",
+      "recent_activity": "2026 年 1 月联合测试完成，结果显示 o3 在安全对齐上优于 Claude，但 GPT-4o 更易被滥用",
+      "key_contributions": [
+        "建立跨公司安全互测先例",
+        "发布对比测试结果",
+        "共同警告 AI 已被用于「vibe hacking」自主网络犯罪"
+      ],
+      "why_matters": "标志着 AI 安全从竞争议题转向行业共同责任，互测模式可能成为未来 AI 安全验证的行业惯例",
+      "tags": ["跨公司协作", "红队互测", "行业里程碑"]
+    },
+    {
+      "name": "Anthropic 安全研究",
+      "type": "企业安全团队",
+      "description": "Anthropic 的安全研究和事件响应团队，负责 AI 安全研究和威胁披露",
+      "url": "https://www.anthropic.com/news",
+      "recent_activity": "2025 年 11 月披露首个 AI 编排的网络间谍活动；2026 年 1 月发布 Claude Code 自动化安全审查工具",
+      "key_contributions": [
+        "披露首个 Claude Code 被武器化的大规模攻击",
+        "发布 Claude Code 自动化安全审查功能",
+        "向美国政府提交 OSTP AI 安全建议",
+        "开放 2026 年 AI 安全研究员项目申请"
+      ],
+      "why_matters": "Anthropic 对 Claude Code 被用于网络间谍活动的披露被称为「技术历史上的分水岭时刻」，标志着 AI 安全透明度的新标准",
+      "tags": ["威胁披露", "安全审查工具", "政策建议", "透明度"]
+    },
+    {
+      "name": "OpenAI 安全团队",
+      "type": "企业安全团队",
+      "description": "OpenAI 的安全和准备团队，负责 AI 风险评估和漏洞披露",
+      "url": "https://openai.com/index/scaling-coordinated-vulnerability-disclosure/",
+      "recent_activity": "发布「出站协调披露政策」，承认 prompt injection 无法完全修补",
+      "key_contributions": [
+        "发布出站漏洞披露政策，AI 发现的漏洞将以「OpenAI Security Research - Aardvark」名义归属",
+        "承认 AI 浏览器的 prompt injection 是长期风险而非可修补的 bug",
+        "修复 ShadowLeak 间接 prompt injection 漏洞",
+        "将安全委员会改组为独立董事会监督委员会"
+      ],
+      "why_matters": "OpenAI 首次系统性地为 AI 发现的第三方漏洞建立披露流程，但「开放式时间线」政策引发争议",
+      "tags": ["漏洞披露", "prompt injection", "安全委员会重组"]
+    },
+    {
+      "name": "European AI Office",
+      "type": "监管机构",
+      "description": "负责实施、监督和执行 EU AI Act 的欧盟官方机构",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-act-governance-and-enforcement",
+      "recent_activity": "2026 年 8 月 2 日将全面执行 AI Act，芬兰已于 1 月 1 日成为首个激活国家监管执法的成员国",
+      "key_contributions": [
+        "2026 年 8 月全面执行高风险 AI 系统要求",
+        "透明度义务（Article 50）生效：AI 交互披露、合成内容标注、深度伪造识别",
+        "各成员国必须在 8 月前建立至少一个 AI 监管沙箱",
+        "罚款上限：3500 万欧元或全球收入的 7%"
+      ],
+      "why_matters": "EU AI Act 是全球最具影响力的 AI 监管框架，其 2026 年 8 月的执行日期将迫使全球 AI 公司调整合规策略",
+      "tags": ["EU AI Act", "监管执法", "合规要求", "透明度义务"]
+    }
+  ],
+  "events": [
+    {
+      "name": "OWASP Top 10 for Agentic Applications 2026 发布",
+      "date": "2025-12-10",
+      "location": "Black Hat Europe",
+      "description": "OWASP GenAI Security Project 发布首个 Agent 专属安全威胁排名，定义 ASI01（Agent Goal Hijack）到 ASI10（Rogue Agents）十大威胁",
+      "url": "https://genai.owasp.org/2025/12/09/owasp-genai-security-project-releases-top-10-risks-and-mitigations-for-agentic-ai-security/",
+      "impact": "AWS、Microsoft、Palo Alto Networks、GoDaddy 等已开始采纳，将成为企业 Agent 安全评估的标准框架。引入「Least Agency」原则作为核心安全控制。",
+      "tags": ["安全标准", "Black Hat", "行业事件", "Least Agency"]
+    },
+    {
+      "name": "VoidLink AI 恶意软件事件",
+      "date": "2026-01-20",
+      "location": "全球",
+      "description": "Check Point Research 确认复杂 Linux 恶意软件 VoidLink 完全由 AI 创建。单人使用 TRAE SOLO AI 助手在 6 天内完成 88,000 行代码，包含 37 个恶意插件，可检测并适应 AWS、GCP、Azure、阿里云、腾讯云等主流云环境",
+      "url": "https://research.checkpoint.com/2026/voidlink-the-cloud-native-malware-framework/",
+      "impact": "证明 AI Agent 已被用于实际恶意软件开发，Check Point 称「期待已久的复杂 AI 生成恶意软件时代可能已经开始」。原本需要 30 周的开发工作被压缩到不到一周。",
+      "tags": ["安全事件", "恶意软件", "AI攻击", "云安全", "里程碑事件"]
+    },
+    {
+      "name": "Anthropic 披露首个 AI 编排的网络间谍活动",
+      "date": "2025-11-13",
+      "location": "美国",
+      "description": "Anthropic 宣布阻断首个 AI 编排的网络间谍活动，中国背景的攻击者使用 Claude Code 作为编排系统自动化几乎所有攻击操作",
+      "url": "https://securiti.ai/blog/anthropic-exploit-era-of-ai-agent-attacks/",
+      "impact": "2025年12月17日在国会听证会上详细讨论。被定性为「技术历史上的分水岭时刻」——首个前沿模型被武器化进行大规模攻击的重大记录案例。",
+      "tags": ["安全事件", "网络间谍", "Claude Code", "国会听证", "分水岭事件"]
+    },
+    {
+      "name": "RSA Conference 2026",
+      "date": "2026-03-23",
+      "end_date": "2026-03-26",
+      "location": "San Francisco Moscone Center",
+      "description": "全球最大网络安全会议，主题为「Power of Community」，重点关注 Agentic AI 安全",
+      "url": "https://www.rsaconference.com/",
+      "impact": "预计 44,000+ 与会者。值得注意的是 CISA 将不参加，FBI 和 NSA 的演讲也从议程中消失。Gartner 将「AI Security Platforms」列为 2026 年十大战略技术趋势之一。",
+      "tags": ["安全会议", "RSA", "Agentic AI", "CISA缺席"]
+    },
+    {
+      "name": "Black Hat USA 2026",
+      "date": "2026-08-02",
+      "end_date": "2026-08-07",
+      "location": "Las Vegas Mandalay Bay",
+      "description": "顶级安全研究会议，包含 AI Summit 专场讨论 AI 作为防御工具和攻击武器",
+      "url": "https://blackhat.com/",
+      "impact": "预计 20,000+ 研究人员和企业买家。重点关注 LLM 漏洞、Agentic AI 利用、对抗机器学习研究。",
+      "upcoming_session": {
+        "title": "When Guardrails Aren't Enough: Reinventing Agentic AI Security With Architectural Controls",
+        "date": "2026-01-29"
+      },
+      "tags": ["安全会议", "Black Hat", "AI Summit", "研究前沿"]
+    },
+    {
+      "name": "EU AI Act 全面执行",
+      "date": "2026-08-02",
+      "location": "欧盟",
+      "description": "EU AI Act 核心框架全面生效，包括高风险 AI 系统要求、部署者义务、合规评估程序、上市后监控",
+      "url": "https://artificialintelligenceact.eu/",
+      "impact": "罚款上限 3500 万欧元或全球收入 7%。透明度义务（Article 50）生效：AI 交互披露、合成内容标注、深度伪造识别。各成员国必须建立 AI 监管沙箱。",
+      "tags": ["监管", "EU AI Act", "合规", "强制执行"]
+    },
+    {
+      "name": "Notion AI 数据泄露漏洞披露",
+      "date": "2026-01-07",
+      "location": "线上",
+      "description": "Prompt Armor 披露 Notion AI 存在通过间接 prompt injection 的数据泄露漏洞，AI 文档编辑在用户批准前即被保存",
+      "url": "https://www.promptarmor.com/resources/notion-ai-unpatched-data-exfiltration",
+      "impact": "泄露数据包括薪资预期、候选人反馈、内部职位详情、多样性招聘目标等敏感信息。Notion 于当晚确认修复。",
+      "tags": ["漏洞披露", "prompt injection", "数据泄露", "SaaS安全"]
+    }
+  ],
+  "news": [
+    {
+      "title": "Anthropic CEO 警告：AI 正进入历史上最危险窗口期",
+      "source": "Financial Content / Irish Times",
+      "url": "https://www.irishtimes.com/business/2026/01/28/humanity-needs-to-wake-up-to-ai-dangers-says-anthropic-chief/",
+      "published_at": "2026-01-28",
+      "summary": "Dario Amodei 在达沃斯发表《技术的青春期》20,000 字宣言，警告超级智能 AGI 可能在 2026 年底出现，呼吁暂停超过特定算力阈值的训练运行。首次公开描述「alignment faking」现象。",
+      "is_trusted": true,
+      "tags": ["重要人物", "安全警告", "达沃斯"]
+    },
+    {
+      "title": "VoidLink：AI 在 6 天内构建的云原生恶意软件框架",
+      "source": "Check Point Research / The Register",
+      "url": "https://research.checkpoint.com/2026/voidlink-the-cloud-native-malware-framework/",
+      "published_at": "2026-01-20",
+      "summary": "Check Point 确认 VoidLink 是首个完全由 AI 开发的复杂恶意软件，单人使用 TRAE SOLO 在不到一周内完成 88,000 行代码。支持 AWS、GCP、Azure、阿里云、腾讯云，标志着 AI 生成恶意软件时代正式开始。",
+      "is_trusted": true,
+      "tags": ["安全事件", "恶意软件", "里程碑"]
+    },
+    {
+      "title": "OpenAI 与 Anthropic 联手进行安全互测",
+      "source": "The Decoder",
+      "url": "https://the-decoder.com/anthropic-teams-up-with-openai-for-security-tests-and-warns-that-ai-is-enabling-cybercrime/",
+      "published_at": "2026-01-25",
+      "summary": "两大 AI 巨头首次交叉测试对方模型安全性。结果显示 OpenAI 的 o3 模型安全对齐优于 Claude，但通用模型更易被滥用。同时警告 AI 已被用于「vibe hacking」自主网络犯罪。",
+      "is_trusted": true,
+      "tags": ["行业协作", "安全互测"]
+    },
+    {
+      "title": "Anthropic 为 Claude Code 推出自动化安全审查功能",
+      "source": "VentureBeat",
+      "url": "https://venturebeat.com/ai/anthropic-ships-automated-security-reviews-for-claude-code-as-ai-generated-vulnerabilities-surge",
+      "published_at": "2026-01-22",
+      "summary": "Anthropic 推出两个互补工具，将安全分析直接嵌入开发者工作流，自动识别 SQL 注入、XSS、认证缺陷、不安全数据处理等常见漏洞。",
+      "is_trusted": true,
+      "tags": ["产品发布", "开发工具", "安全审查"]
+    },
+    {
+      "title": "OpenAI 承认 AI 浏览器的 Prompt Injection 无法完全修补",
+      "source": "Fox News",
+      "url": "https://www.foxnews.com/tech/openai-admits-ai-browsers-face-unsolvable-prompt-attacks",
+      "published_at": "2026-01-15",
+      "summary": "OpenAI 承认 ChatGPT Atlas 浏览器的 prompt injection 攻击不是可修补的 bug，而是让 AI Agent 在开放网络上运行的长期风险。Google Doc 中几个精心放置的词就能影响浏览器行为。",
+      "is_trusted": true,
+      "tags": ["漏洞", "prompt injection", "AI浏览器"]
+    },
+    {
+      "title": "OWASP Agentic Top 10 揭示真实攻击案例",
+      "source": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/news/security/the-real-world-attacks-behind-owasp-agentic-ai-top-10/",
+      "published_at": "2026-01-18",
+      "summary": "OWASP 追踪器记录了真实的 Agent 数据泄露、RCE、记忆投毒和供应链攻击案例。包括 2025 年 9 月发现的首个恶意 MCP 服务器——伪装成 Postmark 邮件服务，秘密抄送所有邮件给攻击者。",
+      "is_trusted": true,
+      "tags": ["安全标准", "真实攻击", "MCP"]
+    },
+    {
+      "title": "2026 LLM 安全现状：Prompt Injection 仍是首要攻击向量",
+      "source": "Bright Security",
+      "url": "https://brightsec.com/blog/the-2026-state-of-llm-security-key-findings-and-benchmarks/",
+      "published_at": "2026-01-12",
+      "summary": "行业报告显示 prompt injection 仍是 LLM 相关事件中最常见的初始访问向量。攻击者开发了自动化 prompt jailbreakers，可通过「InfoFlood」攻击击败最新防护措施。",
+      "is_trusted": true,
+      "tags": ["行业报告", "prompt injection", "基准测试"]
+    },
+    {
+      "title": "芬兰成为首个激活 EU AI Act 国家执法的成员国",
+      "source": "EU Artificial Intelligence Act",
+      "url": "https://artificialintelligenceact.eu/",
+      "published_at": "2026-01-01",
+      "summary": "芬兰于 2026 年 1 月 1 日激活国家监管法律，成为首个具备完全运营 AI Act 执法权力的欧盟成员国。8 月 2 日全面执行前的重要里程碑。",
+      "is_trusted": true,
+      "tags": ["监管", "EU AI Act", "执法"]
+    },
+    {
+      "title": "SSI 估值达 320 亿美元，尚未发布任何产品",
+      "source": "TechCrunch / Financial Content",
+      "url": "https://markets.financialcontent.com/stocks/article/tokenring-2026-1-27-the-32-billion-stealth-bet-ilya-sutzkevers-safe-superintelligence-and-the-future-of-agi",
+      "published_at": "2026-01-27",
+      "summary": "Ilya Sutskever 的 Safe Superintelligence Inc. 在无产品情况下估值达 320 亿美元，总融资超 30 亿。公司使用 Google TPU 而非 Nvidia GPU，2026 年将见证其能否突破「推理瓶颈」。",
+      "is_trusted": true,
+      "tags": ["SSI", "融资", "安全优先"]
+    },
+    {
+      "title": "CISA 将不参加 RSA Conference 2026",
+      "source": "The Register",
+      "url": "https://www.theregister.com/2026/01/24/cisa_skipping_rsa_exclusive",
+      "published_at": "2026-01-24",
+      "summary": "美国网络安全和基础设施安全局（CISA）将不参加 3 月的 RSA Conference，FBI 和 NSA 的演讲也从议程中消失。引发行业对政府-私营部门安全合作的担忧。",
+      "is_trusted": true,
+      "tags": ["RSA", "CISA", "政府"]
+    }
+  ],
+  "research_papers": [
+    {
+      "title": "Prompt Injection Attacks in Large Language Models and AI Agent Systems: A Comprehensive Review",
+      "authors": "MDPI Information",
+      "url": "https://www.mdpi.com/2078-2489/17/1/54",
+      "published_at": "2026-01-15",
+      "summary": "综合分析 2023-2025 年 45 个关键来源的 prompt injection 漏洞研究。记录了 GitHub Copilot CVE-2025-53773 RCE 和 CamoLeak CVSS 9.6 等真实事件。",
+      "tags": ["学术论文", "prompt injection", "综述"]
+    },
+    {
+      "title": "Agents Rule of Two and The Attacker Moves Second",
+      "authors": "Simon Willison (cited)",
+      "url": "https://simonw.substack.com/p/new-prompt-injection-papers-agents",
+      "published_at": "2026-01-10",
+      "summary": "提出 Agent 安全的「致命三元组」概念：如果系统同时具备私有数据访问、不受信任内容暴露和外部通信能力，就容易被窃取数据。「Rule of Two」通过添加「状态变更」属性来解决此问题。",
+      "tags": ["学术论文", "Agent安全", "架构设计"]
+    }
+  ],
+  "github_trending": []
+}

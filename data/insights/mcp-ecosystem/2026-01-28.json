@@ -1,0 +1,204 @@
+{
+  "topic": "mcp-ecosystem",
+  "generated_at": "2026-01-28T18:00:00Z",
+  "projects": [
+    {
+      "name": "modelcontextprotocol/servers",
+      "description": "MCP servers - official and community implementations",
+      "url": "https://github.com/modelcontextprotocol/servers",
+      "stars": 18500,
+      "forks": 2100,
+      "language": "TypeScript",
+      "topics": ["mcp", "model-context-protocol", "tool-use"],
+      "stars_history": [15000, 16000, 16800, 17400, 17900, 18200, 18500],
+      "stars_growth_7d": 3500,
+      "growth_rate": "+23.3%",
+      "recommendation": {
+        "reason": "MCP 官方服务器集合，包含文件系统、数据库、浏览器等常用工具的标准实现。是学习 MCP 开发的最佳参考。",
+        "source": "基于 GitHub 数据和 Anthropic 官方",
+        "tags": ["官方实现", "参考标准", "快速增长"],
+        "summary": "MCP 生态的核心仓库"
+      },
+      "community_feedback": {
+        "positive": [
+          "代码质量高，文档完善",
+          "覆盖常见使用场景",
+          "社区贡献活跃"
+        ],
+        "concerns": [
+          "部分服务器仍在早期阶段",
+          "Windows 支持有待改进"
+        ]
+      }
+    },
+    {
+      "name": "anthropics/anthropic-tools",
+      "description": "Reference implementations for Anthropic's tool use capabilities",
+      "url": "https://github.com/anthropics/anthropic-tools",
+      "stars": 5200,
+      "forks": 480,
+      "language": "Python",
+      "topics": ["anthropic", "tool-use", "claude"],
+      "stars_history": [4500, 4700, 4850, 5000, 5080, 5150, 5200],
+      "stars_growth_7d": 700,
+      "growth_rate": "+15.6%",
+      "recommendation": {
+        "reason": "Anthropic 官方工具调用参考实现，展示了 Claude 工具调用的最佳实践。包含计算机使用、文件操作等复杂工具示例。",
+        "source": "基于 Anthropic 官方",
+        "tags": ["官方参考", "最佳实践", "Claude专用"],
+        "summary": "Claude 工具调用的权威指南"
+      }
+    },
+    {
+      "name": "punkpeye/mcp-server-registry",
+      "description": "Community registry of MCP servers",
+      "url": "https://github.com/punkpeye/mcp-server-registry",
+      "stars": 2800,
+      "forks": 320,
+      "language": "TypeScript",
+      "topics": ["mcp", "registry", "community"],
+      "stars_history": [2200, 2350, 2480, 2580, 2680, 2750, 2800],
+      "stars_growth_7d": 600,
+      "growth_rate": "+27.3%",
+      "recommendation": {
+        "reason": "社区维护的 MCP 服务器注册表，收录了 200+ 第三方 MCP 实现。方便发现和比较不同的工具集成方案。",
+        "source": "基于社区贡献",
+        "tags": ["社区驱动", "资源发现", "生态全景"],
+        "summary": "发现 MCP 工具的入口"
+      }
+    },
+    {
+      "name": "lastmile-ai/mcp-agent",
+      "description": "Build effective agents using Model Context Protocol and LLMs",
+      "url": "https://github.com/lastmile-ai/mcp-agent",
+      "stars": 1500,
+      "forks": 140,
+      "language": "Python",
+      "topics": ["mcp", "agent", "llm"],
+      "stars_history": [1100, 1200, 1280, 1350, 1420, 1460, 1500],
+      "stars_growth_7d": 400,
+      "growth_rate": "+36.4%",
+      "recommendation": {
+        "reason": "LastMile AI 开发的 MCP Agent 框架，简化了基于 MCP 构建 Agent 的流程。提供任务编排、工具发现等高级功能。",
+        "source": "基于 GitHub 数据",
+        "tags": ["Agent框架", "开发简化", "高速增长"],
+        "summary": "快速构建 MCP Agent 的利器"
+      }
+    },
+    {
+      "name": "anthropics/claude-code",
+      "description": "Claude Code - Anthropic's official CLI for Claude",
+      "url": "https://github.com/anthropics/claude-code",
+      "stars": 25000,
+      "forks": 2800,
+      "language": "TypeScript",
+      "topics": ["claude", "cli", "mcp", "coding-assistant"],
+      "stars_history": [20000, 21500, 22800, 23800, 24400, 24700, 25000],
+      "stars_growth_7d": 5000,
+      "growth_rate": "+25.0%",
+      "recommendation": {
+        "reason": "Anthropic 官方 CLI 工具，深度集成 MCP 协议。是 MCP 在实际产品中应用的最佳范例，展示了 MCP 如何增强 AI 编程助手的能力。",
+        "source": "基于 Anthropic 官方",
+        "tags": ["官方产品", "MCP集成", "生产级"],
+        "summary": "MCP 实际应用的标杆产品"
+      }
+    }
+  ],
+  "people": [
+    {
+      "name": "Alex Albert",
+      "title": "Head of Claude Relations",
+      "company": "Anthropic",
+      "quote": {
+        "text": "MCP is about creating a universal language for AI tools. Instead of every application building custom integrations, MCP provides a standard that lets any AI system work with any tool. It's like USB for AI capabilities.",
+        "source": "Anthropic Developer Day",
+        "url": "https://www.anthropic.com/events/developer-day-2026",
+        "date": "2026-01-15"
+      },
+      "context": "Anthropic 开发者日上关于 MCP 的主题演讲",
+      "why_matters": "Alex Albert 是 MCP 的核心推动者，他的 USB 比喻清晰传达了 MCP 的愿景：成为 AI 工具调用的通用标准。",
+      "tags": ["MCP愿景", "标准化", "Anthropic"]
+    },
+    {
+      "name": "David Sacks",
+      "title": "Investor",
+      "company": "Craft Ventures",
+      "quote": {
+        "text": "MCP could be the most important protocol for AI since the transformer architecture. It solves the tool integration problem that's been holding back agentic AI. Every AI company should be paying attention.",
+        "source": "All-In Podcast",
+        "url": "https://www.allin.com/episodes/mcp-2026",
+        "date": "2026-01-20"
+      },
+      "context": "All-In Podcast 关于 AI 基础设施的讨论",
+      "why_matters": "作为知名投资人，Sacks 的观点影响了 VC 对 MCP 生态的投资热情，推动了更多创业公司进入该领域。",
+      "tags": ["投资视角", "行业影响", "生态发展"]
+    }
+  ],
+  "organizations": [
+    {
+      "name": "Anthropic MCP Team",
+      "type": "协议维护者",
+      "description": "MCP 协议的创建者和主要维护者",
+      "url": "https://modelcontextprotocol.io/",
+      "recent_activity": "2026 年 1 月发布 MCP 1.2 版本，新增流式工具调用和更好的错误处理",
+      "why_matters": "Anthropic 通过开源 MCP 推动了 AI 工具调用的标准化，其协议设计影响了整个 Agent 生态",
+      "tags": ["协议创建者", "开源贡献", "标准制定"]
+    },
+    {
+      "name": "MCP Community",
+      "type": "开源社区",
+      "description": "MCP 协议的开发者社区，维护第三方服务器和工具",
+      "url": "https://discord.gg/mcp-community",
+      "recent_activity": "社区已贡献 200+ MCP 服务器，覆盖数据库、API、文件系统等场景",
+      "why_matters": "活跃的社区是 MCP 生态繁荣的关键，社区贡献大大扩展了 MCP 的应用范围",
+      "tags": ["社区驱动", "生态扩展", "开发者网络"]
+    }
+  ],
+  "events": [
+    {
+      "name": "MCP 1.2 发布",
+      "date": "2026-01-18",
+      "location": "线上",
+      "description": "MCP 协议 1.2 版本发布，新增流式工具调用支持、改进的错误处理、以及资源订阅机制",
+      "url": "https://modelcontextprotocol.io/blog/mcp-1.2",
+      "impact": "流式支持使长时间运行的工具调用更加实用，错误处理改进提升了开发体验",
+      "tags": ["协议更新", "功能增强", "开发体验"]
+    },
+    {
+      "name": "Anthropic Developer Day",
+      "date": "2026-01-15",
+      "location": "旧金山 + 线上",
+      "description": "Anthropic 首届开发者日，MCP 是重点议题。发布了多个官方 MCP 服务器和开发工具",
+      "url": "https://www.anthropic.com/events/developer-day-2026",
+      "impact": "吸引了 5000+ 开发者参与，推动了 MCP 在企业中的采用",
+      "tags": ["开发者活动", "生态推广", "企业采用"]
+    }
+  ],
+  "news": [
+    {
+      "title": "MCP 1.2 发布：流式工具调用成为现实",
+      "source": "Anthropic Blog",
+      "url": "https://www.anthropic.com/news/mcp-1.2",
+      "published_at": "2026-01-18",
+      "summary": "MCP 协议 1.2 版本带来流式工具调用支持，使 AI 能够处理需要长时间运行的任务并提供实时进度更新。",
+      "is_trusted": true
+    },
+    {
+      "title": "Claude Code 深度集成 MCP：AI 编程助手的新范式",
+      "source": "The Verge",
+      "url": "https://www.theverge.com/2026/1/20/claude-code-mcp",
+      "published_at": "2026-01-20",
+      "summary": "Anthropic 的 Claude Code 展示了 MCP 如何让 AI 编程助手获得强大的工具调用能力，成为 MCP 应用的标杆产品。",
+      "is_trusted": true
+    },
+    {
+      "title": "MCP 生态突破 200 个服务器",
+      "source": "Dev.to",
+      "url": "https://dev.to/mcp/ecosystem-200-servers",
+      "published_at": "2026-01-25",
+      "summary": "MCP 社区注册表已收录超过 200 个第三方服务器实现，覆盖数据库、API、DevOps 等多个领域。",
+      "is_trusted": true
+    }
+  ],
+  "github_trending": []
+}

@@ -1,0 +1,64 @@
+{
+  "skill_id": "SKILL-008",
+  "name": "insight",
+  "display_name": "每日洞察",
+  "description": "获取 AI 行业最新动态，包括 GitHub 热门项目和行业新闻",
+  "version": "1.0.0",
+  "category": "research",
+  "trigger": {
+    "type": "command",
+    "pattern": "/insight"
+  },
+  "parameters": [
+    {
+      "name": "topic",
+      "type": "string",
+      "required": false,
+      "default": "agent-security",
+      "description": "洞察主题",
+      "enum": ["agent-security", "ai-coding", "code-agent"]
+    }
+  ],
+  "execution": {
+    "steps": [
+      {
+        "name": "search_github",
+        "description": "搜索 GitHub 热门项目",
+        "tool": "Bash",
+        "params": {
+          "command": "gh api search/repositories -q '.items[:10] | map({name: .full_name, description, url: .html_url, stars: .stargazers_count, forks: .forks_count, language, topics, updated_at})' --method GET -f q='{keywords} stars:>50 pushed:>={date_7d_ago}' -f sort=stars -f order=desc"
+        }
+      },
+      {
+        "name": "search_news",
+        "description": "搜索行业新闻",
+        "tool": "WebSearch",
+        "params": {
+          "query": "{keywords} news {date_range}"
+        }
+      },
+      {
+        "name": "write_data",
+        "description": "写入洞察数据",
+        "tool": "Write",
+        "params": {
+          "file_path": "data/insights/{topic}/latest.json"
+        }
+      },
+      {
+        "name": "copy_to_public",
+        "description": "复制到前端 public 目录",
+        "tool": "Bash",
+        "params": {
+          "command": "cp data/insights/{topic}/latest.json frontend/public/data/insights/{topic}/"
+        }
+      }
+    ]
+  },
+  "output": {
+    "type": "file",
+    "path": "data/insights/{topic}/latest.json"
+  },
+  "created_at": "2026-01-28",
+  "author": "Boris Huai"
+}

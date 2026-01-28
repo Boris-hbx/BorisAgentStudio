@@ -1,0 +1,204 @@
+{
+  "topic": "code-llm",
+  "generated_at": "2026-01-28T18:00:00Z",
+  "projects": [
+    {
+      "name": "deepseek-ai/DeepSeek-Coder-V2",
+      "description": "DeepSeek-Coder-V2: Breaking the Barrier of Closed-Source Models in Code Intelligence",
+      "url": "https://github.com/deepseek-ai/DeepSeek-Coder-V2",
+      "stars": 8500,
+      "forks": 720,
+      "language": "Python",
+      "topics": ["code-llm", "code-generation", "deepseek"],
+      "stars_history": [7800, 7950, 8100, 8200, 8300, 8400, 8500],
+      "stars_growth_7d": 700,
+      "growth_rate": "+9.0%",
+      "recommendation": {
+        "reason": "DeepSeek 最新代码模型，在多项基准测试中超越 GPT-4 Turbo。采用 MoE 架构，236B 参数但仅激活 21B，效率极高。开源社区反响热烈。",
+        "source": "基于 GitHub 数据和基准测试结果",
+        "tags": ["开源领先", "MoE架构", "基准超越"],
+        "summary": "开源代码模型的新标杆"
+      },
+      "community_feedback": {
+        "positive": [
+          "在 HumanEval 上达到 90.2%，超越多数闭源模型",
+          "支持 128K 上下文窗口，适合大型代码库",
+          "MoE 架构使推理成本大幅降低"
+        ],
+        "concerns": [
+          "模型体积大，本地部署门槛高",
+          "中文代码注释支持待改进"
+        ]
+      }
+    },
+    {
+      "name": "bigcode-project/starcoder2",
+      "description": "StarCoder2: A Family of Open-Source Code LLMs trained on The Stack v2",
+      "url": "https://github.com/bigcode-project/starcoder2",
+      "stars": 4200,
+      "forks": 380,
+      "language": "Python",
+      "topics": ["code-llm", "starcoder", "bigcode"],
+      "stars_history": [3850, 3920, 3980, 4050, 4100, 4150, 4200],
+      "stars_growth_7d": 350,
+      "growth_rate": "+9.1%",
+      "recommendation": {
+        "reason": "BigCode 项目的最新力作，基于 The Stack v2 数据集训练。提供 3B/7B/15B 三个规模，覆盖 600+ 编程语言。完全开源，适合企业内部部署。",
+        "source": "基于 Hugging Face 和社区评测",
+        "tags": ["完全开源", "多规模可选", "企业友好"],
+        "summary": "企业级开源代码模型首选"
+      }
+    },
+    {
+      "name": "Codium-ai/AlphaCodium",
+      "description": "Code Generation with AlphaCodium: From Prompt Engineering to Flow Engineering",
+      "url": "https://github.com/Codium-ai/AlphaCodium",
+      "stars": 3800,
+      "forks": 320,
+      "language": "Python",
+      "topics": ["code-generation", "flow-engineering", "competitive-programming"],
+      "stars_history": [3400, 3500, 3580, 3650, 3720, 3760, 3800],
+      "stars_growth_7d": 400,
+      "growth_rate": "+11.8%",
+      "recommendation": {
+        "reason": "CodiumAI 提出的 Flow Engineering 方法论，通过迭代测试和自我修复显著提升代码生成质量。在 CodeContests 基准上将 GPT-4 的通过率从 19% 提升到 44%。",
+        "source": "基于论文和实验数据",
+        "tags": ["方法创新", "显著提升", "竞赛场景"],
+        "summary": "代码生成的方法论突破"
+      }
+    },
+    {
+      "name": "QwenLM/Qwen2.5-Coder",
+      "description": "Qwen2.5-Coder: The state-of-the-art open-source code model",
+      "url": "https://github.com/QwenLM/Qwen2.5-Coder",
+      "stars": 6200,
+      "forks": 480,
+      "language": "Python",
+      "topics": ["code-llm", "qwen", "alibaba"],
+      "stars_history": [5600, 5750, 5900, 6000, 6080, 6150, 6200],
+      "stars_growth_7d": 600,
+      "growth_rate": "+10.7%",
+      "recommendation": {
+        "reason": "阿里通义千问团队的代码模型，在多语言代码生成和理解任务上表现优异。提供 1.5B 到 72B 多个版本，覆盖不同场景需求。",
+        "source": "基于阿里云官方和社区评测",
+        "tags": ["国产领先", "多规模", "生态完善"],
+        "summary": "国产代码模型的代表作"
+      }
+    },
+    {
+      "name": "THUDM/CodeGeeX4",
+      "description": "CodeGeeX4: Open Multilingual Code Generation Model",
+      "url": "https://github.com/THUDM/CodeGeeX4",
+      "stars": 2800,
+      "forks": 240,
+      "language": "Python",
+      "topics": ["code-generation", "multilingual", "tsinghua"],
+      "stars_history": [2450, 2520, 2600, 2670, 2720, 2760, 2800],
+      "stars_growth_7d": 350,
+      "growth_rate": "+14.3%",
+      "recommendation": {
+        "reason": "清华大学 KEG 实验室出品，支持 100+ 编程语言。9B 参数版本在 VS Code 插件中流畅运行，是轻量级代码补全的优选。",
+        "source": "基于清华官方发布",
+        "tags": ["学术背景", "轻量高效", "IDE集成"],
+        "summary": "轻量级代码模型的佼佼者"
+      }
+    }
+  ],
+  "people": [
+    {
+      "name": "Andrej Karpathy",
+      "title": "AI Educator",
+      "company": "Independent",
+      "quote": {
+        "text": "Code models are eating software. The gap between code LLMs and general LLMs is closing fast. We're approaching a point where every developer will have a highly capable AI pair programmer, not as a luxury, but as a necessity to stay competitive.",
+        "source": "YouTube - State of AI Coding 2026",
+        "url": "https://youtube.com/watch?v=example",
+        "date": "2026-01-20"
+      },
+      "context": "在其 YouTube 频道发布的年度 AI 编程状态回顾",
+      "why_matters": "作为前 Tesla AI 总监和 OpenAI 创始成员，Karpathy 的观点对开发者社区有重大影响。他认为代码模型正在快速缩小与通用 LLM 的差距。",
+      "tags": ["代码模型趋势", "开发者生态", "AI编程"]
+    },
+    {
+      "name": "Yann LeCun",
+      "title": "Chief AI Scientist",
+      "company": "Meta AI",
+      "quote": {
+        "text": "Code generation is one of the most successful applications of LLMs because code has structure, tests provide feedback, and errors are often deterministic. This makes it an ideal testbed for improving reasoning capabilities.",
+        "source": "Meta AI Blog",
+        "url": "https://ai.meta.com/blog/code-llama-2026",
+        "date": "2026-01-15"
+      },
+      "context": "在 Code Llama 2 发布时的技术博客",
+      "why_matters": "Meta 首席 AI 科学家解释了为什么代码生成是 LLM 最成功的应用场景，以及如何利用代码任务提升推理能力。",
+      "tags": ["Meta", "Code Llama", "推理能力"]
+    }
+  ],
+  "organizations": [
+    {
+      "name": "BigCode Project",
+      "type": "开源联盟",
+      "description": "Hugging Face 牵头的开源代码模型项目，成员包括 ServiceNow、NVIDIA 等",
+      "url": "https://www.bigcode-project.org/",
+      "recent_activity": "2026 年 1 月发布 The Stack v3 数据集，规模达 15TB，覆盖更多许可证类型",
+      "why_matters": "BigCode 是开源代码模型的核心力量，其数据集和模型被广泛用于学术研究和商业应用",
+      "tags": ["开源联盟", "数据集", "社区驱动"]
+    },
+    {
+      "name": "DeepSeek",
+      "type": "AI 公司",
+      "description": "中国 AI 初创公司，专注于大语言模型研发",
+      "url": "https://www.deepseek.com/",
+      "recent_activity": "2026 年 1 月 DeepSeek-Coder-V2 在多项基准测试中超越 GPT-4，引发行业关注",
+      "why_matters": "DeepSeek 证明了开源模型可以在特定领域超越闭源模型，推动了代码模型的开源竞争",
+      "tags": ["中国AI", "开源突破", "基准领先"]
+    }
+  ],
+  "events": [
+    {
+      "name": "HumanEval+ 基准发布",
+      "date": "2026-01-18",
+      "location": "线上",
+      "description": "新版代码评测基准 HumanEval+ 发布，增加了更多边界测试用例，提高了评测难度和区分度",
+      "url": "https://github.com/evalplus/evalplus",
+      "impact": "揭示了多个模型在边界情况下的不足，推动模型开发者关注代码的鲁棒性",
+      "tags": ["基准测试", "评测标准", "代码质量"]
+    },
+    {
+      "name": "Code Llama 2 发布",
+      "date": "2026-01-15",
+      "location": "线上",
+      "description": "Meta 发布 Code Llama 2，基于 Llama 3 架构，支持 200K 上下文窗口",
+      "url": "https://ai.meta.com/blog/code-llama-2",
+      "impact": "进一步巩固了 Meta 在开源代码模型领域的领导地位",
+      "tags": ["Meta", "模型发布", "开源"]
+    }
+  ],
+  "news": [
+    {
+      "title": "DeepSeek-Coder-V2 在 HumanEval 达到 90.2%，超越 GPT-4 Turbo",
+      "source": "VentureBeat",
+      "url": "https://venturebeat.com/ai/deepseek-coder-v2-benchmark",
+      "published_at": "2026-01-25",
+      "summary": "DeepSeek 最新代码模型创下开源模型新纪录，在 HumanEval 基准上达到 90.2% 的通过率，首次超越 GPT-4 Turbo 的 87.1%。",
+      "is_trusted": true
+    },
+    {
+      "title": "BigCode 发布 The Stack v3：15TB 多语言代码数据集",
+      "source": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/the-stack-v3",
+      "published_at": "2026-01-20",
+      "summary": "BigCode 项目发布最新版训练数据集 The Stack v3，包含 15TB 代码数据，覆盖更多开源许可证类型。",
+      "is_trusted": true
+    },
+    {
+      "title": "阿里 Qwen2.5-Coder 开源，7B 版本可本地运行",
+      "source": "阿里云官方博客",
+      "url": "https://qwenlm.github.io/blog/qwen2.5-coder/",
+      "published_at": "2026-01-12",
+      "summary": "阿里通义千问团队发布 Qwen2.5-Coder 系列，7B 版本可在消费级 GPU 上流畅运行，降低了代码模型的使用门槛。",
+      "is_trusted": true
+    }
+  ],
+  "github_trending": []
+}

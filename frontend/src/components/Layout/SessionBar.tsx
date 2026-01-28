@@ -189,8 +189,12 @@ export function SessionBar() {
           </div>
           {/* 第二行：元信息 */}
           <div className="session-info-meta">
-            <span className="meta-model">{session.agent.model_id}</span>
-            <span className="meta-separator">·</span>
+            {session.agent?.model_id && (
+              <>
+                <span className="meta-model">{session.agent.model_id}</span>
+                <span className="meta-separator">·</span>
+              </>
+            )}
             {stats && (
               <>
                 <span className={`meta-status status-${stats.status}`}>

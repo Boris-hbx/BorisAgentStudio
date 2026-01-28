@@ -9,8 +9,11 @@ import { useEffect, useState } from 'react'
 import { Header, SessionBar } from './components/Layout'
 import { Sidebar, type SidebarModule } from './components/Sidebar'
 import { AgentExplorer } from './components/Sidebar/modules/AgentExplorer'
+import { AthleteEvaluation } from './components/Sidebar/modules/AthleteEvaluation'
 import { Timeline, TimelineEmpty } from './components/Timeline'
 import { HarmonyStudio } from './components/HarmonyStudio'
+import { AthleteEvaluationView } from './components/AthleteEvaluation'
+import { InsightView } from './components/Insight'
 import { ToolDetailPanel } from './components/ToolDetailPanel'
 import { useSessionStore } from './store/sessionStore'
 import { loadMockSession } from './services/mockData'
@@ -53,6 +56,18 @@ function App() {
       id: 'harmony-studio',
       icon: '🎨',
       label: 'HarmonyStudio',
+      render: () => null, // 内容在主区域显示
+    },
+    {
+      id: 'athlete-evaluation',
+      icon: '🤺',
+      label: '运动员评测',
+      render: (collapsed) => <AthleteEvaluation collapsed={collapsed} />,
+    },
+    {
+      id: 'insight',
+      icon: '🔭',
+      label: '洞察',
       render: () => null, // 内容在主区域显示
     },
     {
@@ -103,6 +118,16 @@ function App() {
     // HarmonyStudio 模块
     if (activeModule === 'harmony-studio') {
       return <HarmonyStudio />
+    }
+
+    // 运动员评测模块
+    if (activeModule === 'athlete-evaluation') {
+      return <AthleteEvaluationView />
+    }
+
+    // 洞察模块
+    if (activeModule === 'insight') {
+      return <InsightView />
     }
 
     // 占位模块显示 Coming Soon

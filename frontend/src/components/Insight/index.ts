@@ -1,0 +1,15 @@
+export { InsightView } from './InsightView'
+export { InsightTabs } from './InsightTabs'
+export { InsightFilters } from './InsightFilters'
+export { ProjectInsightCard } from './ProjectInsightCard'
+export { PersonInsightCard } from './PersonInsightCard'
+export { OrgInsightCard } from './OrgInsightCard'
+export { EventInsightCard } from './EventInsightCard'
+export { MiniTrendChart } from './MiniTrendChart'
+export { EmptyState } from './EmptyState'
+export { InsightConfigPanel } from './InsightConfigPanel'
+
+// 兼容旧组件
+export { GitHubTrending } from './GitHubTrending'
+export { NewsFeed } from './NewsFeed'
+export { ProjectCard } from './ProjectCard'
